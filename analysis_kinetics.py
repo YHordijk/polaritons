@@ -56,8 +56,10 @@ def fit_exp_decay(x, y, maxiter=10_000, eps=1e-6, plot_errors=True, show_fit=Tru
 		plt.title(f'Predicted and reference exponential decay\nA0={A0:.3f}, k={k:.3f}, B={B:.3f}')
 		plt.xlabel('Time (s)')
 		plt.ylabel('Absorbance (a.u.)')
-		plt.hlines((A0-B)/2, x.min(), np.log(2)/k, colors=['black'])
-		plt.scatter(np.log(2)/k, (A0-B)/2, colors=['black'])
+		plt.hlines(B + A0/2, x.min(), np.log(2)/k, colors=['black'], linewidths=[.75])
+		plt.vlines(np.log(2)/k, y.min(), B + A0/2, colors=['black'], linewidths=[.75])
+		plt.scatter(np.log(2)/k, B + A0/2, c='black')
+		plt.text(np.log(2.2)/k, B + A0/1.85, r'$t_{1/2} = $' + f'{np.log(2)/k:.2f} s')
 		plt.legend()
 
 	print('Parameters:')
