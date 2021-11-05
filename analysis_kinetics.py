@@ -7,7 +7,7 @@ def read_UV(file):
 	return data
 
 
-def fit_exp_decay(x, y, maxiter=10_000, eps=1e-6, plot_errors=True, show_fit=True):
+def fit_exp_decay(x, y, maxiter=10_000, eps=1e-6, plot_errors=True, show_fit=True, title='Predicted and reference rate'):
 	#fitting to [A]_0 exp(-kt) + B
 	#initial values
 	k = 2/x.max()			#height of 0.1 + B at time x.max()/2
@@ -53,7 +53,7 @@ def fit_exp_decay(x, y, maxiter=10_000, eps=1e-6, plot_errors=True, show_fit=Tru
 		plt.figure()
 		plt.plot(x, f(x, A0, k, B), label='Predicted decay')
 		plt.plot(x, y, label='Reference data')
-		plt.title(f'Predicted and reference exponential decay\nA0={A0:.3f}, k={k:.3f}, B={B:.3f}')
+		plt.title(f'{title}\nA0={A0:.3f}, k={k:.3f}, B={B:.3f}')
 		plt.xlabel('Time (s)')
 		plt.ylabel('Absorbance (a.u.)')
 		plt.hlines(B + A0/2, x.min(), np.log(2)/k, colors=['black'], linewidths=[.75])
@@ -82,7 +82,7 @@ if __name__ == '__main__':
 	data = read_UV('data/20211102 kinetic nsp in cavity/kinetic_data_10sinterval.csv')
 	time_delay = 20
 	tracking_wavelengths = [224, 340, 500]
-	tracking_wavelengths = [550]
+	tracking_wavelengths = [(520, 580)]
 	tracking_wavelengths_k = 20 #wavelengths around tracking_wavelenghts to average around
 
 	wavelenghts = data[:,0]
@@ -90,7 +90,7 @@ if __name__ == '__main__':
 	cmap = plt.get_cmap('jet')
 	N_spectra = absorbances.shape[1]
 
-	print(f'Found {N_spectra} spectra! λ ⊂ [{wavelenghts[0]} nm, {wavelenghts[-1]} nm]')
+	print(f'Found {N_spectra} spectra! λ ⊂ [{wavelenghts[0]}, {wavelenghts[-1]}] nm')
 
 	plt.figure()
 	plt.title('Spectra')
@@ -128,7 +128,10 @@ if __name__ == '__main__':
 		absorbs = get_tracking_absorbance(twl, tracking_wavelengths_k)
 		tracking_absorbances.append(absorbs)
 
-		plt.scatter(np.ones_like(absorbs) * twl, absorbs)
+		if type(twl) is tuple: twlb = (twl[0]+twl[1])/2
+		else: twlb = twl
+
+		plt.scatter(np.ones_like(absorbs) * twlb, absorbs)
 
 	plt.figure()
 	plt.title('Tracked wavelenghts')
@@ -148,7 +151,14 @@ if __name__ == '__main__':
 
 
 	for twl, tabs in zip(tracking_wavelengths, tracking_absorbances):
-		fit_exp_decay(np.arange(N_spectra-6)*time_delay, tabs[6:])
+		if type(twl) is tuple:
+			low = twl[0]
+			high = twl[1]
+		else:
+			low = twl - tracking_wavelengths_k
+			high = twl + tracking_wavelengths_k
+
+		fit_exp_decay(np.arange(N_spectra-6)*time_delay, tabs[6:], title=f'Predicted and reference rate (around $\lambda ∈ [{low}, {high}]$ nm)')
 
 
 	plt.show()
