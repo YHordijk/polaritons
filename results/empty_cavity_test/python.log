@@ -1,0 +1,258 @@
+=== GENERAL
+Filename: data/20211108 emptry cavity/repeated.csv
+Loaded 74 spectra!
+v_range  =  [6993.571, 397.318] cm^-1
+deltav   =  3.8575 cm^-1
+
+=== SPECTRA
+Spectrum 0:
+	FSR = 178.65 cm^-1, offset = 120.06 cm^-1
+	Quality = 2.023
+Spectrum 1:
+	FSR = 178.65 cm^-1, offset = 120.06 cm^-1
+	Quality = 2.024
+Spectrum 2:
+	FSR = 178.65 cm^-1, offset = 120.06 cm^-1
+	Quality = 2.023
+Spectrum 3:
+	FSR = 178.65 cm^-1, offset = 120.06 cm^-1
+	Quality = 2.024
+Spectrum 4:
+	FSR = 178.65 cm^-1, offset = 120.06 cm^-1
+	Quality = 2.025
+Spectrum 5:
+	FSR = 178.65 cm^-1, offset = 120.06 cm^-1
+	Quality = 2.027
+Spectrum 6:
+	FSR = 178.65 cm^-1, offset = 120.06 cm^-1
+	Quality = 2.025
+Spectrum 7:
+	FSR = 178.65 cm^-1, offset = 120.06 cm^-1
+	Quality = 2.026
+Spectrum 8:
+	FSR = 178.65 cm^-1, offset = 120.06 cm^-1
+	Quality = 2.026
+Spectrum 9:
+	FSR = 178.65 cm^-1, offset = 120.06 cm^-1
+	Quality = 2.026
+Spectrum 10:
+	FSR = 178.65 cm^-1, offset = 120.06 cm^-1
+	Quality = 2.026
+Spectrum 11:
+	FSR = 178.65 cm^-1, offset = 120.06 cm^-1
+	Quality = 2.026
+Spectrum 12:
+	FSR = 178.65 cm^-1, offset = 120.06 cm^-1
+	Quality = 2.026
+Spectrum 13:
+	FSR = 178.65 cm^-1, offset = 120.06 cm^-1
+	Quality = 2.026
+Spectrum 14:
+	FSR = 178.65 cm^-1, offset = 120.06 cm^-1
+	Quality = 2.027
+Spectrum 15:
+	FSR = 178.65 cm^-1, offset = 120.06 cm^-1
+	Quality = 2.026
+Spectrum 16:
+	FSR = 178.65 cm^-1, offset = 120.06 cm^-1
+	Quality = 2.026
+Spectrum 17:
+	FSR = 178.65 cm^-1, offset = 120.06 cm^-1
+	Quality = 2.025
+Spectrum 18:
+	FSR = 178.65 cm^-1, offset = 120.06 cm^-1
+	Quality = 2.025
+Spectrum 19:
+	FSR = 178.65 cm^-1, offset = 120.06 cm^-1
+	Quality = 2.026
+Spectrum 20:
+	FSR = 178.65 cm^-1, offset = 120.06 cm^-1
+	Quality = 2.027
+Spectrum 21:
+	FSR = 178.65 cm^-1, offset = 120.06 cm^-1
+	Quality = 2.026
+Spectrum 22:
+	FSR = 178.89 cm^-1, offset = 114.76 cm^-1
+	Quality = 2.028
+Spectrum 23:
+	FSR = 178.65 cm^-1, offset = 120.06 cm^-1
+	Quality = 2.027
+Spectrum 24:
+	FSR = 178.89 cm^-1, offset = 114.76 cm^-1
+	Quality = 2.030
+Spectrum 25:
+	FSR = 178.65 cm^-1, offset = 120.06 cm^-1
+	Quality = 2.027
+Spectrum 26:
+	FSR = 178.89 cm^-1, offset = 114.76 cm^-1
+	Quality = 2.030
+Spectrum 27:
+	FSR = 178.89 cm^-1, offset = 114.76 cm^-1
+	Quality = 2.029
+Spectrum 28:
+	FSR = 178.65 cm^-1, offset = 120.06 cm^-1
+	Quality = 2.026
+Spectrum 29:
+	FSR = 178.65 cm^-1, offset = 120.06 cm^-1
+	Quality = 2.027
+Spectrum 30:
+	FSR = 178.65 cm^-1, offset = 120.06 cm^-1
+	Quality = 2.026
+Spectrum 31:
+	FSR = 178.41 cm^-1, offset = 129.22 cm^-1
+	Quality = 2.025
+Spectrum 32:
+	FSR = 178.65 cm^-1, offset = 120.06 cm^-1
+	Quality = 2.025
+Spectrum 33:
+	FSR = 178.65 cm^-1, offset = 120.06 cm^-1
+	Quality = 2.026
+Spectrum 34:
+	FSR = 178.89 cm^-1, offset = 114.76 cm^-1
+	Quality = 2.030
+Spectrum 35:
+	FSR = 178.89 cm^-1, offset = 114.76 cm^-1
+	Quality = 2.029
+Spectrum 36:
+	FSR = 178.65 cm^-1, offset = 120.06 cm^-1
+	Quality = 2.026
+Spectrum 37:
+	FSR = 178.41 cm^-1, offset = 129.22 cm^-1
+	Quality = 2.023
+Spectrum 38:
+	FSR = 178.65 cm^-1, offset = 123.92 cm^-1
+	Quality = 2.026
+Spectrum 39:
+	FSR = 178.65 cm^-1, offset = 123.92 cm^-1
+	Quality = 2.027
+Spectrum 40:
+	FSR = 178.41 cm^-1, offset = 129.22 cm^-1
+	Quality = 2.025
+Spectrum 41:
+	FSR = 178.65 cm^-1, offset = 123.92 cm^-1
+	Quality = 2.027
+Spectrum 42:
+	FSR = 178.65 cm^-1, offset = 123.92 cm^-1
+	Quality = 2.026
+Spectrum 43:
+	FSR = 178.65 cm^-1, offset = 123.92 cm^-1
+	Quality = 2.027
+Spectrum 44:
+	FSR = 178.65 cm^-1, offset = 123.92 cm^-1
+	Quality = 2.027
+Spectrum 45:
+	FSR = 178.65 cm^-1, offset = 123.92 cm^-1
+	Quality = 2.026
+Spectrum 46:
+	FSR = 178.65 cm^-1, offset = 123.92 cm^-1
+	Quality = 2.026
+Spectrum 47:
+	FSR = 178.65 cm^-1, offset = 123.92 cm^-1
+	Quality = 2.028
+Spectrum 48:
+	FSR = 178.65 cm^-1, offset = 123.92 cm^-1
+	Quality = 2.028
+Spectrum 49:
+	FSR = 178.65 cm^-1, offset = 123.92 cm^-1
+	Quality = 2.028
+Spectrum 50:
+	FSR = 178.65 cm^-1, offset = 123.92 cm^-1
+	Quality = 2.027
+Spectrum 51:
+	FSR = 178.65 cm^-1, offset = 123.92 cm^-1
+	Quality = 2.027
+Spectrum 52:
+	FSR = 178.65 cm^-1, offset = 123.92 cm^-1
+	Quality = 2.026
+Spectrum 53:
+	FSR = 178.65 cm^-1, offset = 123.92 cm^-1
+	Quality = 2.027
+Spectrum 54:
+	FSR = 178.65 cm^-1, offset = 123.92 cm^-1
+	Quality = 2.026
+Spectrum 55:
+	FSR = 178.65 cm^-1, offset = 123.92 cm^-1
+	Quality = 2.027
+Spectrum 56:
+	FSR = 178.65 cm^-1, offset = 123.92 cm^-1
+	Quality = 2.027
+Spectrum 57:
+	FSR = 178.65 cm^-1, offset = 123.92 cm^-1
+	Quality = 2.028
+Spectrum 58:
+	FSR = 178.65 cm^-1, offset = 123.92 cm^-1
+	Quality = 2.026
+Spectrum 59:
+	FSR = 178.65 cm^-1, offset = 123.92 cm^-1
+	Quality = 2.028
+Spectrum 60:
+	FSR = 178.65 cm^-1, offset = 123.92 cm^-1
+	Quality = 2.026
+Spectrum 61:
+	FSR = 178.65 cm^-1, offset = 123.92 cm^-1
+	Quality = 2.027
+Spectrum 62:
+	FSR = 178.65 cm^-1, offset = 123.92 cm^-1
+	Quality = 2.028
+Spectrum 63:
+	FSR = 178.65 cm^-1, offset = 123.92 cm^-1
+	Quality = 2.027
+Spectrum 64:
+	FSR = 178.65 cm^-1, offset = 123.92 cm^-1
+	Quality = 2.029
+Spectrum 65:
+	FSR = 178.65 cm^-1, offset = 123.92 cm^-1
+	Quality = 2.027
+Spectrum 66:
+	FSR = 178.65 cm^-1, offset = 123.92 cm^-1
+	Quality = 2.027
+Spectrum 67:
+	FSR = 178.65 cm^-1, offset = 123.92 cm^-1
+	Quality = 2.028
+Spectrum 68:
+	FSR = 178.65 cm^-1, offset = 123.92 cm^-1
+	Quality = 2.027
+Spectrum 69:
+	FSR = 178.65 cm^-1, offset = 123.92 cm^-1
+	Quality = 2.026
+Spectrum 70:
+	FSR = 178.65 cm^-1, offset = 123.92 cm^-1
+	Quality = 2.026
+Spectrum 71:
+	FSR = 178.65 cm^-1, offset = 123.92 cm^-1
+	Quality = 2.028
+Spectrum 72:
+	FSR = 178.65 cm^-1, offset = 123.92 cm^-1
+	Quality = 2.028
+Spectrum 73:
+	FSR = 178.65 cm^-1, offset = 123.92 cm^-1
+	Quality = 2.028
+
+=== KINETICS
+2 wavelengths being tracked:
+	Average over [6750, 6882] cm^-1
+	Average over [2850, 2925] cm^-1
+
+Fitting 2 curves using exponential decay:
+	Settings
+		maxiter = 100000
+		eps     = 1e-12
+	Fit 0
+		Model converged in 398 iterations
+		A0      = -0.0013890519359531703
+		k       = 0.0011021119830798795 s^-1
+		B       = 0.8188074963552867
+		Error   = 2.3662958181928524e-06
+		Mean Lifetime 	= 907.35 s
+		Half-life		= 628.93 s
+	Fit 1
+		Model converged in 52 iterations
+		A0      = 0.004680103137013464
+		k       = 0.002778023872209179 s^-1
+		B       = 1.3767229628477526
+		Error   = 1.4819523432276323e-06
+		Mean Lifetime 	= 359.97 s
+		Half-life		= 249.51 s
+
+=== END
+Plots saved to results/empty_cavity_test/plots
