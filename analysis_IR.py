@@ -132,9 +132,10 @@ if __name__ == '__main__':
 	## important settings
 	file = 'data/20211108 emptry cavity/repeated.csv'
 	name = 'empty_cavity_test'
-	convert_absorbance_to_transmittance = False
+	convert_absorbance_to_transmittance = True
 	selected_spectra = [] #indices of spectra you want to consider. leave empty for all
 	polariton_wns = [] #wavenumbers where you expect polaritons cm^-1
+	refractive_index = 1.3592 #aceton
 
 	# kinetics settings
 	tracking_wavelengths = [(6750, 6882), (2850, 2925)] #list of tuples where each tuple t has low and high wl
@@ -157,9 +158,11 @@ if __name__ == '__main__':
 	if not os.path.exists(f'results/{name}'):
 		os.mkdir(f'results/{name}')
 	logfile = open(f'results/{name}/python.log', 'w')
+	spectrum_data_path = f'results/{name}/spectrum_data.csv'
 	plots_dir = f'results/{name}/plots'
 	if not os.path.exists(plots_dir):
 		os.mkdir(plots_dir)
+
 
 	print('=== GENERAL', file=logfile)
 
@@ -217,6 +220,8 @@ if __name__ == '__main__':
 
 	#get differences in spectra for calculation of FSR
 	FSRs = []
+	FWHMs = []
+
 	i = 0
 	print('\n=== SPECTRA', file=logfile)
 	for a, p, pfsr, ph, phfsr in zip(transmittances, peaks, peaks_for_fsr, peak_heights, peak_heights_for_fsr):
@@ -236,14 +241,22 @@ if __name__ == '__main__':
 		#make better
 		# FSR = fit_FSR(wavelenghts[pfsr], FSRinit=FSRinit) #DOES NOT WORK
 		FSR = FSRinit
-		print(f'\tFSR = {FSR:.2f} cm^-1, offset = {offset:.2f} cm^-1', file=logfile)
+		FSRs.append(FSR)
+		print(f'\tFSR            = {FSR:.2f} cm^-1', file=logfile)
+		print(f'\tFSR_offset     = {offset:.2f} cm^-1', file=logfile)
+
+		#cavity_spacing:
+		spacing = 10**4/(2*refractive_index*FSR)
+		print(f'\tCavity spacing = {spacing:.4f} um', file=logfile)
 
 		#get Q-factor: Q = FSR/FWHM
 		peak_widths_FSR = scipy.signal.peak_widths(a, fit_psfr, rel_height=0.5)
-		FWHM = [pw*wavelenght_stepsize for pw in peak_widths_FSR][0].mean()
+		FWHM = [pw*wavelenght_stepsize for pw in peak_widths_FSR][0].mean() # [0] is peak_widths, rest are other data
+		FWHMs.append(FWHM)
 
 		Q = FSR/FWHM
-		print(f'\tQuality = {Q:.3f}', file=logfile)
+		print(f'\tFWHM           = {FWHM:.3f} cm^-1', file=logfile)
+		print(f'\tQuality        = {Q:.3f}', file=logfile)
 
 
 		if plot_fringes or (plot_fringes_for_one and i==0):
@@ -311,27 +324,39 @@ if __name__ == '__main__':
 
 		#fit exp decay
 		print(f'\nFitting {len(tracking_wavelengths)} curves using exponential decay:', file=logfile)
+		print(f'\tModel: A(t) = A0 * exp(-kt) + B', file=logfile)
 		print(f'\tSettings', file=logfile)
-		print(f'\t\tmaxiter = {fit_maxiter}', file=logfile)
-		print(f'\t\teps     = {fit_eps}', file=logfile)
+		print(f'\t\tmaxiter         = {fit_maxiter}', file=logfile)
+		print(f'\t\teps             = {fit_eps}', file=logfile)
 		for i, tabs in enumerate(tracking_transmittances):
-			fit_results = fit_exp_decay(np.arange(N_spectra)*time_delay, tabs, index=i, plots_dir=plots_dir, outfile=logfile, maxiter=fit_maxiter, eps=fit_eps)
-
-			print(f'\tFit {i}', file=logfile)
-			if fit_results['iterations'] <= fit_maxiter:
-				print(f'\t\tModel converged in {fit_results["iterations"]} iterations', file=logfile)
-			else:
-				print(f'\t\tModel did not converge in {fit_results["iterations"]} iterations, try different settings or another model', file=logfile)
-
+			fit_results =  fit_exp_decay(np.arange(N_spectra)*time_delay, tabs, index=i, plots_dir=plots_dir, outfile=logfile, maxiter=fit_maxiter, eps=fit_eps)
+			print(f'\tResults fit {i}', file=logfile)
 			k = fit_results["k"]
-			print(f'\t\tA0      = {fit_results["A0"]}', file=logfile)
-			print(f'\t\tk       = {k} s^-1', file=logfile)
-			print(f'\t\tB       = {fit_results["B"]}', file=logfile)
-			print(f'\t\tError   = {fit_results["error"]}', file=logfile)
+			print(f'\t\tConvergence     = {fit_results["iterations"] <= fit_maxiter}', file=logfile)
+			print(f'\t\tIterations      = {fit_results["iterations"]}', file=logfile)
+			print(f'\t\tA0              = {fit_results["A0"]}', file=logfile)
+			print(f'\t\tk               = {k} s^-1', file=logfile)
+			print(f'\t\tB               = {fit_results["B"]}', file=logfile)
+			print(f'\t\tError           = {fit_results["error"]}', file=logfile)
 			print(f'\t\tMean Lifetime 	= {1/k:.2f} s', file=logfile)
 			print(f'\t\tHalf-life		= {np.log(2)/k:.2f} s', file=logfile)
 
 	print('\n=== END', file=logfile)
 
 	print(f'Plots saved to {plots_dir}', file=logfile)
+
+	#write peak_data
+	with open(spectrum_data_path, 'w') as pd:
+		pd.write('spectrum, FSR, FWHM\n')
+		for i, fsr, fwhm in zip(range(N_spectra), FSRs, FWHMs):
+			pd.write(f'{i}, {fsr}, {fwhm}\n')
+	print(f'Spectrum data written to {spectrum_data_path}', file=logfile)
+
+	logfile.close()
+
+	with open(f'results/{name}/python.log', 'r') as logfile:
+		loglines = logfile.readlines()
+		print(''.join(loglines))
+
+
 	# plt.show()
