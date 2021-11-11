@@ -350,6 +350,7 @@ if __name__ == '__main__':
 		pd.write('spectrum, FSR, FWHM\n')
 		for i, fsr, fwhm in zip(range(N_spectra), FSRs, FWHMs):
 			pd.write(f'{i}, {fsr}, {fwhm}\n')
+			
 	print(f'Spectrum data written to {spectrum_data_path}', file=logfile)
 
 	logfile.close()
