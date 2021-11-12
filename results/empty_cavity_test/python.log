@@ -1,454 +1,610 @@
 === GENERAL
-Filename: data/20211108 emptry cavity/repeated.csv
-Loaded 74 spectra!
+Filename: data/20111111_IR_SP_kinetics_1/data.csv
+Loaded 100 spectra!
 v_range  =  [6993.571, 397.318] cm^-1
 deltav   =  3.8575 cm^-1
 
 === SPECTRA
 Spectrum 0:
-	FSR            = 178.21 cm^-1
-	FSR_offset     = 43.98 cm^-1
-	Cavity spacing = 20.6416 um
-	FWHM           = 75.860 cm^-1
-	Quality        = 2.349
+	FSR            = 410.18 cm^-1
+	FSR_offset     = 2.57 cm^-1
+	Cavity spacing = 8.9684 um
+	FWHM           = 110.957 cm^-1
+	Quality        = 3.697
 Spectrum 1:
-	FSR            = 178.21 cm^-1
-	FSR_offset     = 43.98 cm^-1
-	Cavity spacing = 20.6416 um
-	FWHM           = 75.921 cm^-1
-	Quality        = 2.347
+	FSR            = 410.82 cm^-1
+	FSR_offset     = 406.96 cm^-1
+	Cavity spacing = 8.9544 um
+	FWHM           = 111.093 cm^-1
+	Quality        = 3.698
 Spectrum 2:
-	FSR            = 178.21 cm^-1
-	FSR_offset     = 43.98 cm^-1
-	Cavity spacing = 20.6416 um
-	FWHM           = 75.901 cm^-1
-	Quality        = 2.348
+	FSR            = 410.82 cm^-1
+	FSR_offset     = 0.00 cm^-1
+	Cavity spacing = 8.9544 um
+	FWHM           = 110.997 cm^-1
+	Quality        = 3.701
 Spectrum 3:
-	FSR            = 178.21 cm^-1
-	FSR_offset     = 43.98 cm^-1
-	Cavity spacing = 20.6416 um
-	FWHM           = 75.941 cm^-1
-	Quality        = 2.347
+	FSR            = 411.46 cm^-1
+	FSR_offset     = 405.04 cm^-1
+	Cavity spacing = 8.9404 um
+	FWHM           = 111.150 cm^-1
+	Quality        = 3.702
 Spectrum 4:
-	FSR            = 178.21 cm^-1
-	FSR_offset     = 43.98 cm^-1
-	Cavity spacing = 20.6416 um
-	FWHM           = 75.997 cm^-1
-	Quality        = 2.345
+	FSR            = 411.46 cm^-1
+	FSR_offset     = 405.04 cm^-1
+	Cavity spacing = 8.9404 um
+	FWHM           = 111.400 cm^-1
+	Quality        = 3.694
 Spectrum 5:
-	FSR            = 178.21 cm^-1
-	FSR_offset     = 43.98 cm^-1
-	Cavity spacing = 20.6416 um
-	FWHM           = 76.027 cm^-1
-	Quality        = 2.344
+	FSR            = 410.82 cm^-1
+	FSR_offset     = 3.86 cm^-1
+	Cavity spacing = 8.9544 um
+	FWHM           = 111.410 cm^-1
+	Quality        = 3.687
 Spectrum 6:
-	FSR            = 178.21 cm^-1
-	FSR_offset     = 43.98 cm^-1
-	Cavity spacing = 20.6416 um
-	FWHM           = 75.965 cm^-1
-	Quality        = 2.346
+	FSR            = 411.46 cm^-1
+	FSR_offset     = 408.89 cm^-1
+	Cavity spacing = 8.9404 um
+	FWHM           = 111.409 cm^-1
+	Quality        = 3.693
 Spectrum 7:
-	FSR            = 178.21 cm^-1
-	FSR_offset     = 43.98 cm^-1
-	Cavity spacing = 20.6416 um
-	FWHM           = 75.996 cm^-1
-	Quality        = 2.345
+	FSR            = 411.46 cm^-1
+	FSR_offset     = 1.29 cm^-1
+	Cavity spacing = 8.9404 um
+	FWHM           = 111.542 cm^-1
+	Quality        = 3.689
 Spectrum 8:
-	FSR            = 178.21 cm^-1
-	FSR_offset     = 43.98 cm^-1
-	Cavity spacing = 20.6416 um
-	FWHM           = 76.018 cm^-1
-	Quality        = 2.344
+	FSR            = 412.11 cm^-1
+	FSR_offset     = 406.96 cm^-1
+	Cavity spacing = 8.9264 um
+	FWHM           = 111.504 cm^-1
+	Quality        = 3.696
 Spectrum 9:
-	FSR            = 178.21 cm^-1
-	FSR_offset     = 43.98 cm^-1
-	Cavity spacing = 20.6416 um
-	FWHM           = 76.015 cm^-1
-	Quality        = 2.344
+	FSR            = 412.75 cm^-1
+	FSR_offset     = 401.17 cm^-1
+	Cavity spacing = 8.9125 um
+	FWHM           = 111.743 cm^-1
+	Quality        = 3.694
 Spectrum 10:
-	FSR            = 178.21 cm^-1
-	FSR_offset     = 43.98 cm^-1
-	Cavity spacing = 20.6416 um
-	FWHM           = 75.997 cm^-1
-	Quality        = 2.345
+	FSR            = 412.75 cm^-1
+	FSR_offset     = 405.03 cm^-1
+	Cavity spacing = 8.9125 um
+	FWHM           = 111.719 cm^-1
+	Quality        = 3.695
 Spectrum 11:
-	FSR            = 178.21 cm^-1
-	FSR_offset     = 43.98 cm^-1
-	Cavity spacing = 20.6416 um
-	FWHM           = 76.003 cm^-1
-	Quality        = 2.345
+	FSR            = 412.75 cm^-1
+	FSR_offset     = 405.03 cm^-1
+	Cavity spacing = 8.9125 um
+	FWHM           = 111.751 cm^-1
+	Quality        = 3.693
 Spectrum 12:
-	FSR            = 178.21 cm^-1
-	FSR_offset     = 43.98 cm^-1
-	Cavity spacing = 20.6416 um
-	FWHM           = 76.039 cm^-1
-	Quality        = 2.344
+	FSR            = 412.75 cm^-1
+	FSR_offset     = 405.03 cm^-1
+	Cavity spacing = 8.9125 um
+	FWHM           = 111.915 cm^-1
+	Quality        = 3.688
 Spectrum 13:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 38.06 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.048 cm^-1
-	Quality        = 2.347
+	FSR            = 412.75 cm^-1
+	FSR_offset     = 408.89 cm^-1
+	Cavity spacing = 8.9125 um
+	FWHM           = 111.960 cm^-1
+	Quality        = 3.687
 Spectrum 14:
-	FSR            = 178.21 cm^-1
-	FSR_offset     = 43.98 cm^-1
-	Cavity spacing = 20.6416 um
-	FWHM           = 76.073 cm^-1
-	Quality        = 2.343
+	FSR            = 413.39 cm^-1
+	FSR_offset     = 403.10 cm^-1
+	Cavity spacing = 8.8987 um
+	FWHM           = 111.967 cm^-1
+	Quality        = 3.692
 Spectrum 15:
-	FSR            = 178.21 cm^-1
-	FSR_offset     = 43.98 cm^-1
-	Cavity spacing = 20.6416 um
-	FWHM           = 76.068 cm^-1
-	Quality        = 2.343
+	FSR            = 413.39 cm^-1
+	FSR_offset     = 403.10 cm^-1
+	Cavity spacing = 8.8987 um
+	FWHM           = 111.889 cm^-1
+	Quality        = 3.695
 Spectrum 16:
-	FSR            = 178.21 cm^-1
-	FSR_offset     = 43.98 cm^-1
-	Cavity spacing = 20.6416 um
-	FWHM           = 76.043 cm^-1
-	Quality        = 2.344
+	FSR            = 413.39 cm^-1
+	FSR_offset     = 403.10 cm^-1
+	Cavity spacing = 8.8987 um
+	FWHM           = 111.990 cm^-1
+	Quality        = 3.691
 Spectrum 17:
-	FSR            = 178.21 cm^-1
-	FSR_offset     = 43.98 cm^-1
-	Cavity spacing = 20.6416 um
-	FWHM           = 76.005 cm^-1
-	Quality        = 2.345
+	FSR            = 414.03 cm^-1
+	FSR_offset     = 397.32 cm^-1
+	Cavity spacing = 8.8849 um
+	FWHM           = 111.951 cm^-1
+	Quality        = 3.698
 Spectrum 18:
-	FSR            = 178.21 cm^-1
-	FSR_offset     = 43.98 cm^-1
-	Cavity spacing = 20.6416 um
-	FWHM           = 76.039 cm^-1
-	Quality        = 2.344
+	FSR            = 414.03 cm^-1
+	FSR_offset     = 397.32 cm^-1
+	Cavity spacing = 8.8849 um
+	FWHM           = 112.007 cm^-1
+	Quality        = 3.696
 Spectrum 19:
-	FSR            = 178.21 cm^-1
-	FSR_offset     = 43.98 cm^-1
-	Cavity spacing = 20.6416 um
-	FWHM           = 76.057 cm^-1
-	Quality        = 2.343
+	FSR            = 413.39 cm^-1
+	FSR_offset     = 406.96 cm^-1
+	Cavity spacing = 8.8987 um
+	FWHM           = 111.843 cm^-1
+	Quality        = 3.696
 Spectrum 20:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 38.06 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.090 cm^-1
-	Quality        = 2.346
+	FSR            = 413.39 cm^-1
+	FSR_offset     = 406.96 cm^-1
+	Cavity spacing = 8.8987 um
+	FWHM           = 112.005 cm^-1
+	Quality        = 3.691
 Spectrum 21:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 38.06 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.058 cm^-1
-	Quality        = 2.347
+	FSR            = 413.39 cm^-1
+	FSR_offset     = 406.96 cm^-1
+	Cavity spacing = 8.8987 um
+	FWHM           = 112.180 cm^-1
+	Quality        = 3.685
 Spectrum 22:
-	FSR            = 178.21 cm^-1
-	FSR_offset     = 43.98 cm^-1
-	Cavity spacing = 20.6416 um
-	FWHM           = 76.044 cm^-1
-	Quality        = 2.344
+	FSR            = 413.39 cm^-1
+	FSR_offset     = 406.96 cm^-1
+	Cavity spacing = 8.8987 um
+	FWHM           = 111.898 cm^-1
+	Quality        = 3.694
 Spectrum 23:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 38.06 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.110 cm^-1
-	Quality        = 2.345
+	FSR            = 413.39 cm^-1
+	FSR_offset     = 406.96 cm^-1
+	Cavity spacing = 8.8987 um
+	FWHM           = 111.939 cm^-1
+	Quality        = 3.693
 Spectrum 24:
-	FSR            = 178.21 cm^-1
-	FSR_offset     = 43.98 cm^-1
-	Cavity spacing = 20.6416 um
-	FWHM           = 76.110 cm^-1
-	Quality        = 2.342
+	FSR            = 413.39 cm^-1
+	FSR_offset     = 406.96 cm^-1
+	Cavity spacing = 8.8987 um
+	FWHM           = 111.993 cm^-1
+	Quality        = 3.691
 Spectrum 25:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 38.06 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.117 cm^-1
-	Quality        = 2.345
+	FSR            = 413.39 cm^-1
+	FSR_offset     = 406.96 cm^-1
+	Cavity spacing = 8.8987 um
+	FWHM           = 111.910 cm^-1
+	Quality        = 3.694
 Spectrum 26:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 38.06 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.099 cm^-1
-	Quality        = 2.345
+	FSR            = 413.39 cm^-1
+	FSR_offset     = 406.96 cm^-1
+	Cavity spacing = 8.8987 um
+	FWHM           = 112.138 cm^-1
+	Quality        = 3.686
 Spectrum 27:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 38.06 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.061 cm^-1
-	Quality        = 2.346
+	FSR            = 413.39 cm^-1
+	FSR_offset     = 406.96 cm^-1
+	Cavity spacing = 8.8987 um
+	FWHM           = 112.080 cm^-1
+	Quality        = 3.688
 Spectrum 28:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 38.06 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.036 cm^-1
-	Quality        = 2.347
+	FSR            = 414.03 cm^-1
+	FSR_offset     = 401.18 cm^-1
+	Cavity spacing = 8.8849 um
+	FWHM           = 112.243 cm^-1
+	Quality        = 3.689
 Spectrum 29:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 38.06 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.101 cm^-1
-	Quality        = 2.345
+	FSR            = 413.39 cm^-1
+	FSR_offset     = 406.96 cm^-1
+	Cavity spacing = 8.8987 um
+	FWHM           = 112.233 cm^-1
+	Quality        = 3.683
 Spectrum 30:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 38.06 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.092 cm^-1
-	Quality        = 2.345
+	FSR            = 414.03 cm^-1
+	FSR_offset     = 401.18 cm^-1
+	Cavity spacing = 8.8849 um
+	FWHM           = 112.054 cm^-1
+	Quality        = 3.695
 Spectrum 31:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 38.06 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.133 cm^-1
-	Quality        = 2.344
+	FSR            = 414.03 cm^-1
+	FSR_offset     = 401.18 cm^-1
+	Cavity spacing = 8.8849 um
+	FWHM           = 112.097 cm^-1
+	Quality        = 3.694
 Spectrum 32:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 38.06 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.067 cm^-1
-	Quality        = 2.346
+	FSR            = 414.03 cm^-1
+	FSR_offset     = 401.18 cm^-1
+	Cavity spacing = 8.8849 um
+	FWHM           = 112.027 cm^-1
+	Quality        = 3.696
 Spectrum 33:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 38.06 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.103 cm^-1
-	Quality        = 2.345
+	FSR            = 414.03 cm^-1
+	FSR_offset     = 401.18 cm^-1
+	Cavity spacing = 8.8849 um
+	FWHM           = 112.072 cm^-1
+	Quality        = 3.694
 Spectrum 34:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 38.06 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.157 cm^-1
-	Quality        = 2.343
+	FSR            = 414.03 cm^-1
+	FSR_offset     = 401.18 cm^-1
+	Cavity spacing = 8.8849 um
+	FWHM           = 112.174 cm^-1
+	Quality        = 3.691
 Spectrum 35:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 38.06 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.108 cm^-1
-	Quality        = 2.345
+	FSR            = 414.03 cm^-1
+	FSR_offset     = 405.03 cm^-1
+	Cavity spacing = 8.8849 um
+	FWHM           = 112.098 cm^-1
+	Quality        = 3.693
 Spectrum 36:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 38.06 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.093 cm^-1
-	Quality        = 2.345
+	FSR            = 413.39 cm^-1
+	FSR_offset     = 410.82 cm^-1
+	Cavity spacing = 8.8987 um
+	FWHM           = 112.123 cm^-1
+	Quality        = 3.687
 Spectrum 37:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 38.06 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.073 cm^-1
-	Quality        = 2.346
+	FSR            = 413.39 cm^-1
+	FSR_offset     = 410.82 cm^-1
+	Cavity spacing = 8.8987 um
+	FWHM           = 112.108 cm^-1
+	Quality        = 3.687
 Spectrum 38:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 38.06 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.139 cm^-1
-	Quality        = 2.344
+	FSR            = 413.39 cm^-1
+	FSR_offset     = 410.82 cm^-1
+	Cavity spacing = 8.8987 um
+	FWHM           = 112.126 cm^-1
+	Quality        = 3.687
 Spectrum 39:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 38.06 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.164 cm^-1
-	Quality        = 2.343
+	FSR            = 413.39 cm^-1
+	FSR_offset     = 410.82 cm^-1
+	Cavity spacing = 8.8987 um
+	FWHM           = 112.078 cm^-1
+	Quality        = 3.688
 Spectrum 40:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 38.06 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.185 cm^-1
-	Quality        = 2.343
+	FSR            = 414.03 cm^-1
+	FSR_offset     = 405.03 cm^-1
+	Cavity spacing = 8.8849 um
+	FWHM           = 112.253 cm^-1
+	Quality        = 3.688
 Spectrum 41:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 38.06 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.137 cm^-1
-	Quality        = 2.344
+	FSR            = 414.03 cm^-1
+	FSR_offset     = 405.03 cm^-1
+	Cavity spacing = 8.8849 um
+	FWHM           = 112.088 cm^-1
+	Quality        = 3.694
 Spectrum 42:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 38.06 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.109 cm^-1
-	Quality        = 2.345
+	FSR            = 414.03 cm^-1
+	FSR_offset     = 405.03 cm^-1
+	Cavity spacing = 8.8849 um
+	FWHM           = 112.281 cm^-1
+	Quality        = 3.687
 Spectrum 43:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 38.06 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.130 cm^-1
-	Quality        = 2.344
+	FSR            = 414.03 cm^-1
+	FSR_offset     = 405.03 cm^-1
+	Cavity spacing = 8.8849 um
+	FWHM           = 112.173 cm^-1
+	Quality        = 3.691
 Spectrum 44:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 38.06 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.136 cm^-1
-	Quality        = 2.344
+	FSR            = 414.03 cm^-1
+	FSR_offset     = 405.03 cm^-1
+	Cavity spacing = 8.8849 um
+	FWHM           = 112.102 cm^-1
+	Quality        = 3.693
 Spectrum 45:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 38.06 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.124 cm^-1
-	Quality        = 2.344
+	FSR            = 414.68 cm^-1
+	FSR_offset     = 399.25 cm^-1
+	Cavity spacing = 8.8711 um
+	FWHM           = 112.212 cm^-1
+	Quality        = 3.695
 Spectrum 46:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 38.06 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.133 cm^-1
-	Quality        = 2.344
+	FSR            = 414.68 cm^-1
+	FSR_offset     = 399.25 cm^-1
+	Cavity spacing = 8.8711 um
+	FWHM           = 112.212 cm^-1
+	Quality        = 3.695
 Spectrum 47:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 38.06 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.191 cm^-1
-	Quality        = 2.342
+	FSR            = 414.68 cm^-1
+	FSR_offset     = 399.25 cm^-1
+	Cavity spacing = 8.8711 um
+	FWHM           = 112.266 cm^-1
+	Quality        = 3.694
 Spectrum 48:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 38.06 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.170 cm^-1
-	Quality        = 2.343
+	FSR            = 414.68 cm^-1
+	FSR_offset     = 399.25 cm^-1
+	Cavity spacing = 8.8711 um
+	FWHM           = 112.350 cm^-1
+	Quality        = 3.691
 Spectrum 49:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 38.06 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.195 cm^-1
-	Quality        = 2.342
+	FSR            = 414.68 cm^-1
+	FSR_offset     = 399.25 cm^-1
+	Cavity spacing = 8.8711 um
+	FWHM           = 112.196 cm^-1
+	Quality        = 3.696
 Spectrum 50:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 38.06 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.189 cm^-1
-	Quality        = 2.342
+	FSR            = 414.03 cm^-1
+	FSR_offset     = 408.89 cm^-1
+	Cavity spacing = 8.8849 um
+	FWHM           = 112.154 cm^-1
+	Quality        = 3.692
 Spectrum 51:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 38.06 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.141 cm^-1
-	Quality        = 2.344
+	FSR            = 414.03 cm^-1
+	FSR_offset     = 408.89 cm^-1
+	Cavity spacing = 8.8849 um
+	FWHM           = 112.229 cm^-1
+	Quality        = 3.689
 Spectrum 52:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 38.06 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.135 cm^-1
-	Quality        = 2.344
+	FSR            = 414.03 cm^-1
+	FSR_offset     = 408.89 cm^-1
+	Cavity spacing = 8.8849 um
+	FWHM           = 112.442 cm^-1
+	Quality        = 3.682
 Spectrum 53:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 38.06 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.134 cm^-1
-	Quality        = 2.344
+	FSR            = 414.03 cm^-1
+	FSR_offset     = 408.89 cm^-1
+	Cavity spacing = 8.8849 um
+	FWHM           = 112.478 cm^-1
+	Quality        = 3.681
 Spectrum 54:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 38.06 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.113 cm^-1
-	Quality        = 2.345
+	FSR            = 414.03 cm^-1
+	FSR_offset     = 408.89 cm^-1
+	Cavity spacing = 8.8849 um
+	FWHM           = 112.234 cm^-1
+	Quality        = 3.689
 Spectrum 55:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 38.06 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.171 cm^-1
-	Quality        = 2.343
+	FSR            = 414.03 cm^-1
+	FSR_offset     = 405.03 cm^-1
+	Cavity spacing = 8.8849 um
+	FWHM           = 112.083 cm^-1
+	Quality        = 3.694
 Spectrum 56:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 38.06 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.176 cm^-1
-	Quality        = 2.343
+	FSR            = 414.03 cm^-1
+	FSR_offset     = 405.03 cm^-1
+	Cavity spacing = 8.8849 um
+	FWHM           = 112.188 cm^-1
+	Quality        = 3.691
 Spectrum 57:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 38.06 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.180 cm^-1
-	Quality        = 2.343
+	FSR            = 414.03 cm^-1
+	FSR_offset     = 405.03 cm^-1
+	Cavity spacing = 8.8849 um
+	FWHM           = 112.187 cm^-1
+	Quality        = 3.691
 Spectrum 58:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 38.06 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.148 cm^-1
-	Quality        = 2.344
+	FSR            = 414.03 cm^-1
+	FSR_offset     = 405.03 cm^-1
+	Cavity spacing = 8.8849 um
+	FWHM           = 112.403 cm^-1
+	Quality        = 3.683
 Spectrum 59:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 38.06 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.224 cm^-1
-	Quality        = 2.341
+	FSR            = 414.68 cm^-1
+	FSR_offset     = 399.25 cm^-1
+	Cavity spacing = 8.8711 um
+	FWHM           = 112.295 cm^-1
+	Quality        = 3.693
 Spectrum 60:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 38.06 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.165 cm^-1
-	Quality        = 2.343
+	FSR            = 414.68 cm^-1
+	FSR_offset     = 399.25 cm^-1
+	Cavity spacing = 8.8711 um
+	FWHM           = 112.348 cm^-1
+	Quality        = 3.691
 Spectrum 61:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 38.06 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.165 cm^-1
-	Quality        = 2.343
+	FSR            = 414.68 cm^-1
+	FSR_offset     = 399.25 cm^-1
+	Cavity spacing = 8.8711 um
+	FWHM           = 112.257 cm^-1
+	Quality        = 3.694
 Spectrum 62:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 38.06 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.237 cm^-1
-	Quality        = 2.341
+	FSR            = 414.68 cm^-1
+	FSR_offset     = 399.25 cm^-1
+	Cavity spacing = 8.8711 um
+	FWHM           = 112.340 cm^-1
+	Quality        = 3.691
 Spectrum 63:
-	FSR            = 178.73 cm^-1
-	FSR_offset     = 32.15 cm^-1
-	Cavity spacing = 20.5822 um
-	FWHM           = 76.182 cm^-1
-	Quality        = 2.346
+	FSR            = 414.03 cm^-1
+	FSR_offset     = 408.89 cm^-1
+	Cavity spacing = 8.8849 um
+	FWHM           = 112.102 cm^-1
+	Quality        = 3.693
 Spectrum 64:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 38.06 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.258 cm^-1
-	Quality        = 2.340
+	FSR            = 414.03 cm^-1
+	FSR_offset     = 408.89 cm^-1
+	Cavity spacing = 8.8849 um
+	FWHM           = 112.375 cm^-1
+	Quality        = 3.684
 Spectrum 65:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 38.06 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.230 cm^-1
-	Quality        = 2.341
+	FSR            = 414.03 cm^-1
+	FSR_offset     = 408.89 cm^-1
+	Cavity spacing = 8.8849 um
+	FWHM           = 112.282 cm^-1
+	Quality        = 3.687
 Spectrum 66:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 38.06 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.181 cm^-1
-	Quality        = 2.343
+	FSR            = 414.03 cm^-1
+	FSR_offset     = 408.89 cm^-1
+	Cavity spacing = 8.8849 um
+	FWHM           = 112.291 cm^-1
+	Quality        = 3.687
 Spectrum 67:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 38.06 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.221 cm^-1
-	Quality        = 2.341
+	FSR            = 414.03 cm^-1
+	FSR_offset     = 408.89 cm^-1
+	Cavity spacing = 8.8849 um
+	FWHM           = 112.429 cm^-1
+	Quality        = 3.683
 Spectrum 68:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 38.06 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.211 cm^-1
-	Quality        = 2.342
+	FSR            = 414.03 cm^-1
+	FSR_offset     = 408.89 cm^-1
+	Cavity spacing = 8.8849 um
+	FWHM           = 112.338 cm^-1
+	Quality        = 3.686
 Spectrum 69:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 38.06 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.171 cm^-1
-	Quality        = 2.343
+	FSR            = 414.68 cm^-1
+	FSR_offset     = 403.10 cm^-1
+	Cavity spacing = 8.8711 um
+	FWHM           = 112.421 cm^-1
+	Quality        = 3.689
 Spectrum 70:
-	FSR            = 178.73 cm^-1
-	FSR_offset     = 32.15 cm^-1
-	Cavity spacing = 20.5822 um
-	FWHM           = 76.177 cm^-1
-	Quality        = 2.346
+	FSR            = 414.03 cm^-1
+	FSR_offset     = 408.89 cm^-1
+	Cavity spacing = 8.8849 um
+	FWHM           = 112.273 cm^-1
+	Quality        = 3.688
 Spectrum 71:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 38.06 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.234 cm^-1
-	Quality        = 2.341
+	FSR            = 414.68 cm^-1
+	FSR_offset     = 403.10 cm^-1
+	Cavity spacing = 8.8711 um
+	FWHM           = 112.286 cm^-1
+	Quality        = 3.693
 Spectrum 72:
-	FSR            = 178.73 cm^-1
-	FSR_offset     = 32.15 cm^-1
-	Cavity spacing = 20.5822 um
-	FWHM           = 76.201 cm^-1
-	Quality        = 2.345
+	FSR            = 414.68 cm^-1
+	FSR_offset     = 403.10 cm^-1
+	Cavity spacing = 8.8711 um
+	FWHM           = 112.405 cm^-1
+	Quality        = 3.689
 Spectrum 73:
-	FSR            = 178.47 cm^-1
-	FSR_offset     = 41.92 cm^-1
-	Cavity spacing = 20.6119 um
-	FWHM           = 76.248 cm^-1
-	Quality        = 2.341
+	FSR            = 414.68 cm^-1
+	FSR_offset     = 403.10 cm^-1
+	Cavity spacing = 8.8711 um
+	FWHM           = 112.288 cm^-1
+	Quality        = 3.693
+Spectrum 74:
+	FSR            = 414.68 cm^-1
+	FSR_offset     = 403.10 cm^-1
+	Cavity spacing = 8.8711 um
+	FWHM           = 112.368 cm^-1
+	Quality        = 3.690
+Spectrum 75:
+	FSR            = 414.68 cm^-1
+	FSR_offset     = 403.10 cm^-1
+	Cavity spacing = 8.8711 um
+	FWHM           = 112.461 cm^-1
+	Quality        = 3.687
+Spectrum 76:
+	FSR            = 415.32 cm^-1
+	FSR_offset     = 397.32 cm^-1
+	Cavity spacing = 8.8574 um
+	FWHM           = 112.350 cm^-1
+	Quality        = 3.697
+Spectrum 77:
+	FSR            = 414.68 cm^-1
+	FSR_offset     = 403.10 cm^-1
+	Cavity spacing = 8.8711 um
+	FWHM           = 112.336 cm^-1
+	Quality        = 3.691
+Spectrum 78:
+	FSR            = 414.68 cm^-1
+	FSR_offset     = 403.10 cm^-1
+	Cavity spacing = 8.8711 um
+	FWHM           = 112.318 cm^-1
+	Quality        = 3.692
+Spectrum 79:
+	FSR            = 415.32 cm^-1
+	FSR_offset     = 397.32 cm^-1
+	Cavity spacing = 8.8574 um
+	FWHM           = 112.505 cm^-1
+	Quality        = 3.692
+Spectrum 80:
+	FSR            = 414.68 cm^-1
+	FSR_offset     = 403.10 cm^-1
+	Cavity spacing = 8.8711 um
+	FWHM           = 112.291 cm^-1
+	Quality        = 3.693
+Spectrum 81:
+	FSR            = 415.32 cm^-1
+	FSR_offset     = 397.32 cm^-1
+	Cavity spacing = 8.8574 um
+	FWHM           = 112.289 cm^-1
+	Quality        = 3.699
+Spectrum 82:
+	FSR            = 415.32 cm^-1
+	FSR_offset     = 397.32 cm^-1
+	Cavity spacing = 8.8574 um
+	FWHM           = 112.503 cm^-1
+	Quality        = 3.692
+Spectrum 83:
+	FSR            = 414.68 cm^-1
+	FSR_offset     = 403.10 cm^-1
+	Cavity spacing = 8.8711 um
+	FWHM           = 112.422 cm^-1
+	Quality        = 3.689
+Spectrum 84:
+	FSR            = 415.32 cm^-1
+	FSR_offset     = 397.32 cm^-1
+	Cavity spacing = 8.8574 um
+	FWHM           = 112.392 cm^-1
+	Quality        = 3.695
+Spectrum 85:
+	FSR            = 414.68 cm^-1
+	FSR_offset     = 403.10 cm^-1
+	Cavity spacing = 8.8711 um
+	FWHM           = 112.370 cm^-1
+	Quality        = 3.690
+Spectrum 86:
+	FSR            = 414.68 cm^-1
+	FSR_offset     = 403.10 cm^-1
+	Cavity spacing = 8.8711 um
+	FWHM           = 112.445 cm^-1
+	Quality        = 3.688
+Spectrum 87:
+	FSR            = 414.68 cm^-1
+	FSR_offset     = 406.96 cm^-1
+	Cavity spacing = 8.8711 um
+	FWHM           = 112.486 cm^-1
+	Quality        = 3.686
+Spectrum 88:
+	FSR            = 414.68 cm^-1
+	FSR_offset     = 406.96 cm^-1
+	Cavity spacing = 8.8711 um
+	FWHM           = 112.278 cm^-1
+	Quality        = 3.693
+Spectrum 89:
+	FSR            = 414.68 cm^-1
+	FSR_offset     = 406.96 cm^-1
+	Cavity spacing = 8.8711 um
+	FWHM           = 112.574 cm^-1
+	Quality        = 3.684
+Spectrum 90:
+	FSR            = 414.68 cm^-1
+	FSR_offset     = 406.96 cm^-1
+	Cavity spacing = 8.8711 um
+	FWHM           = 112.524 cm^-1
+	Quality        = 3.685
+Spectrum 91:
+	FSR            = 414.68 cm^-1
+	FSR_offset     = 406.96 cm^-1
+	Cavity spacing = 8.8711 um
+	FWHM           = 112.442 cm^-1
+	Quality        = 3.688
+Spectrum 92:
+	FSR            = 414.68 cm^-1
+	FSR_offset     = 403.10 cm^-1
+	Cavity spacing = 8.8711 um
+	FWHM           = 112.477 cm^-1
+	Quality        = 3.687
+Spectrum 93:
+	FSR            = 414.68 cm^-1
+	FSR_offset     = 403.10 cm^-1
+	Cavity spacing = 8.8711 um
+	FWHM           = 112.677 cm^-1
+	Quality        = 3.680
+Spectrum 94:
+	FSR            = 414.68 cm^-1
+	FSR_offset     = 403.10 cm^-1
+	Cavity spacing = 8.8711 um
+	FWHM           = 112.575 cm^-1
+	Quality        = 3.684
+Spectrum 95:
+	FSR            = 414.68 cm^-1
+	FSR_offset     = 403.10 cm^-1
+	Cavity spacing = 8.8711 um
+	FWHM           = 112.547 cm^-1
+	Quality        = 3.684
+Spectrum 96:
+	FSR            = 414.68 cm^-1
+	FSR_offset     = 403.10 cm^-1
+	Cavity spacing = 8.8711 um
+	FWHM           = 112.633 cm^-1
+	Quality        = 3.682
+Spectrum 97:
+	FSR            = 414.68 cm^-1
+	FSR_offset     = 403.10 cm^-1
+	Cavity spacing = 8.8711 um
+	FWHM           = 112.436 cm^-1
+	Quality        = 3.688
+Spectrum 98:
+	FSR            = 414.68 cm^-1
+	FSR_offset     = 403.10 cm^-1
+	Cavity spacing = 8.8711 um
+	FWHM           = 112.375 cm^-1
+	Quality        = 3.690
+Spectrum 99:
+	FSR            = 414.68 cm^-1
+	FSR_offset     = 403.10 cm^-1
+	Cavity spacing = 8.8711 um
+	FWHM           = 112.607 cm^-1
+	Quality        = 3.682
 
 === KINETICS
 2 wavelengths being tracked:
@@ -462,22 +618,20 @@ Fitting 2 curves using exponential decay:
 		eps             = 1e-12
 	Results fit 0
 		Convergence     = True
-		Iterations      = 3632
-		A0              = 0.0003532521471773214
-		k               = 0.001209869306971649 s^-1
-		B               = 0.1531812193832934
-		Error           = 2.6318635591369156e-07
-		Mean Lifetime 	= 826.54 s
-		Half-life		= 572.91 s
+		A0              = 0.006444924031773102
+		k               = 0.016660641496542606 s^-1
+		B               = 0.07250032612329937
+		Error           = 0.00011435545979842443
+		Mean Lifetime 	= 60.02 s
+		Half-life		= 41.60 s
 	Results fit 1
 		Convergence     = True
-		Iterations      = 101
-		A0              = -0.0002158935765497561
-		k               = 0.002279833768968218 s^-1
-		B               = 0.048284821764128946
-		Error           = 3.6898072853736866e-09
-		Mean Lifetime 	= 438.63 s
-		Half-life		= 304.03 s
+		A0              = 5.943254198127364
+		k               = 2.539325801384061e-07 s^-1
+		B               = -5.881175081704936
+		Error           = 0.0001779532403723193
+		Mean Lifetime 	= 3938053.16 s
+		Half-life		= 2729650.45 s
 
 === END
 Plots saved to results/empty_cavity_test/plots

@@ -1,0 +1,89 @@
+=== GENERAL
+Filename: data/20211112_cavity_tuning_for_acetone/data.csv
+Loaded 13 spectra!
+v_range  =  [6993.571, 397.318] cm^-1
+deltav   =  3.8575 cm^-1
+
+=== SPECTRA
+Spectrum 0:
+	FSR            = 425.30 cm^-1
+	FSR_offset     = 418.70 cm^-1
+	Cavity spacing = 8.6495 um
+	FWHM           = 125.704 cm^-1
+	Quality        = 3.383
+Spectrum 1:
+	FSR            = 427.81 cm^-1
+	FSR_offset     = 418.53 cm^-1
+	Cavity spacing = 8.5987 um
+	FWHM           = 128.552 cm^-1
+	Quality        = 3.328
+Spectrum 2:
+	FSR            = 427.90 cm^-1
+	FSR_offset     = 418.65 cm^-1
+	Cavity spacing = 8.5969 um
+	FWHM           = 136.384 cm^-1
+	Quality        = 3.137
+Spectrum 3:
+	FSR            = 428.00 cm^-1
+	FSR_offset     = 418.67 cm^-1
+	Cavity spacing = 8.5949 um
+	FWHM           = 136.501 cm^-1
+	Quality        = 3.136
+Spectrum 4:
+	FSR            = 428.17 cm^-1
+	FSR_offset     = 418.59 cm^-1
+	Cavity spacing = 8.5915 um
+	FWHM           = 135.627 cm^-1
+	Quality        = 3.157
+Spectrum 5:
+	FSR            = 426.04 cm^-1
+	FSR_offset     = 418.99 cm^-1
+	Cavity spacing = 8.6345 um
+	FWHM           = 127.232 cm^-1
+	Quality        = 3.349
+Spectrum 6:
+	FSR            = 426.22 cm^-1
+	FSR_offset     = 418.78 cm^-1
+	Cavity spacing = 8.6309 um
+	FWHM           = 127.547 cm^-1
+	Quality        = 3.342
+Spectrum 7:
+	FSR            = 426.55 cm^-1
+	FSR_offset     = 418.68 cm^-1
+	Cavity spacing = 8.6241 um
+	FWHM           = 128.119 cm^-1
+	Quality        = 3.329
+Spectrum 8:
+	FSR            = 427.00 cm^-1
+	FSR_offset     = 418.99 cm^-1
+	Cavity spacing = 8.6151 um
+	FWHM           = 128.677 cm^-1
+	Quality        = 3.318
+Spectrum 9:
+	FSR            = 427.07 cm^-1
+	FSR_offset     = 418.96 cm^-1
+	Cavity spacing = 8.6136 um
+	FWHM           = 128.697 cm^-1
+	Quality        = 3.318
+Spectrum 10:
+	FSR            = 427.23 cm^-1
+	FSR_offset     = 418.67 cm^-1
+	Cavity spacing = 8.6103 um
+	FWHM           = 128.276 cm^-1
+	Quality        = 3.331
+Spectrum 11:
+	FSR            = 427.55 cm^-1
+	FSR_offset     = 418.74 cm^-1
+	Cavity spacing = 8.6040 um
+	FWHM           = 128.996 cm^-1
+	Quality        = 3.314
+Spectrum 12:
+	FSR            = 427.67 cm^-1
+	FSR_offset     = 418.63 cm^-1
+	Cavity spacing = 8.6016 um
+	FWHM           = 128.685 cm^-1
+	Quality        = 3.323
+
+=== END
+Plots saved to results/cavity_tuning/plots
+Spectrum data written to results/cavity_tuning/spectrum_data.csv

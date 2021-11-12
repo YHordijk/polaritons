@@ -149,77 +149,74 @@ def main(**settings):
 	plt.title('Spectra')
 	plt.xlabel('v (cm^-1)')
 	plt.ylabel('Transmittance')
-	for i, a in enumerate(spectra):
-		plt.plot(spectrax, a , c=cmap(i/N_spectra))
+	# for i, a in enumerate(spectra):
+	# 	plt.plot(spectrax, a , c=cmap(i/N_spectra))
 
-	if overlay_spectrum:
-		#normalize aceton_y
-		overlay_y = (overlay_y - overlay_y.min())/(overlay_y.max() - overlay_y.min()) * max_abs
-		plt.plot(overlay_x, overlay_y, label=f'aceton IR {overlay_spectrum_type} spectrum' + ', inverted'*overlay_spectrum_inverted, linewidth=0.5, color='black')
+	# if overlay_spectrum:
+	# 	#normalize aceton_y
+	# 	overlay_y = (overlay_y - overlay_y.min())/(overlay_y.max() - overlay_y.min()) * max_abs
+	# 	plt.plot(overlay_x, overlay_y, label=f'aceton IR {overlay_spectrum_type} spectrum' + ', inverted'*overlay_spectrum_inverted, linewidth=0.5, color='black')
 
-	tracking_spectrax_colors = cmap(np.linspace(0, 1, len(tracking_spectrax)))
-	if show_tracking_spectrax:
-		# plt.vlines([twl[0] for twl in tracking_spectrax], min_abs, max_abs, colors=tracking_spectrax_colors)
-		# plt.vlines([twl[1] for twl in tracking_spectrax], min_abs, max_abs, colors=tracking_spectrax_colors)
-		for twl, c in zip(tracking_spectrax, tracking_spectrax_colors):
-			plt.fill_betweenx(np.array([min_abs, max_abs]), twl[0], twl[1], color=c, alpha=0.25)
+	# tracking_spectrax_colors = cmap(np.linspace(0, 1, len(tracking_spectrax)))
+	# if show_tracking_spectrax:
+	# 	# plt.vlines([twl[0] for twl in tracking_spectrax], min_abs, max_abs, colors=tracking_spectrax_colors)
+	# 	# plt.vlines([twl[1] for twl in tracking_spectrax], min_abs, max_abs, colors=tracking_spectrax_colors)
+	# 	for twl, c in zip(tracking_spectrax, tracking_spectrax_colors):
+	# 		plt.fill_betweenx(np.array([min_abs, max_abs]), twl[0], twl[1], color=c, alpha=0.25)
 
-	#calculations
-	#Rabi splitting
-	peaks = []
-	peaks_for_fsr = []
-	peak_heights = []
-	peak_heights_for_fsr = []
+	# #calculations
+	# #Rabi splitting
+	# peaks = []
+	# peaks_for_fsr = []
+	# peak_heights = []
+	# peak_heights_for_fsr = []
 
-	FWHMs_fit = []
-	for i, a in enumerate(spectra):
-		peak_res = get_peaks(spectrax, a, prominence=0.002)
-		peak_heights.append(peak_res['peaky'])
-		FWHMs_fit.append(peak_res['FWHM'])
-		if plot_peaks: plt.scatter(spectrax[peak], a[peak], color=cmap(i/N_spectra))
-		peaks.append(peak)
-		peak_heights.append(ph)
+	# FWHMs_fit = []
+	# for i, a in enumerate(spectra):
+	# 	peak_res = get_peaks(spectrax, a, prominence=0.002)
+	# 	peak_heights.append(peak_res['peaky'])
+	# 	FWHMs_fit.append(peak_res['FWHM'])
+	# 	if plot_peaks: plt.scatter(spectrax[peak], a[peak], color=cmap(i/N_spectra))
+	# 	peaks.append(peak)
+	# 	peak_heights.append(ph)
 
-		peak, ph = get_peaks(spectrax, a, prominence=0.05, debug=False)
-		# plt.scatter(spectrax[peak], a[peak])
-		peak_heights_for_fsr.append(ph)
-		peaks_for_fsr.append(peak)
+	# 	peak, ph = get_peaks(spectrax, a, prominence=0.05, debug=False)
+	# 	# plt.scatter(spectrax[peak], a[peak])
+	# 	peak_heights_for_fsr.append(ph)
+	# 	peaks_for_fsr.append(peak)
 
-	#get differences in spectra for calculation of FSR
-	FSRs = []
-	FWHMs = []
+	# #get differences in spectra for calculation of FSR
+	# FSRs = []
+	# FWHMs = []
 
-	i = 0
+	# i = 0
 	print('\n=== SPECTRA', file=logfile)
-	for a, p, pfsr, ph, phfsr in zip(spectra, peaks, peaks_for_fsr, peak_heights, peak_heights_for_fsr):
+	for i, spectrum in enumerate(spectra):
+		color = cmap(i/N_spectra)
 		print(f'Spectrum {i}:', file=logfile)
 
-		#fit FSR
-		#get spectrax used to fit
-		# w = spectrax[pfsr[-7:-1]]
-		fit_psfr = pfsr[spectrax[pfsr] > 4000]
-		w = spectrax[fit_psfr]
+		plt.plot(spectrax, spectrum, color=color)
 
-		diff = -np.diff(w)
-		diff = diff[np.abs(diff-diff.mean()) < 20] #removelarge errors
-		FSRinit = np.mean(diff)
-		offset = w[-1]%FSRinit
+		#all peaks
+		peak_res = get_peaks(spectrax, spectrum, prominence=0.002)
+		peak_res_fsr = get_peaks(spectrax, spectrum, prominence=0.05)
 
-		#make better
-		# FSR = fit_FSR(spectrax[pfsr], FSRinit=FSRinit) #DOES NOT WORK
-		FSR = FSRinit
-		FSRs.append(FSR)
+		if plot_peaks:
+			plt.scatter(peak_res['peakx'], peak_res['peaky'], color=color)
+
+		FSR_res = get_FSR(peak_res_fsr['peakx'], 4000)
+		FSR = FSR_res['FSR']
+		FSR_offset = FSR_res['offset']
+
 		print(f'\tFSR            = {FSR:.2f} cm^-1', file=logfile)
-		print(f'\tFSR_offset     = {offset:.2f} cm^-1', file=logfile)
+		print(f'\tFSR_offset     = {FSR_offset:.2f} cm^-1', file=logfile)
 
 		#cavity_spacing:
 		spacing = 10**4/(2*refractive_index*FSR)
 		print(f'\tCavity spacing = {spacing:.4f} um', file=logfile)
 
 		#get Q-factor: Q = FSR/FWHM
-		peak_widths_FSR = scipy.signal.peak_widths(a, fit_psfr, rel_height=0.5)
-		FWHM = [pw*wavelenght_stepsize for pw in peak_widths_FSR][0].mean() # [0] is peak_widths, rest are other data
-		FWHMs.append(FWHM)
+		FWHM = peak_res_fsr['FWHM'].mean()
 
 		Q = FSR/FWHM
 		print(f'\tFWHM           = {FWHM:.3f} cm^-1', file=logfile)
@@ -227,8 +224,9 @@ def main(**settings):
 
 
 		if plot_fringes or (plot_fringes_for_one and i==0):
-			plt.vlines([n*FSR + offset for n in range(-100, 100) if spectrax.min() < (n*FSR + offset) < spectrax.max()], min_abs, max_abs, linestyle='dashed', linewidths=0.75)
+			plt.vlines([n*FSR + FSR_offset for n in range(-100, 100) if spectrax.min() < (n*FSR + FSR_offset) < spectrax.max()], min_abs, max_abs, linestyle='dashed', linewidths=0.75)
  
+
 		#calculate Rabi splitting
 		for j, polariton_wn in enumerate(polariton_wns):
 			print(f'\tPolariton {j} @ {polariton_wn} cm^-1', file=logfile)
@@ -243,7 +241,6 @@ def main(**settings):
 			print(f'\t\tP+ @ {int(h)} cm^-1, dv = {h-polariton_wn:.1f} cm^-1', file=logfile)
 			print(f'\t\tP- @ {int(l)} cm^-1, dv = {polariton_wn-l:.1f} cm^-1', file=logfile)
 			print(f'\t\tRabi splitting = {splitting:.5f} eV', file=logfile)
-			# print(f'\t\theight(P+)/height(P-) = {peak_widths[1]/peak_widths[0]}', file=logfile)
 
 		# print('\n', file=logfile)
 		i += 1
@@ -319,11 +316,11 @@ def main(**settings):
 
 	print(f'Plots saved to {plots_dir}', file=logfile)
 
-	#write peak_data
-	with open(spectrum_data_path, 'w') as pd:
-		pd.write('spectrum, FSR, FWHM\n')
-		for i, fsr, fwhm in zip(range(N_spectra), FSRs, FWHMs):
-			pd.write(f'{i}, {fsr}, {fwhm}\n')
+	# #write peak_data
+	# with open(spectrum_data_path, 'w') as pd:
+	# 	pd.write('spectrum, FSR, FWHM\n')
+	# 	for i, fsr, fwhm in zip(range(N_spectra), FSRs, FWHMs):
+	# 		pd.write(f'{i}, {fsr}, {fwhm}\n')
 			
 	print(f'Spectrum data written to {spectrum_data_path}', file=logfile)
 
@@ -377,13 +374,14 @@ if __name__ == '__main__':
 		'cavity_tuning': {
 			'file': 'data/20211112_cavity_tuning_for_acetone/data.csv',
 			'name': 'cavity_tuning',
-			'polariton_wns': [1716], #wavenumbers where you expect polaritons cm^-1
+			# 'polariton_wns': [1716], #wavenumbers where you expect polaritons cm^-1
+			'polariton_wns': [],
 			'refractive_index': 1.3592, #aceton,
 
 			## less important settings
 			'plot_fringes_for_one': True,
 			'plot_polaritons': False,
-			'plot_peaks': False,
+			'plot_peaks': True,
 			},
 	}
 
