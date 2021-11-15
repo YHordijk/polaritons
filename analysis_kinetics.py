@@ -1,77 +1,13 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy.signal
+from pkg.exp_decay_fitter import fit_exp_decay
+
+
 
 def read_UV(file):
 	data = np.genfromtxt(file, skip_header=1, delimiter=',')[:,:-1]
 	return data
-
-
-def fit_exp_decay(x, y, maxiter=10_000, eps=1e-6, plot_errors=True, show_fit=True, title='Predicted and reference rate'):
-	#fitting to [A]_0 exp(-kt) + B
-	#initial values
-	k = 2/x.max()			#height of 0.1 + B at time x.max()/2
-	A0 = (y.max()-y.min()) 	
-	B = y.min() 			
-
-	f = lambda x, A0, k, B: A0 * np.exp(-k*x) + B
-	error = lambda x, A0, k, B: np.sum((y-f(x, A0, k, B))**2)
-
-	# plt.plot(x, y)
-	# cmap = plt.get_cmap('hot')
-	errors = []
-	for i in range(maxiter):
-		errors.append(error(x, A0, k, B))
-		# if errors[-1] < eps: break #check for completion of minimization
-		if i > 10 and all([(e - errors[-1]) < eps for e in errors[-8:]]): break
-
-		#calculate derivatives
-		expdec = np.exp(-k*x)
-		base = A0*expdec + B - y
-		dA0 = np.sum(2*expdec			* base)
-		dk  = np.sum(2*x*A0*expdec*-1	* base)
-		dB  = np.sum(2			 		* base)
-
-		#change parameters
-		A0 = A0 - dA0 * 0.00001
-		k = k - dk * 0.00001
-		B = B - dB * 0.00001
-
-	if i < maxiter:
-		print(f'Exponential decay fit converged in {len(errors)}/{maxiter} iterations.')
-	else:
-		print(f'Exponential decay fit not converged. Will take more than {maxiter} iterations, or is not possible. ')
-
-	if plot_errors: 
-		plt.figure()
-		plt.plot(range(len(errors)), errors)
-		plt.title('Error during fitting')
-		plt.xlabel('Iteration')
-		plt.ylabel('Error (a.u.)')
-
-	if show_fit: 
-		plt.figure()
-		plt.plot(x, f(x, A0, k, B), label='Predicted decay')
-		plt.plot(x, y, label='Reference data')
-		plt.title(f'{title}\nA0={A0:.3f}, k={k:.3f}, B={B:.3f}')
-		plt.xlabel('Time (s)')
-		plt.ylabel('Absorbance (a.u.)')
-		plt.hlines(B + A0/2, x.min(), np.log(2)/k, colors=['black'], linewidths=[.75])
-		plt.vlines(np.log(2)/k, y.min(), B + A0/2, colors=['black'], linewidths=[.75])
-		plt.scatter(np.log(2)/k, B + A0/2, c='black')
-		plt.text(np.log(2.2)/k, B + A0/1.85, r'$t_{1/2} = $' + f'{np.log(2)/k:.2f} s')
-		plt.legend()
-
-	print('Parameters:')
-	print(f'\tA0 = {A0} (a.u.)')
-	print(f'\tk  = {k} (1/s)')
-	print(f'\tB  = {B} (a.u.)')
-
-	print(f'Mean Lifetime (1/k) \tτ    = {1/k:.2f} s')
-	print(f'Half-life (τln(2))  \tt₁/₂ = {np.log(2)/k:.2f} s')
-
-	return A0, k, B
-
 
 
 

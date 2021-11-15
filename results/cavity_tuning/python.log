@@ -11,78 +11,130 @@ Spectrum 0:
 	Cavity spacing = 8.6495 um
 	FWHM           = 125.704 cm^-1
 	Quality        = 3.383
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1791 cm^-1, dv = 75.8 cm^-1
+		P- @ 1649 cm^-1, dv = 66.8 cm^-1
+		Rabi splitting = 0.01768 eV
 Spectrum 1:
 	FSR            = 427.81 cm^-1
 	FSR_offset     = 418.53 cm^-1
 	Cavity spacing = 8.5987 um
 	FWHM           = 128.552 cm^-1
 	Quality        = 3.328
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1796 cm^-1, dv = 80.7 cm^-1
+		P- @ 1653 cm^-1, dv = 62.7 cm^-1
+		Rabi splitting = 0.01778 eV
 Spectrum 2:
 	FSR            = 427.90 cm^-1
 	FSR_offset     = 418.65 cm^-1
 	Cavity spacing = 8.5969 um
 	FWHM           = 136.384 cm^-1
 	Quality        = 3.137
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1796 cm^-1, dv = 81.0 cm^-1
+		P- @ 1653 cm^-1, dv = 62.5 cm^-1
+		Rabi splitting = 0.01779 eV
 Spectrum 3:
 	FSR            = 428.00 cm^-1
 	FSR_offset     = 418.67 cm^-1
 	Cavity spacing = 8.5949 um
 	FWHM           = 136.501 cm^-1
 	Quality        = 3.136
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1797 cm^-1, dv = 81.1 cm^-1
+		P- @ 1653 cm^-1, dv = 62.4 cm^-1
+		Rabi splitting = 0.01779 eV
 Spectrum 4:
 	FSR            = 428.17 cm^-1
 	FSR_offset     = 418.59 cm^-1
 	Cavity spacing = 8.5915 um
 	FWHM           = 135.627 cm^-1
 	Quality        = 3.157
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1797 cm^-1, dv = 81.4 cm^-1
+		P- @ 1653 cm^-1, dv = 62.2 cm^-1
+		Rabi splitting = 0.01780 eV
 Spectrum 5:
 	FSR            = 426.04 cm^-1
 	FSR_offset     = 418.99 cm^-1
 	Cavity spacing = 8.6345 um
 	FWHM           = 127.232 cm^-1
 	Quality        = 3.349
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1793 cm^-1, dv = 77.3 cm^-1
+		P- @ 1650 cm^-1, dv = 65.4 cm^-1
+		Rabi splitting = 0.01769 eV
 Spectrum 6:
 	FSR            = 426.22 cm^-1
 	FSR_offset     = 418.78 cm^-1
 	Cavity spacing = 8.6309 um
 	FWHM           = 127.547 cm^-1
 	Quality        = 3.342
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1793 cm^-1, dv = 77.5 cm^-1
+		P- @ 1650 cm^-1, dv = 65.1 cm^-1
+		Rabi splitting = 0.01768 eV
 Spectrum 7:
 	FSR            = 426.55 cm^-1
 	FSR_offset     = 418.68 cm^-1
 	Cavity spacing = 8.6241 um
 	FWHM           = 128.119 cm^-1
 	Quality        = 3.329
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1794 cm^-1, dv = 78.2 cm^-1
+		P- @ 1651 cm^-1, dv = 64.6 cm^-1
+		Rabi splitting = 0.01771 eV
 Spectrum 8:
 	FSR            = 427.00 cm^-1
 	FSR_offset     = 418.99 cm^-1
 	Cavity spacing = 8.6151 um
 	FWHM           = 128.677 cm^-1
 	Quality        = 3.318
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1795 cm^-1, dv = 79.1 cm^-1
+		P- @ 1652 cm^-1, dv = 63.9 cm^-1
+		Rabi splitting = 0.01773 eV
 Spectrum 9:
 	FSR            = 427.07 cm^-1
 	FSR_offset     = 418.96 cm^-1
 	Cavity spacing = 8.6136 um
 	FWHM           = 128.697 cm^-1
 	Quality        = 3.318
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1795 cm^-1, dv = 79.2 cm^-1
+		P- @ 1652 cm^-1, dv = 63.7 cm^-1
+		Rabi splitting = 0.01773 eV
 Spectrum 10:
 	FSR            = 427.23 cm^-1
 	FSR_offset     = 418.67 cm^-1
 	Cavity spacing = 8.6103 um
 	FWHM           = 128.276 cm^-1
 	Quality        = 3.331
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1795 cm^-1, dv = 79.6 cm^-1
+		P- @ 1652 cm^-1, dv = 63.6 cm^-1
+		Rabi splitting = 0.01774 eV
 Spectrum 11:
 	FSR            = 427.55 cm^-1
 	FSR_offset     = 418.74 cm^-1
 	Cavity spacing = 8.6040 um
 	FWHM           = 128.996 cm^-1
 	Quality        = 3.314
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1796 cm^-1, dv = 80.2 cm^-1
+		P- @ 1652 cm^-1, dv = 63.0 cm^-1
+		Rabi splitting = 0.01776 eV
 Spectrum 12:
 	FSR            = 427.67 cm^-1
 	FSR_offset     = 418.63 cm^-1
 	Cavity spacing = 8.6016 um
 	FWHM           = 128.685 cm^-1
 	Quality        = 3.323
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1796 cm^-1, dv = 80.4 cm^-1
+		P- @ 1653 cm^-1, dv = 62.9 cm^-1
+		Rabi splitting = 0.01777 eV
 
 === END
 Plots saved to results/cavity_tuning/plots

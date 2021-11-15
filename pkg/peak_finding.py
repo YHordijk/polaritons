@@ -53,14 +53,17 @@ def get_peaks(spectrax, spectray, prominence=0, debug=False):
 	return results
 
 
-def get_adjacent_peaks(y, xs):
-	#gets values in xs that are left and right of value y
-	xs = np.sort(xs)
+def get_adjacent_peaks(target, ys):
+	#gets values in ys that are left and right of value target
+	ys = np.sort(ys)
 	
-	for i, x in enumerate(xs):
-		next_x = xs[i+1]
-		if x <= y <= next_x:
-			return x, next_x
+	for i, y in enumerate(ys):
+		try:
+			next_y = ys[i+1]
+		except IndexError:
+			return
+		if y <= target <= next_y:
+			return y, next_y
 
 
 def get_closest_index(data, target):

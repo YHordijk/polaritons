@@ -229,14 +229,19 @@ def main(**settings):
 
 		#calculate Rabi splitting
 		for j, polariton_wn in enumerate(polariton_wns):
+			
+			adjpeak = get_adjacent_peaks(polariton_wn, peak_res['peakx'])
+			if adjpeak is None:
+				continue
+			l, h = adjpeak
+
 			print(f'\tPolariton {j} @ {polariton_wn} cm^-1', file=logfile)
-			l, h = get_adjacent_peaks(polariton_wn, spectrax[p])
 			if plot_polaritons:
 				plt.vlines((l,h), min_abs, max_abs, colors='red', linewidths=1)
 			splitting = (h-l)*planck*lightspeed
-			idx = np.where(np.logical_or(spectrax == l, spectrax == h))[0]
-			peak_props = scipy.signal.peak_widths(a, idx)
-			peak_widths = [pw*wavelenght_stepsize for pw in peak_props][0]
+			# idx = np.where(np.logical_or(spectrax == l, spectrax == h))[0]
+			# peak_props = scipy.signal.peak_widths(a, idx)
+			# peak_widths = [pw*wavelenght_stepsize for pw in peak_props][0]
 
 			print(f'\t\tP+ @ {int(h)} cm^-1, dv = {h-polariton_wn:.1f} cm^-1', file=logfile)
 			print(f'\t\tP- @ {int(l)} cm^-1, dv = {polariton_wn-l:.1f} cm^-1', file=logfile)
@@ -374,13 +379,13 @@ if __name__ == '__main__':
 		'cavity_tuning': {
 			'file': 'data/20211112_cavity_tuning_for_acetone/data.csv',
 			'name': 'cavity_tuning',
-			# 'polariton_wns': [1716], #wavenumbers where you expect polaritons cm^-1
-			'polariton_wns': [],
+			'polariton_wns': [1716], #wavenumbers where you expect polaritons cm^-1
+			# 'polariton_wns': [],
 			'refractive_index': 1.3592, #aceton,
 
 			## less important settings
 			'plot_fringes_for_one': True,
-			'plot_polaritons': False,
+			'plot_polaritons': True,
 			'plot_peaks': True,
 			},
 	}
