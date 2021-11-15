@@ -70,3 +70,48 @@ def get_closest_index(data, target):
 	#gets index of element in data that is closest to target
 	return np.argsort(abs(data-target))[0]
 
+
+def get_average_signal(x, y, low, high):
+	#gets the average signal height in spectrum x, y
+	#between low and high on x
+	#|-l-|---|---|---|---|---|---|h--|
+	#i                               j
+
+	#start out with getting i and j
+	i = get_closest_index(x, low)
+	j = get_closest_index(x, high)
+	#ensure that x[i] < low and x[j] > high
+	if not x[i] <= low:
+		i -= 1
+	if not x[j] >= high:
+		j += 1
+
+	#get sum over these values
+	s = np.sum(y[i:j+1])
+
+	#correct sum for low and high ends
+	Xl = (low - x[i])/(x[i+1] - x[i])
+	Xh = (high - x[j-1])/(x[j] - x[j-1])
+
+	Yl = Xl * y[i+1] + (1 - Xl) * y[i]
+	Yh = Xh * y[j] + (1 - Xh) * y[j-1]
+
+	Al = (y[i] + abs(Yl-y[i])/2) * (low - x[i])
+	Ah = (y[j] + abs(y[j]-high)/2) * (x[j] - high)
+	print(s)
+	s = s - Al - Ah
+	# print(x[i], low, high, x[j])
+	if high == low:
+		return 0
+	return s/(high-low)
+
+if __name__ == '__main__':
+	x = np.linspace(0, 100, 1100)
+	y = np.sin(x)
+	highs = np.linspace(0,10,100)
+	avgs = []
+	for high in highs:
+		avgs.append(get_average_signal(x, y, 0, high))
+
+	plt.plot(highs, avgs)
+	plt.show()
