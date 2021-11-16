@@ -152,17 +152,15 @@ def main(**settings):
 	# for i, a in enumerate(spectra):
 	# 	plt.plot(spectrax, a , c=cmap(i/N_spectra))
 
-	# if overlay_spectrum:
-	# 	#normalize aceton_y
-	# 	overlay_y = (overlay_y - overlay_y.min())/(overlay_y.max() - overlay_y.min()) * max_abs
-	# 	plt.plot(overlay_x, overlay_y, label=f'aceton IR {overlay_spectrum_type} spectrum' + ', inverted'*overlay_spectrum_inverted, linewidth=0.5, color='black')
+	if overlay_spectrum:
+		#normalize aceton_y
+		overlay_y = (overlay_y - overlay_y.min())/(overlay_y.max() - overlay_y.min()) * max_abs
+		plt.plot(overlay_x, overlay_y, label=f'aceton IR {overlay_spectrum_type} spectrum' + ', inverted'*overlay_spectrum_inverted, linewidth=0.5, color='black')
 
-	# tracking_spectrax_colors = cmap(np.linspace(0, 1, len(tracking_spectrax)))
-	# if show_tracking_spectrax:
-	# 	# plt.vlines([twl[0] for twl in tracking_spectrax], min_abs, max_abs, colors=tracking_spectrax_colors)
-	# 	# plt.vlines([twl[1] for twl in tracking_spectrax], min_abs, max_abs, colors=tracking_spectrax_colors)
-	# 	for twl, c in zip(tracking_spectrax, tracking_spectrax_colors):
-	# 		plt.fill_betweenx(np.array([min_abs, max_abs]), twl[0], twl[1], color=c, alpha=0.25)
+	tracking_spectrax_colors = cmap(np.linspace(0, 1, len(tracking_spectrax)))
+	if show_tracking_spectrax:
+		for twl, c in zip(tracking_spectrax, tracking_spectrax_colors):
+			plt.fill_betweenx(np.array([min_abs, max_abs]), twl[0], twl[1], color=c, alpha=0.25)
 
 	# #calculations
 	# #Rabi splitting
@@ -198,7 +196,7 @@ def main(**settings):
 		plt.plot(spectrax, spectrum, color=color)
 
 		#all peaks
-		peak_res = get_peaks(spectrax, spectrum, prominence=0.002)
+		peak_res = get_peaks(spectrax, spectrum, prominence=0.003 )
 		peak_res_fsr = get_peaks(spectrax, spectrum, prominence=0.05)
 
 		if plot_peaks:
@@ -390,6 +388,8 @@ if __name__ == '__main__':
 			},
 	}
 
-	main(**settings['cavity_tuning'], show_plots=True)
+	for n, s in settings.items():
+		print(n)
+		main(**s, show_plots=False)
 
 

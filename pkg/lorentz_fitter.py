@@ -1,15 +1,19 @@
 import numpy as np
 from scipy.optimize import curve_fit
+import matplotlib.pyplot as plt
 
 
 def fit_lorentzian(x, y, maxiter=100_000, eps=1e-15, update_strength=0.0001, use_scipy=True, init_params=None):
 	#starting parameters
 	y_half = (y.max() - y.min())/2
 	y_idx_closest_to_half = np.argsort((y-y_half)**2)[:4]
-	w = float(np.diff(x[y_idx_closest_to_half]).max())
+	w = abs(float(np.diff(x[y_idx_closest_to_half]).max()))
 	A = y.max() - y.min()
 	P0 = x[y.argmax()]
 	B = y.min()
+
+	# plt.plot(x,y)
+	# plt.show()
 
 	#functions
 	L = lambda x, w, A, P0, B: A*(1+((x-P0)/(w/2))**2)**-1 + B
@@ -35,7 +39,15 @@ def fit_lorentzian(x, y, maxiter=100_000, eps=1e-15, update_strength=0.0001, use
 		return {'w': w, 'P0':P0, 'B':B, 'error':errors, 'ymax':L(P0, w, P0, B)}
 
 	#if use_scipy:
-	res = curve_fit(L, x, y, [w, A, P0, B], bounds=([0, 0, -np.inf, -np.inf], [np.inf, np.inf, np.inf, np.inf]))[0]
+	try:
+		res = curve_fit(L, x, y, [w, A, P0, B], bounds=([0, 0, -np.inf, -np.inf], [np.inf, np.inf, np.inf, np.inf]))[0]
+	except:
+		print(w, A, P0, B)
+		plt.close('all')
+		plt.plot(x,y)
+		plt.plot(x, L(x, w, A, P0, B))
+		plt.show()
+		raise
 	w, A, P0, B = res[0], res[1], res[2], res[3]
 	return {'w':res[0], 'A':res[1], 'P0':res[2], 'B':res[3], 'error':error(x, w, A, P0, B), 'ymax':L(P0, w, A, P0, B)}
 

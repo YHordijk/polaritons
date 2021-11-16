@@ -1,0 +1,1054 @@
+=== GENERAL
+Filename: data/20111111_IR_SP_kinetics_2/data.csv
+Loaded 100 spectra!
+v_range  =  [6993.571, 397.318] cm^-1
+deltav   =  3.8575 cm^-1
+
+=== SPECTRA
+Spectrum 0:
+	FSR            = 412.33 cm^-1
+	FSR_offset     = 408.94 cm^-1
+	Cavity spacing = 8.9215 um
+	FWHM           = 101.808 cm^-1
+	Quality        = 4.050
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1772 cm^-1, dv = 56.7 cm^-1
+		P- @ 1624 cm^-1, dv = 92.0 cm^-1
+		Rabi splitting = 0.01843 eV
+Spectrum 1:
+	FSR            = 412.34 cm^-1
+	FSR_offset     = 409.03 cm^-1
+	Cavity spacing = 8.9213 um
+	FWHM           = 102.047 cm^-1
+	Quality        = 4.041
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1772 cm^-1, dv = 56.5 cm^-1
+		P- @ 1624 cm^-1, dv = 91.9 cm^-1
+		Rabi splitting = 0.01839 eV
+Spectrum 2:
+	FSR            = 412.40 cm^-1
+	FSR_offset     = 408.88 cm^-1
+	Cavity spacing = 8.9201 um
+	FWHM           = 101.774 cm^-1
+	Quality        = 4.052
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1772 cm^-1, dv = 56.6 cm^-1
+		P- @ 1624 cm^-1, dv = 91.9 cm^-1
+		Rabi splitting = 0.01841 eV
+Spectrum 3:
+	FSR            = 412.42 cm^-1
+	FSR_offset     = 409.11 cm^-1
+	Cavity spacing = 8.9197 um
+	FWHM           = 101.760 cm^-1
+	Quality        = 4.053
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1772 cm^-1, dv = 56.7 cm^-1
+		P- @ 1624 cm^-1, dv = 91.7 cm^-1
+		Rabi splitting = 0.01840 eV
+Spectrum 4:
+	FSR            = 412.51 cm^-1
+	FSR_offset     = 408.76 cm^-1
+	Cavity spacing = 8.9177 um
+	FWHM           = 101.911 cm^-1
+	Quality        = 4.048
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1772 cm^-1, dv = 56.7 cm^-1
+		P- @ 1624 cm^-1, dv = 91.6 cm^-1
+		Rabi splitting = 0.01839 eV
+Spectrum 5:
+	FSR            = 412.52 cm^-1
+	FSR_offset     = 409.08 cm^-1
+	Cavity spacing = 8.9175 um
+	FWHM           = 101.748 cm^-1
+	Quality        = 4.054
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1772 cm^-1, dv = 56.7 cm^-1
+		P- @ 1624 cm^-1, dv = 91.5 cm^-1
+		Rabi splitting = 0.01838 eV
+Spectrum 6:
+	FSR            = 412.55 cm^-1
+	FSR_offset     = 409.15 cm^-1
+	Cavity spacing = 8.9167 um
+	FWHM           = 101.965 cm^-1
+	Quality        = 4.046
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1772 cm^-1, dv = 56.8 cm^-1
+		P- @ 1624 cm^-1, dv = 91.4 cm^-1
+		Rabi splitting = 0.01838 eV
+Spectrum 7:
+	FSR            = 412.60 cm^-1
+	FSR_offset     = 409.10 cm^-1
+	Cavity spacing = 8.9158 um
+	FWHM           = 101.977 cm^-1
+	Quality        = 4.046
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1772 cm^-1, dv = 56.7 cm^-1
+		P- @ 1624 cm^-1, dv = 91.4 cm^-1
+		Rabi splitting = 0.01836 eV
+Spectrum 8:
+	FSR            = 412.66 cm^-1
+	FSR_offset     = 408.93 cm^-1
+	Cavity spacing = 8.9145 um
+	FWHM           = 102.242 cm^-1
+	Quality        = 4.036
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1772 cm^-1, dv = 56.7 cm^-1
+		P- @ 1624 cm^-1, dv = 91.3 cm^-1
+		Rabi splitting = 0.01835 eV
+	Polariton 1 @ 1220 cm^-1
+		P+ @ 1256 cm^-1, dv = 36.9 cm^-1
+		P- @ 406 cm^-1, dv = 813.2 cm^-1
+		Rabi splitting = 0.10541 eV
+Spectrum 9:
+	FSR            = 412.69 cm^-1
+	FSR_offset     = 408.95 cm^-1
+	Cavity spacing = 8.9138 um
+	FWHM           = 102.042 cm^-1
+	Quality        = 4.044
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1772 cm^-1, dv = 56.8 cm^-1
+		P- @ 1624 cm^-1, dv = 91.2 cm^-1
+		Rabi splitting = 0.01834 eV
+Spectrum 10:
+	FSR            = 412.71 cm^-1
+	FSR_offset     = 409.01 cm^-1
+	Cavity spacing = 8.9133 um
+	FWHM           = 101.979 cm^-1
+	Quality        = 4.047
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1772 cm^-1, dv = 56.9 cm^-1
+		P- @ 1624 cm^-1, dv = 91.1 cm^-1
+		Rabi splitting = 0.01835 eV
+Spectrum 11:
+	FSR            = 412.73 cm^-1
+	FSR_offset     = 409.15 cm^-1
+	Cavity spacing = 8.9130 um
+	FWHM           = 102.104 cm^-1
+	Quality        = 4.042
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1772 cm^-1, dv = 56.8 cm^-1
+		P- @ 1624 cm^-1, dv = 91.1 cm^-1
+		Rabi splitting = 0.01834 eV
+Spectrum 12:
+	FSR            = 412.76 cm^-1
+	FSR_offset     = 409.07 cm^-1
+	Cavity spacing = 8.9122 um
+	FWHM           = 101.834 cm^-1
+	Quality        = 4.053
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1772 cm^-1, dv = 56.8 cm^-1
+		P- @ 1625 cm^-1, dv = 91.0 cm^-1
+		Rabi splitting = 0.01832 eV
+Spectrum 13:
+	FSR            = 412.80 cm^-1
+	FSR_offset     = 408.93 cm^-1
+	Cavity spacing = 8.9114 um
+	FWHM           = 102.108 cm^-1
+	Quality        = 4.043
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1772 cm^-1, dv = 56.9 cm^-1
+		P- @ 1625 cm^-1, dv = 91.0 cm^-1
+		Rabi splitting = 0.01833 eV
+Spectrum 14:
+	FSR            = 412.81 cm^-1
+	FSR_offset     = 409.07 cm^-1
+	Cavity spacing = 8.9112 um
+	FWHM           = 102.169 cm^-1
+	Quality        = 4.040
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1772 cm^-1, dv = 57.0 cm^-1
+		P- @ 1625 cm^-1, dv = 90.9 cm^-1
+		Rabi splitting = 0.01833 eV
+Spectrum 15:
+	FSR            = 412.84 cm^-1
+	FSR_offset     = 409.00 cm^-1
+	Cavity spacing = 8.9105 um
+	FWHM           = 102.080 cm^-1
+	Quality        = 4.044
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.0 cm^-1
+		P- @ 1625 cm^-1, dv = 90.8 cm^-1
+		Rabi splitting = 0.01833 eV
+Spectrum 16:
+	FSR            = 412.83 cm^-1
+	FSR_offset     = 409.28 cm^-1
+	Cavity spacing = 8.9107 um
+	FWHM           = 102.547 cm^-1
+	Quality        = 4.026
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1772 cm^-1, dv = 57.0 cm^-1
+		P- @ 1625 cm^-1, dv = 90.8 cm^-1
+		Rabi splitting = 0.01832 eV
+Spectrum 17:
+	FSR            = 412.87 cm^-1
+	FSR_offset     = 409.08 cm^-1
+	Cavity spacing = 8.9098 um
+	FWHM           = 102.119 cm^-1
+	Quality        = 4.043
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1772 cm^-1, dv = 56.9 cm^-1
+		P- @ 1625 cm^-1, dv = 90.7 cm^-1
+		Rabi splitting = 0.01830 eV
+Spectrum 18:
+	FSR            = 412.89 cm^-1
+	FSR_offset     = 409.14 cm^-1
+	Cavity spacing = 8.9095 um
+	FWHM           = 102.070 cm^-1
+	Quality        = 4.045
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1772 cm^-1, dv = 57.0 cm^-1
+		P- @ 1625 cm^-1, dv = 90.7 cm^-1
+		Rabi splitting = 0.01832 eV
+Spectrum 19:
+	FSR            = 412.88 cm^-1
+	FSR_offset     = 409.42 cm^-1
+	Cavity spacing = 8.9098 um
+	FWHM           = 102.193 cm^-1
+	Quality        = 4.040
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.1 cm^-1
+		P- @ 1625 cm^-1, dv = 90.7 cm^-1
+		Rabi splitting = 0.01831 eV
+Spectrum 20:
+	FSR            = 412.94 cm^-1
+	FSR_offset     = 408.98 cm^-1
+	Cavity spacing = 8.9083 um
+	FWHM           = 101.917 cm^-1
+	Quality        = 4.052
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.0 cm^-1
+		P- @ 1625 cm^-1, dv = 90.7 cm^-1
+		Rabi splitting = 0.01831 eV
+Spectrum 21:
+	FSR            = 412.94 cm^-1
+	FSR_offset     = 409.17 cm^-1
+	Cavity spacing = 8.9084 um
+	FWHM           = 102.177 cm^-1
+	Quality        = 4.041
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1772 cm^-1, dv = 57.0 cm^-1
+		P- @ 1625 cm^-1, dv = 90.6 cm^-1
+		Rabi splitting = 0.01830 eV
+Spectrum 22:
+	FSR            = 412.94 cm^-1
+	FSR_offset     = 409.32 cm^-1
+	Cavity spacing = 8.9085 um
+	FWHM           = 102.086 cm^-1
+	Quality        = 4.045
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.1 cm^-1
+		P- @ 1625 cm^-1, dv = 90.6 cm^-1
+		Rabi splitting = 0.01830 eV
+Spectrum 23:
+	FSR            = 412.96 cm^-1
+	FSR_offset     = 409.30 cm^-1
+	Cavity spacing = 8.9081 um
+	FWHM           = 102.137 cm^-1
+	Quality        = 4.043
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.0 cm^-1
+		P- @ 1625 cm^-1, dv = 90.5 cm^-1
+		Rabi splitting = 0.01830 eV
+Spectrum 24:
+	FSR            = 413.00 cm^-1
+	FSR_offset     = 409.06 cm^-1
+	Cavity spacing = 8.9072 um
+	FWHM           = 102.256 cm^-1
+	Quality        = 4.039
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.0 cm^-1
+		P- @ 1625 cm^-1, dv = 90.5 cm^-1
+		Rabi splitting = 0.01829 eV
+Spectrum 25:
+	FSR            = 412.99 cm^-1
+	FSR_offset     = 409.26 cm^-1
+	Cavity spacing = 8.9073 um
+	FWHM           = 102.222 cm^-1
+	Quality        = 4.040
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.1 cm^-1
+		P- @ 1625 cm^-1, dv = 90.4 cm^-1
+		Rabi splitting = 0.01829 eV
+Spectrum 26:
+	FSR            = 413.00 cm^-1
+	FSR_offset     = 409.34 cm^-1
+	Cavity spacing = 8.9072 um
+	FWHM           = 102.390 cm^-1
+	Quality        = 4.034
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.1 cm^-1
+		P- @ 1625 cm^-1, dv = 90.4 cm^-1
+		Rabi splitting = 0.01830 eV
+Spectrum 27:
+	FSR            = 413.00 cm^-1
+	FSR_offset     = 409.40 cm^-1
+	Cavity spacing = 8.9070 um
+	FWHM           = 102.302 cm^-1
+	Quality        = 4.037
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.1 cm^-1
+		P- @ 1625 cm^-1, dv = 90.4 cm^-1
+		Rabi splitting = 0.01829 eV
+Spectrum 28:
+	FSR            = 413.04 cm^-1
+	FSR_offset     = 409.18 cm^-1
+	Cavity spacing = 8.9062 um
+	FWHM           = 102.352 cm^-1
+	Quality        = 4.035
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.1 cm^-1
+		P- @ 1625 cm^-1, dv = 90.4 cm^-1
+		Rabi splitting = 0.01828 eV
+Spectrum 29:
+	FSR            = 413.03 cm^-1
+	FSR_offset     = 409.36 cm^-1
+	Cavity spacing = 8.9064 um
+	FWHM           = 102.714 cm^-1
+	Quality        = 4.021
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.1 cm^-1
+		P- @ 1625 cm^-1, dv = 90.3 cm^-1
+		Rabi splitting = 0.01828 eV
+Spectrum 30:
+	FSR            = 413.05 cm^-1
+	FSR_offset     = 409.36 cm^-1
+	Cavity spacing = 8.9061 um
+	FWHM           = 102.365 cm^-1
+	Quality        = 4.035
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1772 cm^-1, dv = 57.0 cm^-1
+		P- @ 1625 cm^-1, dv = 90.4 cm^-1
+		Rabi splitting = 0.01827 eV
+Spectrum 31:
+	FSR            = 413.05 cm^-1
+	FSR_offset     = 409.42 cm^-1
+	Cavity spacing = 8.9060 um
+	FWHM           = 102.303 cm^-1
+	Quality        = 4.038
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.2 cm^-1
+		P- @ 1625 cm^-1, dv = 90.3 cm^-1
+		Rabi splitting = 0.01829 eV
+	Polariton 1 @ 1220 cm^-1
+		P+ @ 1257 cm^-1, dv = 37.2 cm^-1
+		P- @ 406 cm^-1, dv = 813.4 cm^-1
+		Rabi splitting = 0.10547 eV
+Spectrum 32:
+	FSR            = 413.09 cm^-1
+	FSR_offset     = 409.23 cm^-1
+	Cavity spacing = 8.9053 um
+	FWHM           = 102.185 cm^-1
+	Quality        = 4.043
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.1 cm^-1
+		P- @ 1625 cm^-1, dv = 90.3 cm^-1
+		Rabi splitting = 0.01828 eV
+Spectrum 33:
+	FSR            = 413.09 cm^-1
+	FSR_offset     = 409.32 cm^-1
+	Cavity spacing = 8.9052 um
+	FWHM           = 102.569 cm^-1
+	Quality        = 4.027
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.2 cm^-1
+		P- @ 1625 cm^-1, dv = 90.3 cm^-1
+		Rabi splitting = 0.01828 eV
+Spectrum 34:
+	FSR            = 413.10 cm^-1
+	FSR_offset     = 409.31 cm^-1
+	Cavity spacing = 8.9050 um
+	FWHM           = 102.393 cm^-1
+	Quality        = 4.034
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.2 cm^-1
+		P- @ 1625 cm^-1, dv = 90.2 cm^-1
+		Rabi splitting = 0.01828 eV
+Spectrum 35:
+	FSR            = 413.12 cm^-1
+	FSR_offset     = 409.21 cm^-1
+	Cavity spacing = 8.9045 um
+	FWHM           = 102.376 cm^-1
+	Quality        = 4.035
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.1 cm^-1
+		P- @ 1625 cm^-1, dv = 90.2 cm^-1
+		Rabi splitting = 0.01826 eV
+Spectrum 36:
+	FSR            = 413.10 cm^-1
+	FSR_offset     = 409.49 cm^-1
+	Cavity spacing = 8.9049 um
+	FWHM           = 102.288 cm^-1
+	Quality        = 4.039
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.2 cm^-1
+		P- @ 1625 cm^-1, dv = 90.2 cm^-1
+		Rabi splitting = 0.01828 eV
+Spectrum 37:
+	FSR            = 413.14 cm^-1
+	FSR_offset     = 409.28 cm^-1
+	Cavity spacing = 8.9041 um
+	FWHM           = 102.249 cm^-1
+	Quality        = 4.041
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.2 cm^-1
+		P- @ 1625 cm^-1, dv = 90.2 cm^-1
+		Rabi splitting = 0.01827 eV
+	Polariton 1 @ 1220 cm^-1
+		P+ @ 1257 cm^-1, dv = 37.3 cm^-1
+		P- @ 422 cm^-1, dv = 797.4 cm^-1
+		Rabi splitting = 0.10350 eV
+Spectrum 38:
+	FSR            = 413.18 cm^-1
+	FSR_offset     = 409.03 cm^-1
+	Cavity spacing = 8.9033 um
+	FWHM           = 102.399 cm^-1
+	Quality        = 4.035
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.2 cm^-1
+		P- @ 1625 cm^-1, dv = 90.1 cm^-1
+		Rabi splitting = 0.01827 eV
+Spectrum 39:
+	FSR            = 413.14 cm^-1
+	FSR_offset     = 409.43 cm^-1
+	Cavity spacing = 8.9040 um
+	FWHM           = 102.474 cm^-1
+	Quality        = 4.032
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.2 cm^-1
+		P- @ 1625 cm^-1, dv = 90.1 cm^-1
+		Rabi splitting = 0.01827 eV
+Spectrum 40:
+	FSR            = 413.15 cm^-1
+	FSR_offset     = 409.43 cm^-1
+	Cavity spacing = 8.9038 um
+	FWHM           = 102.286 cm^-1
+	Quality        = 4.039
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.2 cm^-1
+		P- @ 1625 cm^-1, dv = 90.1 cm^-1
+		Rabi splitting = 0.01827 eV
+Spectrum 41:
+	FSR            = 413.18 cm^-1
+	FSR_offset     = 409.32 cm^-1
+	Cavity spacing = 8.9033 um
+	FWHM           = 102.458 cm^-1
+	Quality        = 4.033
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.2 cm^-1
+		P- @ 1625 cm^-1, dv = 90.1 cm^-1
+		Rabi splitting = 0.01826 eV
+Spectrum 42:
+	FSR            = 413.16 cm^-1
+	FSR_offset     = 409.58 cm^-1
+	Cavity spacing = 8.9037 um
+	FWHM           = 102.402 cm^-1
+	Quality        = 4.035
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.3 cm^-1
+		P- @ 1625 cm^-1, dv = 90.0 cm^-1
+		Rabi splitting = 0.01826 eV
+Spectrum 43:
+	FSR            = 413.21 cm^-1
+	FSR_offset     = 409.20 cm^-1
+	Cavity spacing = 8.9026 um
+	FWHM           = 102.372 cm^-1
+	Quality        = 4.036
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.3 cm^-1
+		P- @ 1625 cm^-1, dv = 90.0 cm^-1
+		Rabi splitting = 0.01826 eV
+Spectrum 44:
+	FSR            = 413.20 cm^-1
+	FSR_offset     = 409.43 cm^-1
+	Cavity spacing = 8.9028 um
+	FWHM           = 102.433 cm^-1
+	Quality        = 4.034
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.3 cm^-1
+		P- @ 1625 cm^-1, dv = 90.0 cm^-1
+		Rabi splitting = 0.01826 eV
+Spectrum 45:
+	FSR            = 413.20 cm^-1
+	FSR_offset     = 409.46 cm^-1
+	Cavity spacing = 8.9027 um
+	FWHM           = 102.457 cm^-1
+	Quality        = 4.033
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.3 cm^-1
+		P- @ 1626 cm^-1, dv = 90.0 cm^-1
+		Rabi splitting = 0.01826 eV
+Spectrum 46:
+	FSR            = 413.22 cm^-1
+	FSR_offset     = 409.42 cm^-1
+	Cavity spacing = 8.9024 um
+	FWHM           = 102.382 cm^-1
+	Quality        = 4.036
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.3 cm^-1
+		P- @ 1626 cm^-1, dv = 89.9 cm^-1
+		Rabi splitting = 0.01826 eV
+Spectrum 47:
+	FSR            = 413.21 cm^-1
+	FSR_offset     = 409.57 cm^-1
+	Cavity spacing = 8.9025 um
+	FWHM           = 102.432 cm^-1
+	Quality        = 4.034
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.2 cm^-1
+		P- @ 1626 cm^-1, dv = 89.9 cm^-1
+		Rabi splitting = 0.01824 eV
+Spectrum 48:
+	FSR            = 413.23 cm^-1
+	FSR_offset     = 409.46 cm^-1
+	Cavity spacing = 8.9021 um
+	FWHM           = 102.402 cm^-1
+	Quality        = 4.035
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.2 cm^-1
+		P- @ 1626 cm^-1, dv = 89.9 cm^-1
+		Rabi splitting = 0.01824 eV
+Spectrum 49:
+	FSR            = 413.26 cm^-1
+	FSR_offset     = 409.32 cm^-1
+	Cavity spacing = 8.9015 um
+	FWHM           = 102.251 cm^-1
+	Quality        = 4.042
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.3 cm^-1
+		P- @ 1626 cm^-1, dv = 89.9 cm^-1
+		Rabi splitting = 0.01825 eV
+Spectrum 50:
+	FSR            = 413.27 cm^-1
+	FSR_offset     = 409.28 cm^-1
+	Cavity spacing = 8.9012 um
+	FWHM           = 102.405 cm^-1
+	Quality        = 4.036
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.4 cm^-1
+		P- @ 1626 cm^-1, dv = 89.9 cm^-1
+		Rabi splitting = 0.01826 eV
+Spectrum 51:
+	FSR            = 413.27 cm^-1
+	FSR_offset     = 409.34 cm^-1
+	Cavity spacing = 8.9012 um
+	FWHM           = 102.404 cm^-1
+	Quality        = 4.036
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.3 cm^-1
+		P- @ 1626 cm^-1, dv = 89.8 cm^-1
+		Rabi splitting = 0.01824 eV
+Spectrum 52:
+	FSR            = 413.30 cm^-1
+	FSR_offset     = 409.23 cm^-1
+	Cavity spacing = 8.9007 um
+	FWHM           = 102.363 cm^-1
+	Quality        = 4.038
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.3 cm^-1
+		P- @ 1626 cm^-1, dv = 89.8 cm^-1
+		Rabi splitting = 0.01825 eV
+Spectrum 53:
+	FSR            = 413.29 cm^-1
+	FSR_offset     = 409.41 cm^-1
+	Cavity spacing = 8.9010 um
+	FWHM           = 102.469 cm^-1
+	Quality        = 4.033
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.3 cm^-1
+		P- @ 1626 cm^-1, dv = 89.8 cm^-1
+		Rabi splitting = 0.01824 eV
+Spectrum 54:
+	FSR            = 413.28 cm^-1
+	FSR_offset     = 409.53 cm^-1
+	Cavity spacing = 8.9010 um
+	FWHM           = 102.364 cm^-1
+	Quality        = 4.037
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.4 cm^-1
+		P- @ 1626 cm^-1, dv = 89.8 cm^-1
+		Rabi splitting = 0.01825 eV
+Spectrum 55:
+	FSR            = 413.31 cm^-1
+	FSR_offset     = 409.37 cm^-1
+	Cavity spacing = 8.9005 um
+	FWHM           = 102.513 cm^-1
+	Quality        = 4.032
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.4 cm^-1
+		P- @ 1626 cm^-1, dv = 89.8 cm^-1
+		Rabi splitting = 0.01825 eV
+Spectrum 56:
+	FSR            = 413.28 cm^-1
+	FSR_offset     = 409.71 cm^-1
+	Cavity spacing = 8.9011 um
+	FWHM           = 102.364 cm^-1
+	Quality        = 4.037
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.5 cm^-1
+		P- @ 1626 cm^-1, dv = 89.8 cm^-1
+		Rabi splitting = 0.01826 eV
+Spectrum 57:
+	FSR            = 413.33 cm^-1
+	FSR_offset     = 409.37 cm^-1
+	Cavity spacing = 8.9001 um
+	FWHM           = 102.703 cm^-1
+	Quality        = 4.024
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.3 cm^-1
+		P- @ 1626 cm^-1, dv = 89.8 cm^-1
+		Rabi splitting = 0.01824 eV
+Spectrum 58:
+	FSR            = 413.33 cm^-1
+	FSR_offset     = 409.45 cm^-1
+	Cavity spacing = 8.9001 um
+	FWHM           = 102.699 cm^-1
+	Quality        = 4.025
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.4 cm^-1
+		P- @ 1626 cm^-1, dv = 89.8 cm^-1
+		Rabi splitting = 0.01825 eV
+Spectrum 59:
+	FSR            = 413.33 cm^-1
+	FSR_offset     = 409.54 cm^-1
+	Cavity spacing = 8.9001 um
+	FWHM           = 102.389 cm^-1
+	Quality        = 4.037
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.4 cm^-1
+		P- @ 1626 cm^-1, dv = 89.7 cm^-1
+		Rabi splitting = 0.01824 eV
+Spectrum 60:
+	FSR            = 413.34 cm^-1
+	FSR_offset     = 409.44 cm^-1
+	Cavity spacing = 8.8997 um
+	FWHM           = 102.625 cm^-1
+	Quality        = 4.028
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.4 cm^-1
+		P- @ 1626 cm^-1, dv = 89.7 cm^-1
+		Rabi splitting = 0.01824 eV
+Spectrum 61:
+	FSR            = 413.30 cm^-1
+	FSR_offset     = 409.90 cm^-1
+	Cavity spacing = 8.9006 um
+	FWHM           = 102.523 cm^-1
+	Quality        = 4.031
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.5 cm^-1
+		P- @ 1626 cm^-1, dv = 89.7 cm^-1
+		Rabi splitting = 0.01825 eV
+Spectrum 62:
+	FSR            = 413.36 cm^-1
+	FSR_offset     = 409.47 cm^-1
+	Cavity spacing = 8.8994 um
+	FWHM           = 102.786 cm^-1
+	Quality        = 4.022
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.4 cm^-1
+		P- @ 1626 cm^-1, dv = 89.7 cm^-1
+		Rabi splitting = 0.01824 eV
+Spectrum 63:
+	FSR            = 413.36 cm^-1
+	FSR_offset     = 409.52 cm^-1
+	Cavity spacing = 8.8993 um
+	FWHM           = 102.566 cm^-1
+	Quality        = 4.030
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.4 cm^-1
+		P- @ 1626 cm^-1, dv = 89.7 cm^-1
+		Rabi splitting = 0.01824 eV
+Spectrum 64:
+	FSR            = 413.35 cm^-1
+	FSR_offset     = 409.69 cm^-1
+	Cavity spacing = 8.8996 um
+	FWHM           = 102.807 cm^-1
+	Quality        = 4.021
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.4 cm^-1
+		P- @ 1626 cm^-1, dv = 89.7 cm^-1
+		Rabi splitting = 0.01824 eV
+Spectrum 65:
+	FSR            = 413.39 cm^-1
+	FSR_offset     = 409.42 cm^-1
+	Cavity spacing = 8.8987 um
+	FWHM           = 102.259 cm^-1
+	Quality        = 4.043
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.4 cm^-1
+		P- @ 1626 cm^-1, dv = 89.6 cm^-1
+		Rabi splitting = 0.01823 eV
+Spectrum 66:
+	FSR            = 413.37 cm^-1
+	FSR_offset     = 409.64 cm^-1
+	Cavity spacing = 8.8990 um
+	FWHM           = 102.639 cm^-1
+	Quality        = 4.027
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.4 cm^-1
+		P- @ 1626 cm^-1, dv = 89.6 cm^-1
+		Rabi splitting = 0.01823 eV
+Spectrum 67:
+	FSR            = 413.41 cm^-1
+	FSR_offset     = 409.33 cm^-1
+	Cavity spacing = 8.8982 um
+	FWHM           = 102.472 cm^-1
+	Quality        = 4.034
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.5 cm^-1
+		P- @ 1626 cm^-1, dv = 89.5 cm^-1
+		Rabi splitting = 0.01823 eV
+Spectrum 68:
+	FSR            = 413.39 cm^-1
+	FSR_offset     = 409.62 cm^-1
+	Cavity spacing = 8.8986 um
+	FWHM           = 102.622 cm^-1
+	Quality        = 4.028
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.4 cm^-1
+		P- @ 1626 cm^-1, dv = 89.5 cm^-1
+		Rabi splitting = 0.01821 eV
+Spectrum 69:
+	FSR            = 413.41 cm^-1
+	FSR_offset     = 409.54 cm^-1
+	Cavity spacing = 8.8983 um
+	FWHM           = 102.555 cm^-1
+	Quality        = 4.031
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.5 cm^-1
+		P- @ 1626 cm^-1, dv = 89.5 cm^-1
+		Rabi splitting = 0.01822 eV
+Spectrum 70:
+	FSR            = 413.41 cm^-1
+	FSR_offset     = 409.58 cm^-1
+	Cavity spacing = 8.8982 um
+	FWHM           = 102.578 cm^-1
+	Quality        = 4.030
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.5 cm^-1
+		P- @ 1626 cm^-1, dv = 89.6 cm^-1
+		Rabi splitting = 0.01823 eV
+Spectrum 71:
+	FSR            = 413.42 cm^-1
+	FSR_offset     = 409.63 cm^-1
+	Cavity spacing = 8.8982 um
+	FWHM           = 102.629 cm^-1
+	Quality        = 4.028
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.4 cm^-1
+		P- @ 1626 cm^-1, dv = 89.5 cm^-1
+		Rabi splitting = 0.01822 eV
+Spectrum 72:
+	FSR            = 413.44 cm^-1
+	FSR_offset     = 409.47 cm^-1
+	Cavity spacing = 8.8976 um
+	FWHM           = 102.781 cm^-1
+	Quality        = 4.023
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.5 cm^-1
+		P- @ 1626 cm^-1, dv = 89.5 cm^-1
+		Rabi splitting = 0.01823 eV
+Spectrum 73:
+	FSR            = 413.42 cm^-1
+	FSR_offset     = 409.69 cm^-1
+	Cavity spacing = 8.8980 um
+	FWHM           = 102.637 cm^-1
+	Quality        = 4.028
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.5 cm^-1
+		P- @ 1626 cm^-1, dv = 89.5 cm^-1
+		Rabi splitting = 0.01822 eV
+Spectrum 74:
+	FSR            = 413.44 cm^-1
+	FSR_offset     = 409.60 cm^-1
+	Cavity spacing = 8.8976 um
+	FWHM           = 102.678 cm^-1
+	Quality        = 4.027
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.6 cm^-1
+		P- @ 1626 cm^-1, dv = 89.5 cm^-1
+		Rabi splitting = 0.01823 eV
+Spectrum 75:
+	FSR            = 413.45 cm^-1
+	FSR_offset     = 409.58 cm^-1
+	Cavity spacing = 8.8974 um
+	FWHM           = 102.703 cm^-1
+	Quality        = 4.026
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.5 cm^-1
+		P- @ 1626 cm^-1, dv = 89.4 cm^-1
+		Rabi splitting = 0.01822 eV
+Spectrum 76:
+	FSR            = 413.47 cm^-1
+	FSR_offset     = 409.42 cm^-1
+	Cavity spacing = 8.8969 um
+	FWHM           = 102.669 cm^-1
+	Quality        = 4.027
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.6 cm^-1
+		P- @ 1626 cm^-1, dv = 89.4 cm^-1
+		Rabi splitting = 0.01822 eV
+Spectrum 77:
+	FSR            = 413.44 cm^-1
+	FSR_offset     = 409.77 cm^-1
+	Cavity spacing = 8.8976 um
+	FWHM           = 102.572 cm^-1
+	Quality        = 4.031
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.5 cm^-1
+		P- @ 1626 cm^-1, dv = 89.4 cm^-1
+		Rabi splitting = 0.01821 eV
+Spectrum 78:
+	FSR            = 413.47 cm^-1
+	FSR_offset     = 409.62 cm^-1
+	Cavity spacing = 8.8970 um
+	FWHM           = 102.640 cm^-1
+	Quality        = 4.028
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.5 cm^-1
+		P- @ 1626 cm^-1, dv = 89.4 cm^-1
+		Rabi splitting = 0.01821 eV
+Spectrum 79:
+	FSR            = 413.48 cm^-1
+	FSR_offset     = 409.59 cm^-1
+	Cavity spacing = 8.8968 um
+	FWHM           = 102.554 cm^-1
+	Quality        = 4.032
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.6 cm^-1
+		P- @ 1626 cm^-1, dv = 89.4 cm^-1
+		Rabi splitting = 0.01822 eV
+Spectrum 80:
+	FSR            = 413.50 cm^-1
+	FSR_offset     = 409.40 cm^-1
+	Cavity spacing = 8.8962 um
+	FWHM           = 102.628 cm^-1
+	Quality        = 4.029
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.5 cm^-1
+		P- @ 1626 cm^-1, dv = 89.4 cm^-1
+		Rabi splitting = 0.01821 eV
+Spectrum 81:
+	FSR            = 413.47 cm^-1
+	FSR_offset     = 409.76 cm^-1
+	Cavity spacing = 8.8969 um
+	FWHM           = 102.581 cm^-1
+	Quality        = 4.031
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.5 cm^-1
+		P- @ 1626 cm^-1, dv = 89.4 cm^-1
+		Rabi splitting = 0.01821 eV
+Spectrum 82:
+	FSR            = 413.51 cm^-1
+	FSR_offset     = 409.52 cm^-1
+	Cavity spacing = 8.8962 um
+	FWHM           = 102.630 cm^-1
+	Quality        = 4.029
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.6 cm^-1
+		P- @ 1626 cm^-1, dv = 89.3 cm^-1
+		Rabi splitting = 0.01821 eV
+Spectrum 83:
+	FSR            = 413.50 cm^-1
+	FSR_offset     = 409.61 cm^-1
+	Cavity spacing = 8.8963 um
+	FWHM           = 102.710 cm^-1
+	Quality        = 4.026
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.5 cm^-1
+		P- @ 1626 cm^-1, dv = 89.3 cm^-1
+		Rabi splitting = 0.01820 eV
+Spectrum 84:
+	FSR            = 413.50 cm^-1
+	FSR_offset     = 409.71 cm^-1
+	Cavity spacing = 8.8963 um
+	FWHM           = 102.516 cm^-1
+	Quality        = 4.034
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.6 cm^-1
+		P- @ 1626 cm^-1, dv = 89.3 cm^-1
+		Rabi splitting = 0.01822 eV
+	Polariton 1 @ 1220 cm^-1
+		P+ @ 1257 cm^-1, dv = 37.6 cm^-1
+		P- @ 411 cm^-1, dv = 808.1 cm^-1
+		Rabi splitting = 0.10486 eV
+Spectrum 85:
+	FSR            = 413.50 cm^-1
+	FSR_offset     = 409.74 cm^-1
+	Cavity spacing = 8.8963 um
+	FWHM           = 102.631 cm^-1
+	Quality        = 4.029
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.6 cm^-1
+		P- @ 1626 cm^-1, dv = 89.3 cm^-1
+		Rabi splitting = 0.01821 eV
+Spectrum 86:
+	FSR            = 413.51 cm^-1
+	FSR_offset     = 409.73 cm^-1
+	Cavity spacing = 8.8962 um
+	FWHM           = 102.593 cm^-1
+	Quality        = 4.031
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.6 cm^-1
+		P- @ 1626 cm^-1, dv = 89.3 cm^-1
+		Rabi splitting = 0.01821 eV
+Spectrum 87:
+	FSR            = 413.51 cm^-1
+	FSR_offset     = 409.77 cm^-1
+	Cavity spacing = 8.8961 um
+	FWHM           = 102.600 cm^-1
+	Quality        = 4.030
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.6 cm^-1
+		P- @ 1626 cm^-1, dv = 89.3 cm^-1
+		Rabi splitting = 0.01821 eV
+Spectrum 88:
+	FSR            = 413.52 cm^-1
+	FSR_offset     = 409.73 cm^-1
+	Cavity spacing = 8.8959 um
+	FWHM           = 102.614 cm^-1
+	Quality        = 4.030
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.6 cm^-1
+		P- @ 1626 cm^-1, dv = 89.3 cm^-1
+		Rabi splitting = 0.01821 eV
+Spectrum 89:
+	FSR            = 413.52 cm^-1
+	FSR_offset     = 409.77 cm^-1
+	Cavity spacing = 8.8959 um
+	FWHM           = 102.583 cm^-1
+	Quality        = 4.031
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.7 cm^-1
+		P- @ 1626 cm^-1, dv = 89.2 cm^-1
+		Rabi splitting = 0.01822 eV
+Spectrum 90:
+	FSR            = 413.52 cm^-1
+	FSR_offset     = 409.85 cm^-1
+	Cavity spacing = 8.8959 um
+	FWHM           = 102.715 cm^-1
+	Quality        = 4.026
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.5 cm^-1
+		P- @ 1626 cm^-1, dv = 89.3 cm^-1
+		Rabi splitting = 0.01819 eV
+Spectrum 91:
+	FSR            = 413.56 cm^-1
+	FSR_offset     = 409.56 cm^-1
+	Cavity spacing = 8.8951 um
+	FWHM           = 102.627 cm^-1
+	Quality        = 4.030
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.6 cm^-1
+		P- @ 1626 cm^-1, dv = 89.2 cm^-1
+		Rabi splitting = 0.01821 eV
+Spectrum 92:
+	FSR            = 413.56 cm^-1
+	FSR_offset     = 409.63 cm^-1
+	Cavity spacing = 8.8951 um
+	FWHM           = 102.588 cm^-1
+	Quality        = 4.031
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.6 cm^-1
+		P- @ 1626 cm^-1, dv = 89.2 cm^-1
+		Rabi splitting = 0.01820 eV
+Spectrum 93:
+	FSR            = 413.55 cm^-1
+	FSR_offset     = 409.73 cm^-1
+	Cavity spacing = 8.8952 um
+	FWHM           = 102.529 cm^-1
+	Quality        = 4.034
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.6 cm^-1
+		P- @ 1626 cm^-1, dv = 89.2 cm^-1
+		Rabi splitting = 0.01820 eV
+Spectrum 94:
+	FSR            = 413.56 cm^-1
+	FSR_offset     = 409.73 cm^-1
+	Cavity spacing = 8.8951 um
+	FWHM           = 102.631 cm^-1
+	Quality        = 4.030
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.6 cm^-1
+		P- @ 1626 cm^-1, dv = 89.2 cm^-1
+		Rabi splitting = 0.01820 eV
+Spectrum 95:
+	FSR            = 413.56 cm^-1
+	FSR_offset     = 409.80 cm^-1
+	Cavity spacing = 8.8951 um
+	FWHM           = 102.779 cm^-1
+	Quality        = 4.024
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.6 cm^-1
+		P- @ 1626 cm^-1, dv = 89.2 cm^-1
+		Rabi splitting = 0.01821 eV
+Spectrum 96:
+	FSR            = 413.57 cm^-1
+	FSR_offset     = 409.71 cm^-1
+	Cavity spacing = 8.8948 um
+	FWHM           = 102.592 cm^-1
+	Quality        = 4.031
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.6 cm^-1
+		P- @ 1626 cm^-1, dv = 89.2 cm^-1
+		Rabi splitting = 0.01820 eV
+Spectrum 97:
+	FSR            = 413.58 cm^-1
+	FSR_offset     = 409.71 cm^-1
+	Cavity spacing = 8.8947 um
+	FWHM           = 102.480 cm^-1
+	Quality        = 4.036
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.6 cm^-1
+		P- @ 1626 cm^-1, dv = 89.1 cm^-1
+		Rabi splitting = 0.01820 eV
+Spectrum 98:
+	FSR            = 413.57 cm^-1
+	FSR_offset     = 409.84 cm^-1
+	Cavity spacing = 8.8948 um
+	FWHM           = 102.514 cm^-1
+	Quality        = 4.034
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.6 cm^-1
+		P- @ 1626 cm^-1, dv = 89.1 cm^-1
+		Rabi splitting = 0.01820 eV
+Spectrum 99:
+	FSR            = 413.58 cm^-1
+	FSR_offset     = 409.82 cm^-1
+	Cavity spacing = 8.8947 um
+	FWHM           = 102.856 cm^-1
+	Quality        = 4.021
+	Polariton 0 @ 1716 cm^-1
+		P+ @ 1773 cm^-1, dv = 57.7 cm^-1
+		P- @ 1626 cm^-1, dv = 89.1 cm^-1
+		Rabi splitting = 0.01820 eV
+
+=== KINETICS
+2 spectrax being tracked:
+	Average over [6750, 6882] cm^-1
+	Average over [2850, 2925] cm^-1
+
+Fitting 2 curves using exponential decay:
+	Model: A(t) = A0 * exp(-kt) + B
+	Settings
+		maxiter         = 100000
+		eps             = 1e-12
+	Results fit 0
+		Convergence     = True
+		A0              = 0.0011263874430644377
+		k               = 0.002231422774576307 s^-1
+		B               = 0.07257950919765362
+		Error           = 1.218260723605538e-05
+		Mean Lifetime 	= 448.14 s
+		Half-life		= 310.63 s
+	Results fit 1
+		Convergence     = True
+		A0              = 5.342487078806951
+		k               = 4.8642092219082044e-08 s^-1
+		B               = -5.28004154638923
+		Error           = 5.865116696633136e-06
+		Mean Lifetime 	= 20558326.22 s
+		Half-life		= 14249945.86 s
+
+=== END
+Plots saved to results/kinetics_2/plots
+Spectrum data written to results/kinetics_2/spectrum_data.csv

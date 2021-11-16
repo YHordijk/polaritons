@@ -1,19 +1,40 @@
 import numpy as np
 from scipy.optimize import curve_fit
-
+import matplotlib.pyplot as plt
 
 
 def fit_exp_decay(x, y, use_scipy=True, maxiter=100_000, eps=1e-12, plot_errors=False, show_fit=True, 
-				  plots_dir='', title='Predicted and reference rate', outfile=None, index=0):
+				  plots_dir=None, title='Predicted and reference rate', outfile=None, index=0):
 	#x is usually time, y is usually tracked wavelength
 	#fitting to [A]_0 exp(-kt) + B
 	#initial values
-	k = 2/x.max()			#height of 0.1 + B at time x.max()/2
+	# k = 2/x.max()			#height of 0.1 + B at time x.max()/2
+	halfheight = (y.max()-y.min())/2 + y.min()
+	closest_to_middle = np.argmin(np.abs(y-halfheight))
+	k = np.log(2)/x[closest_to_middle]
 	A0 = (y.max()-y.min()) 	
 	B = y.min() 			
 
 	f = lambda x, k, A0, B: A0 * np.exp(-k*x) + B
 	error = lambda x, k, A0, B: np.sum((y-f(x, A0, k, B))**2)
+
+
+	# if show_fit: 
+	# 	plt.close('all')
+	# 	plt.figure()
+	# 	plt.plot(x, f(x, k, A0, B), label='Initially Predicted decay')
+	# 	plt.plot(x, y, label='Reference data')
+	# 	plt.title(f'{title} {index}\nk={k:.3f}, A0={A0:.3f}, B={B:.3f}')
+	# 	plt.xlabel('Time (s)')
+	# 	plt.ylabel('Transmittance')
+	# 	plt.hlines(B + A0/2, x.min(), np.log(2)/k, colors=['black'], linewidths=[.75])
+	# 	plt.vlines(np.log(2)/k, y.min(), B + A0/2, colors=['black'], linewidths=[.75])
+	# 	plt.scatter(np.log(2)/k, B + A0/2, c='black')
+	# 	plt.text(np.log(2.2)/k, B + A0/1.85, r'$t_{1/2} = $' + f'{np.log(2)/k:.2f} s')
+	# 	plt.legend()
+	# 	plt.tight_layout()
+	# 	plt.savefig(f'{plots_dir}/exp_decay_fit_initial_{index}.jpg')
+	# 	plt.show()
 
 	if not use_scipy:
 		errors = []
@@ -31,7 +52,7 @@ def fit_exp_decay(x, y, use_scipy=True, maxiter=100_000, eps=1e-12, plot_errors=
 
 			#change parameters
 			A0 = A0 - dA0 * 0.01
-			k = k - dk * 0.01
+			k = k - dk * 0.01  
 			B = B - dB * 0.01
 
 		if plot_errors: 
@@ -41,29 +62,35 @@ def fit_exp_decay(x, y, use_scipy=True, maxiter=100_000, eps=1e-12, plot_errors=
 			plt.xlabel('Iteration')
 			plt.ylabel('Error')
 			plt.tight_layout()
-			plt.savefig(f'{plots_dir}/exp_decay_errors_{index}.jpg')
+			if plots_dir is not None: plt.savefig(f'{plots_dir}/exp_decay_errors_{index}.jpg')
 
-		if show_fit: 
-			plt.figure()
-			plt.plot(x, f(x, k, A0, B), label='Predicted decay')
-			plt.plot(x, y, label='Reference data')
-			plt.title(f'{title} {index}\nk={k:.3f}, A0={A0:.3f}, B={B:.3f}')
-			plt.xlabel('Time (s)')
-			plt.ylabel('Transmittance')
-			plt.hlines(B + A0/2, x.min(), np.log(2)/k, colors=['black'], linewidths=[.75])
-			plt.vlines(np.log(2)/k, y.min(), B + A0/2, colors=['black'], linewidths=[.75])
-			plt.scatter(np.log(2)/k, B + A0/2, c='black')
-			plt.text(np.log(2.2)/k, B + A0/1.85, r'$t_{1/2} = $' + f'{np.log(2)/k:.2f} s')
-			plt.legend()
-			plt.tight_layout()
-			plt.savefig(f'{plots_dir}/exp_decay_fit_{index}.jpg')
 
 		results = {'k':k, 'A0':A0, 'B':B, 'iterations':i, 'error':errors[-1]}
-		return results
 
-	#if use_scipy:
-	res = curve_fit(f, x, y, [k, A0, B], maxfev=10000)[0]
-	return {'k':res[0], 'A0':res[1], 'B':res[2], 'error':error(x, k, A0, B)}
+	else:
+		res = curve_fit(f, x, y, [k, A0, B], maxfev=10000)[0]
+		results = {'k':res[0], 'A0':res[1], 'B':res[2], 'error':error(x, k, A0, B)}
+		k = res[0]
+		A0 = res[1]
+		B = res[2]
+
+
+	if show_fit: 
+		plt.figure()
+		plt.plot(x, f(x, k, A0, B), label='Predicted decay')
+		plt.plot(x, y, label='Reference data')
+		plt.title(f'{title} {index}\nk={k:.3f}, A0={A0:.3f}, B={B:.3f}')
+		plt.xlabel('Time (s)')
+		plt.ylabel('Transmittance')
+		plt.hlines(B + A0/2, x.min(), np.log(2)/k, colors=['black'], linewidths=[.75])
+		plt.vlines(np.log(2)/k, y.min(), B + A0/2, colors=['black'], linewidths=[.75])
+		plt.scatter(np.log(2)/k, B + A0/2, c='black')
+		plt.text(np.log(2.2)/k, B + A0/1.85, r'$t_{1/2} = $' + f'{np.log(2)/k:.2f} s')
+		plt.legend()
+		plt.tight_layout()
+		if plots_dir is not None: plt.savefig(f'{plots_dir}/exp_decay_fit_{index}.jpg')
+
+	return results
 
 
 if __name__ == '__main__':
