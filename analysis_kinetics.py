@@ -160,7 +160,7 @@ if __name__ == '__main__':
 	print(f'\tk  				= {coupled_fit["k"]:.3f} s^-1')
 	print(f'\tA0 				= {coupled_fit["A0"]:.3f}')
 	print(f'\tB  				= {coupled_fit["B"]:.3f}')
-	print(f'\tMeant life-time   = {1/coupled_fit["k"]:.2f} s')
+	print(f'\tMean life-time    = {1/coupled_fit["k"]:.2f} s')
 	print(f'\tHalf-life         = {np.log(2)/coupled_fit["k"]:.2f} s')
 
 	print('Uncoupled exponential fitting:')
