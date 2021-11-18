@@ -8,6 +8,21 @@ except ModuleNotFoundError:
 
 
 
+def read_ir(file):
+	with open(file, 'r') as f:
+		lines = f.readlines()
+		spectrum_names = lines[0].strip().split(',')[1:][:-1]
+		spectrum_types = lines[1].lower().strip().strip(',').split(',')[1:][:-1]
+	data = np.genfromtxt(file, skip_header=2, delimiter=',')[:,:-1]  #dont send last row cause itis empty
+	return data, spectrum_names, spectrum_types
+
+
+def read_UV(file):
+	data = np.genfromtxt(file, skip_header=1, delimiter=',')[:,:-1]
+	return data
+
+
+
 def get_FSR(peakx, lowx=4000):
 	peakx = peakx[peakx > lowx]
 	diff = -np.diff(peakx)
@@ -17,33 +32,42 @@ def get_FSR(peakx, lowx=4000):
 	return {'FSR':FSR, 'offset':offset}
 
 
-def get_peaks(spectrax, spectray, prominence=0, debug=False):
-	#get rough peak_positions
-	peak, _ = scipy.signal.find_peaks(spectray, prominence=prominence, height=0)
+def get_peaks(spectrax, spectray, prominence=0, debug=True):
+	peak, props = scipy.signal.find_peaks(spectray, prominence=prominence, height=0, width=0)
 	peaky_rough = spectray[peak]
 	peakx_rough = spectrax[peak]
 
-	FSR_rough = get_FSR(peakx_rough, 4000)['FSR']
+	delta = abs(np.mean(np.diff(spectrax)))
+	left_points = props['left_ips']*delta  + spectrax.min()
+	right_points = props['right_ips']*delta  + spectrax.min()
+
+	FSR = get_FSR(peakx_rough, 4000)
 
 	peaks = []
 	FWHM = []
-	for px, py in zip(peakx_rough, peaky_rough):
+	for px, py, l, r in zip(peakx_rough, peaky_rough, left_points, right_points):
 		#get peaks between peakx - FSR/2 and peakx + FSR/2
-		peakxfitidxs = get_closest_index(spectrax, px+FSR_rough/4), min(get_closest_index(spectrax, px-FSR_rough/4), spectrax.shape[0])
+		peakxfitidxs = [get_closest_index(spectrax, px-FSR/5), get_closest_index(spectrax, px+FSR/5)]
+		# peakxfitidxs.sort()
 		fitx = spectrax[peakxfitidxs[0]:peakxfitidxs[1]]
 		fity = spectray[peakxfitidxs[0]:peakxfitidxs[1]]
 		#get better fit
-		fit_res = fit_lorentzian(fitx, fity)
-
-		w, A, P0, B = fit_res['w'], fit_res['A'], fit_res['P0'], fit_res['B']
-		
-		peaks.append((fit_res['P0'], fit_res['ymax']))
-		FWHM.append(fit_res['w'])
+		try:
+			fit_res = fit_lorentzian(fitx, fity)
+			w, A, P0, B = fit_res['w'], fit_res['A'], fit_res['P0'], fit_res['B']
+			peaks.append((fit_res['P0'], fit_res['ymax']))
+			FWHM.append(fit_res['w'])
+		except:
+			peaks.append((px,py))
+			FWHM.append(1)
+			# raise
 
 		if debug:
+			plt.plot(spectrax, spectray)
 			plt.scatter(fitx, fity, label='exp')
 			L = lambda x, w, A, P0, B: A*(1+((x-P0)/(w/2))**2)**-1 + B
 			plt.plot(fitx, L(fitx, w, A, P0, B), label='pred')
+			plt.scatter(P0, L(P0, w, A, P0, B))
 			plt.legend()
 			plt.show()
 
@@ -61,7 +85,7 @@ def get_adjacent_peaks(target, ys):
 		try:
 			next_y = ys[i+1]
 		except IndexError:
-			return
+			raise
 		if y <= target <= next_y:
 			return y, next_y
 

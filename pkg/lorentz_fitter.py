@@ -42,11 +42,11 @@ def fit_lorentzian(x, y, maxiter=100_000, eps=1e-15, update_strength=0.0001, use
 	try:
 		res = curve_fit(L, x, y, [w, A, P0, B], bounds=([0, 0, -np.inf, -np.inf], [np.inf, np.inf, np.inf, np.inf]))[0]
 	except:
-		print(w, A, P0, B)
-		plt.close('all')
-		plt.plot(x,y)
-		plt.plot(x, L(x, w, A, P0, B))
-		plt.show()
+		# print(w, A, P0, B)
+		# plt.close('all')
+		# plt.plot(x,y)
+		# plt.plot(x, L(x, w, A, P0, B))
+		# plt.show()
 		raise
 	w, A, P0, B = res[0], res[1], res[2], res[3]
 	return {'w':res[0], 'A':res[1], 'P0':res[2], 'B':res[3], 'error':error(x, w, A, P0, B), 'ymax':L(P0, w, A, P0, B)}

@@ -1,5 +1,6 @@
 import numpy as np 
 import matplotlib.pyplot as plt
+import scipy.signal
 
 
 def read_spectra(file):
@@ -23,8 +24,10 @@ def main(file):
 	angleidx = np.argsort(angles) #sort the spctra based on angle
 
 	spectrax = spectra[:, 0]
+	dx = abs(np.mean(np.diff(spectrax)))
 	spectray = spectra[:, 1:].T
 	spectray = spectray[angleidx]
+	angles = angles[angleidx]
 	cmap = plt.get_cmap('jet')
 	for i, s in enumerate(spectray):
 		plt.plot(spectrax, s, color=cmap(i/angles.size))
@@ -41,13 +44,23 @@ def main(file):
 	cut_spec = spectray[:, highidx:lowidx]
 	cut_spec = cut_spec - cut_spec.min(axis=0)
 	norm_spec = cut_spec/cut_spec.max(axis=0)
-	# norm_spec = cut_spec
+	norm_spec = cut_spec
+
+	#copy and mirror the spectra
+	copy = norm_spec[::-1].copy()
+	norm_spec = np.vstack((copy[:-1], norm_spec))
 
 	plt.xlabel('Wavenumber (cm^-1)')
 	plt.ylabel('Angle (deg)')
 
+	plt.imshow(norm_spec, extent=(high_wn, low_wn, max(angles), -max(angles)), aspect='auto', cmap='jet')
+	for s, a in zip(norm_spec, angles):
+		peaks, _ = scipy.signal.find_peaks(s, prominence=0.0005)
+		# print(peaks*dx+low_wn)
+		for peak in peaks:
+			plt.scatter(high_wn-peak*dx, max(angles)-a)
+			plt.scatter(high_wn-peak*dx, -max(angles)+a)
 
-	plt.imshow(norm_spec, extent=(high_wn, low_wn, max(angles), min(angles)), aspect='auto', cmap='jet')	
 	plt.show()
 
 
