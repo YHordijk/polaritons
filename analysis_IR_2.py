@@ -223,7 +223,7 @@ def main(**settings):
 
 		if plot_fringes or (plot_fringes_for_one and i==0):
 			plt.vlines([n*FSR + FSR_offset for n in range(-100, 100) if spectrax.min() < (n*FSR + FSR_offset) < spectrax.max()], min_abs, max_abs, linestyle='dashed', linewidths=0.75)
- 
+
 
 		#calculate Rabi splitting
 		for j, polariton_wn in enumerate(polariton_wns):
@@ -388,8 +388,10 @@ if __name__ == '__main__':
 			},
 	}
 
-	for n, s in settings.items():
-		print(n)
-		main(**s, show_plots=False)
+	# for n, s in settings.items():
+	# 	print(n)
+	# 	main(**s, show_plots=False)
+
+	main(**settings['cavity_tuning'], show_plots=True)
 
 

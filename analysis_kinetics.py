@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy.signal
-from pkg.exp_decay_fitter import fit_exp_decay
+from pkg.exp_decay_fitter import fit_exp_decay, fit_biexp_decay
 import os
 
 
@@ -20,6 +20,7 @@ def main(*args, **kwargs):
 	tracking_spectrax = kwargs.get('tracking_spectrax', [])
 	cmap = kwargs.get('cmap', plt.get_cmap('jet'))
 	show_tracking_spectrax = kwargs.get('show_tracking_spectrax', True)
+	spectra_blacklist = kwargs.get('spectra_blacklist', [])
 
 
 	if not os.path.exists(f'results/{name}'):
@@ -31,9 +32,10 @@ def main(*args, **kwargs):
 
 	spectrax = data[:,0]
 	spectra = data[:,1:]
+	wavelenght_stepsize = abs(np.diff(spectrax).mean())
+
 	min_abs = min([a.min() for a in spectra])
 	max_abs = max([a.max() for a in spectra])
-	wavelenght_stepsize = abs(np.diff(spectrax).mean())
 	
 	N_spectra = spectra.shape[1]
 	
@@ -72,10 +74,11 @@ def main(*args, **kwargs):
 
 		return np.mean(spectra[low_i:high_i,:], axis=0)
 
-
 	tracking_spectra = []
 	for twl in tracking_spectrax:
 		absorbs = get_tracking_absorbance(twl)
+		# print(np.where(absorbs < 0.001))
+		absorbs = np.delete(absorbs, np.where(absorbs < 0.001))
 		tracking_spectra.append(absorbs)
 
 		if type(twl) is tuple: twlb = (twl[0]+twl[1])/2
@@ -91,17 +94,16 @@ def main(*args, **kwargs):
 		low = twl[0]
 		high = twl[1]
 		
-		plt.plot(np.arange(N_spectra)*time_delay, tabs, label=r'$\lambda_{avg}$' + f' = [{low}, {high}] nm')
+		plt.plot(np.arange(len(tabs))*time_delay, tabs, label=r'$\lambda_{avg}$' + f' = [{low}, {high}] nm')
 
 	plt.legend()
 	plt.savefig(f'{plots_dir}/tracked_spectra.jpg')
-
 
 	for twl, tabs in zip(tracking_spectrax, tracking_spectra):
 		low = twl[0]
 		high = twl[1]
 
-		fit_exp_decay(np.arange(N_spectra)*time_delay, np.asarray(tabs), title=f'Predicted and reference rate (around $\lambda ∈ [{low}, {high}]$ nm)', plots_dir=plots_dir, use_scipy=True)
+		fit_exp_decay(np.arange(len(tabs))*time_delay, np.asarray(tabs), title=f'Predicted and reference rate (around $\lambda ∈ [{low}, {high}]$ nm)', plots_dir=plots_dir, use_scipy=True)
 
 
 	# plt.show()	
@@ -129,45 +131,161 @@ if __name__ == '__main__':
 			'time_delay': 10,
 			'tracking_spectrax': [(520, 580)],
 		},
+		'SP_cyclohexanone_UVVIS_10s_360x_20um_decoupled_2': {
+			'name': 'kinetics_cyclohexanone_20s_180x_5um_decoupled_2',
+			'file': "data/20211118_UVVIS_sp_cyclohexanon_uncoupled/data.csv",
+			'time_delay': 10,
+			'tracking_spectrax': [(520, 580)],
+			'spectra_blacklist': [61, 285]
+		},
+		'SP_cyclohexanone_UVVIS_10s_360x_20um_coupled_2': {
+			'name': 'kinetics_cyclohexanone_20s_180x_5um_coupled_2',
+			'file': "data/20211119_UVVIS_sp_cyclohexanon_coupled/data.csv",
+			'time_delay': 10,
+			'tracking_spectrax': [(520, 580)],
+		},
 	}
 
+	use_coupled_biexp_decay = True
+	use_uncoupled_biexp_decay = True
 
-	cy = main(**settings['SP_cyclohexanone_UVVIS_10s_360x_20um'])[0]
-	uncy = main(**settings['SP_cyclohexanone_UVVIS_10s_360x_20um_decoupled'])[0]
-	cx = np.arange(cy.size)*10
-	uncx = np.arange(uncy.size)*10
+
+	cy = [main(**settings['SP_cyclohexanone_UVVIS_10s_360x_20um'])[0],
+		  main(**settings['SP_cyclohexanone_UVVIS_10s_360x_20um_coupled_2'])[0],]
+	uncy = [main(**settings['SP_cyclohexanone_UVVIS_10s_360x_20um_decoupled'])[0],
+			main(**settings['SP_cyclohexanone_UVVIS_10s_360x_20um_decoupled_2'])[0]]
+
+	cx = [np.arange(yy.size)*10 for yy in cy]
+	uncx = [np.arange(yy.size)*10 for yy in uncy]
 
 	plt.close('all')
 	plt.figure()
 	plt.title(r'Kinetics of average signal between 520 nm and 580 nm')
 	plt.xlabel('t (s)')
 	plt.ylabel('Absorbance (a.u.)')
-	plt.plot(cx, cy, label='Coupled cyclohexanone')
-	plt.plot(uncx, uncy, label='Uncoupled cyclohexanone')
+	for i, x, y in zip(range(len(cx)), cx, cy):
+		plt.plot(x, y, label=f'Coupled cyclohexanone {i}')
+	for i, x, y in zip(range(len(uncx)), uncx, uncy):
+		plt.plot(x, y, label=f'Uncoupled cyclohexanone {i}')
 	plt.legend()
 
 	plt.figure()
 	plt.title(r'Normalised kinetics of average signal between 520 nm and 580 nm')
 	plt.xlabel('t (s)')
 	plt.ylabel('Absorbance (normalised)')
-	plt.plot(cx, (cy-cy.min())/(cy.max()-cy.min()), label='Coupled cyclohexanone')
-	plt.plot(uncx, (uncy-uncy.min())/(uncy.max()-uncy.min()), label='Uncoupled cyclohexanone')
-	
-	coupled_fit = fit_exp_decay(cx, cy - np.mean(cy[-200:-1]), show_fit=True)
-	uncoupled_fit = fit_exp_decay(uncx, uncy - np.mean(uncy[-200:-1]), show_fit=True)
+	for i, x, y in zip(range(len(cx)), cx, cy):
+		plt.plot(x, (y-y.min())/(y.max()-y.min()), label=f'Coupled, experiment {i}')
+	for i, x, y in zip(range(len(uncx)), uncx, uncy):
+		plt.plot(x, (y-y.min())/(y.max()-y.min()), label=f'Uncoupled, experiment {i}')
+		
+	if use_coupled_biexp_decay:
+		coupled_fit   = [fit_biexp_decay(x, y - np.mean(y[-200:-1]), show_fit=True) for x, y in zip(cx, cy)]
+	else:
+		coupled_fit   = [fit_exp_decay(x, y - np.mean(y[-200:-1]), show_fit=True) for x, y in zip(cx, cy)]
 
-	print('Coupled exponential fitting:')
-	print(f'\tk  				= {coupled_fit["k"]:.3f} s^-1')
-	print(f'\tA0 				= {coupled_fit["A0"]:.3f}')
-	print(f'\tB  				= {coupled_fit["B"]:.3f}')
-	print(f'\tMean life-time    = {1/coupled_fit["k"]:.2f} s')
-	print(f'\tHalf-life         = {np.log(2)/coupled_fit["k"]:.2f} s')
+	if use_uncoupled_biexp_decay:
+		uncoupled_fit = [fit_biexp_decay(x, y - np.mean(y[-200:-1]),   show_fit=True) for x, y in zip(uncx, uncy)]
+	else:
+		uncoupled_fit = [fit_exp_decay(x, y - np.mean(y[-200:-1]),   show_fit=True) for x, y in zip(uncx, uncy)]
 
-	print('Uncoupled exponential fitting:')
-	print(f'\tk  				= {uncoupled_fit["k"]:.3f} s^-1')
-	print(f'\tA0 				= {uncoupled_fit["A0"]:.3f}')
-	print(f'\tB  				= {uncoupled_fit["B"]:.3f}')
-	print(f'\tMeant life-time   = {1/uncoupled_fit["k"]:.2f} s')
-	print(f'\tHalf-life         = {np.log(2)/uncoupled_fit["k"]:.2f} s')
+	coupled_halftimes = []
+	print('\n======Coupled experiments=========')
+	for i, c in zip(range(len(coupled_fit)), coupled_fit):
+		if use_coupled_biexp_decay:
+			print(f'Coupled biexponential fitting for experiment {i}:')
+			print(f'\tCorrelation (R2)  = {c["r2_value"]:.10f}')
+			print(f'\tk1                = {c["k1"]:.8f} s^-1')
+			print(f'\tk2                = {c["k2"]:.8f} s^-1')
+			print(f'\tA01               = {c["A01"]:.3f}')
+			print(f'\tA02               = {c["A02"]:.3f}')
+			# print(f'\tB                 = {c["B"]:.3f}')
+			print(f'\tMean life-time 1  = {1/c["k1"]:.2f} s')
+			print(f'\tMean life-time 2  = {1/c["k2"]:.2f} s')
+			print(f'\tHalf-life 1       = {np.log(2)/c["k1"]:.2f} s')
+			print(f'\tHalf-life 2       = {np.log(2)/c["k2"]:.2f} s')
+
+			coupled_halftimes.append((np.log(2)/c["k1"], np.log(2)/c["k2"]))
+
+		else:
+			print(f'Coupled exponential fitting for experiment {i}:')
+			print(f'\tCorrelation (R2)  = {c["r2_value"]:.10f}')
+			print(f'\tk                 = {c["k"]:.8f} s^-1')
+			print(f'\tA0                = {c["A0"]:.3f}')
+			# print(f'\tB                 = {c["B"]:.3f}')
+			print(f'\tMeant life-time   = {1/c["k"]:.2f} s')
+			print(f'\tHalf-life         = {np.log(2)/c["k"]:.2f} s')
+			
+			coupled_halftimes.append(np.log(2)/c["k"])
+
+
+	print('\n=====Uncoupled experiments========')
+	uncoupled_halftimes = []
+	for i, c in zip(range(len(uncoupled_fit)), uncoupled_fit):
+		if use_uncoupled_biexp_decay:	
+			print(f'Uncoupled biexponential fitting for experiment {i}:')
+			print(f'\tCorrelation (R2)  = {c["r2_value"]:.10f}')
+			print(f'\tk1                = {c["k1"]:.8f} s^-1')
+			print(f'\tk2                = {c["k2"]:.8f} s^-1')
+			print(f'\tA01               = {c["A01"]:.3f}')
+			print(f'\tA02               = {c["A02"]:.3f}')
+			# print(f'\tB                 = {c["B"]:.3f}')
+			print(f'\tMean life-time 1  = {1/c["k1"]:.2f} s')
+			print(f'\tMean life-time 2  = {1/c["k2"]:.2f} s')
+			print(f'\tHalf-life 1       = {np.log(2)/c["k1"]:.2f} s')
+			print(f'\tHalf-life 2       = {np.log(2)/c["k2"]:.2f} s')
+
+			uncoupled_halftimes.append((np.log(2)/c["k1"], np.log(2)/c["k2"]))
+		else:
+			print(f'Uncoupled exponential fitting for experiment {i}:')
+			print(f'\tCorrelation (R2)  = {c["r2_value"]:.10f}')
+			print(f'\tk                 = {c["k"]:.8f} s^-1')
+			print(f'\tA0                = {c["A0"]:.3f}')
+			# print(f'\tB                 = {c["B"]:.3f}')
+			print(f'\tMeant life-time   = {1/c["k"]:.2f} s')
+			print(f'\tHalf-life         = {np.log(2)/c["k"]:.2f} s')
+			
+			uncoupled_halftimes.append(np.log(2)/c["k"])
+
+	print('\n============Summary===============')
+	print(f'Number of experiments:')
+	print(f'\tCoupled:   {len(cx)}')
+	print(f'\tUncoupled: {len(uncx)}')
+
+	print(f'\nCoupled half-times:')
+	if use_coupled_biexp_decay:
+		for i, h in enumerate(coupled_halftimes):
+			print(f'\tExperiment {i}: {h[0]:.2f} s and {h[1]:.2f} s')
+
+		average_h1 = sum([h[0] for h in coupled_halftimes])/len(coupled_halftimes)
+		average_h2 = sum([h[1] for h in coupled_halftimes])/len(coupled_halftimes)
+		stddev_h1 = np.std(coupled_halftimes, axis=0)[0]
+		stddev_h2 = np.std(coupled_halftimes, axis=0)[1]
+		print(f'\tAverage     : {average_h1:.2f} s and {average_h2:.2f} s')
+		print(f'\tStddev      : {stddev_h1:.2f} s and {stddev_h2:.2f} s')
+	else:
+		for i, h in enumerate(coupled_halftimes):
+			print(f'\tExperiment {i}: {h:.2f} s')
+		average_h = sum(coupled_halftimes)/len(coupled_halftimes)
+		stddev_h = np.std(coupled_halftimes)
+		print(f'\tAverage     : {average_h:.2f} s')
+		print(f'\tStddev      : {stddev_h:.2f} s')
+
+	print(f'\nUncoupled half-times:')
+	if use_coupled_biexp_decay:
+		for i, h in enumerate(uncoupled_halftimes):
+			print(f'\tExperiment {i}: {h[0]:.2f} s and {h[1]:.2f} s')
+		average_h1 = sum([h[0] for h in uncoupled_halftimes])/len(uncoupled_halftimes)
+		average_h2 = sum([h[1] for h in uncoupled_halftimes])/len(uncoupled_halftimes)
+		stddev_h1 = np.std(uncoupled_halftimes, axis=0)[0]
+		stddev_h2 = np.std(uncoupled_halftimes, axis=0)[1]
+		print(f'\tAverage     : {average_h1:.2f} s and {average_h2:.2f} s')
+		print(f'\tStddev      : {stddev_h1:.2f} s and {stddev_h2:.2f} s')
+	else:
+		for i, h in enumerate(uncoupled_halftimes):
+			print(f'\tExperiment {i}: {h:.2f} s')
+		average_h = sum(uncoupled_halftimes)/len(uncoupled_halftimes)
+		stddev_h = np.std(uncoupled_halftimes)
+		print(f'\tAverage     : {average_h:.2f} s')
+		print(f'\tStddev      : {stddev_h:.2f} s')
 
 	plt.show()

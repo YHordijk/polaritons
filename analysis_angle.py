@@ -50,18 +50,28 @@ def main(file):
 	copy = norm_spec[::-1].copy()
 	norm_spec = np.vstack((copy[:-1], norm_spec))
 
-	plt.xlabel('Wavenumber (cm^-1)')
-	plt.ylabel('Angle (deg)')
+	plt.ylabel('Wavenumber (cm^-1)')
+	plt.xlabel('Angle (deg)')
 
-	plt.imshow(norm_spec, extent=(high_wn, low_wn, max(angles), -max(angles)), aspect='auto', cmap='jet')
+	plt.imshow(norm_spec.T, extent=(max(angles), -max(angles), high_wn, low_wn), aspect='auto', cmap='jet')
 	for s, a in zip(norm_spec, angles):
 		peaks, _ = scipy.signal.find_peaks(s, prominence=0.0005)
 		# print(peaks*dx+low_wn)
+		peak_pos = []
 		for peak in peaks:
-			plt.scatter(high_wn-peak*dx, max(angles)-a)
-			plt.scatter(high_wn-peak*dx, -max(angles)+a)
+			peak_pos.append((high_wn-peak*dx, max(angles)-a))
+			peak_pos.append((high_wn-peak*dx, -max(angles)+a))
+
+		for x, y in peak_pos:
+			c = plt.get_cmap('rainbow')((x-low_wn)/(high_wn-low_wn))
+			plt.scatter(y, x, color=c)
 
 	plt.show()
+
+
+	a = np.arange(60)
+	print(a)
+	print(2*np.pi*np.sin(a*np.pi/180) * 152e2)
 
 
 

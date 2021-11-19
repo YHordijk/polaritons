@@ -18,66 +18,19 @@ def fit_exp_decay(x, y, use_scipy=True, maxiter=100_000, eps=1e-12, plot_errors=
 	f = lambda x, k, A0, B: A0 * np.exp(-k*x) + B
 	error = lambda x, k, A0, B: np.sum((y-f(x, A0, k, B))**2)
 
+	res = curve_fit(f, x, y, [k, A0, B], maxfev=10000)[0]
+	k = res[0]
+	A0 = res[1]
+	B = res[2]
 
-	# if show_fit: 
-	# 	plt.close('all')
-	# 	plt.figure()
-	# 	plt.plot(x, f(x, k, A0, B), label='Initially Predicted decay')
-	# 	plt.plot(x, y, label='Reference data')
-	# 	plt.title(f'{title} {index}\nk={k:.3f}, A0={A0:.3f}, B={B:.3f}')
-	# 	plt.xlabel('Time (s)')
-	# 	plt.ylabel('Transmittance')
-	# 	plt.hlines(B + A0/2, x.min(), np.log(2)/k, colors=['black'], linewidths=[.75])
-	# 	plt.vlines(np.log(2)/k, y.min(), B + A0/2, colors=['black'], linewidths=[.75])
-	# 	plt.scatter(np.log(2)/k, B + A0/2, c='black')
-	# 	plt.text(np.log(2.2)/k, B + A0/1.85, r'$t_{1/2} = $' + f'{np.log(2)/k:.2f} s')
-	# 	plt.legend()
-	# 	plt.tight_layout()
-	# 	plt.savefig(f'{plots_dir}/exp_decay_fit_initial_{index}.jpg')
-	# 	plt.show()
-
-	if not use_scipy:
-		errors = []
-		for i in range(maxiter):
-			errors.append(error(x, k, A0, B))
-			# if errors[-1] < eps: break #check for completion of minimization
-			if i > 10 and all([(e - errors[-1]) < eps for e in errors[-8:]]): break
-
-			#calculate derivatives
-			expdec = np.exp(-k*x)
-			base = A0*expdec + B - y
-			dA0 = np.sum(2*expdec			* base)
-			dk  = np.sum(2*x*A0*expdec*-1	* base)
-			dB  = np.sum(2			 		* base)
-
-			#change parameters
-			A0 = A0 - dA0 * 0.01
-			k = k - dk * 0.01  
-			B = B - dB * 0.01
-
-		if plot_errors: 
-			plt.figure()
-			plt.plot(range(len(errors)), errors)
-			plt.title(f'Error during fitting {index}')
-			plt.xlabel('Iteration')
-			plt.ylabel('Error')
-			plt.tight_layout()
-			if plots_dir is not None: plt.savefig(f'{plots_dir}/exp_decay_errors_{index}.jpg')
-
-
-		results = {'k':k, 'A0':A0, 'B':B, 'iterations':i, 'error':errors[-1]}
-
-	else:
-		res = curve_fit(f, x, y, [k, A0, B], maxfev=10000)[0]
-		results = {'k':res[0], 'A0':res[1], 'B':res[2], 'error':error(x, k, A0, B)}
-		k = res[0]
-		A0 = res[1]
-		B = res[2]
+	Stot = np.sum((y-np.mean(y))**2)
+	r2_value = 1 - (error(x, *res)/Stot)
+	results = {'k':k, 'A0':A0, 'B':B, 'error':error(x, *res), 'r2_value':r2_value}
 
 
 	if show_fit: 
 		plt.figure()
-		plt.plot(x, f(x, k, A0, B), label='Predicted decay')
+		plt.plot(x, f(x, k, A0, B), label=f'Predicted decay, R2={r2_value}')
 		plt.plot(x, y, label='Reference data')
 		plt.title(f'{title} {index}\nk={k:.3f}, A0={A0:.3f}, B={B:.3f}')
 		plt.xlabel('Time (s)')
@@ -91,6 +44,51 @@ def fit_exp_decay(x, y, use_scipy=True, maxiter=100_000, eps=1e-12, plot_errors=
 		if plots_dir is not None: plt.savefig(f'{plots_dir}/exp_decay_fit_{index}.jpg')
 
 	return results
+
+
+def fit_biexp_decay(x, y, use_scipy=True, maxiter=100_000, eps=1e-12, plot_errors=False, show_fit=True, 
+				  plots_dir=None, title='Predicted and reference rate', outfile=None, index=0):
+	#x is usually time, y is usually tracked wavelength
+	#fitting to [A]_0 exp(-kt) + B
+	#initial values
+	# k = 2/x.max()			#height of 0.1 + B at time x.max()/2
+	halfheight = (y.max()-y.min())/2 + y.min()
+	closest_to_middle = np.argmin(np.abs(y-halfheight))
+	k1 = np.log(2)/x[closest_to_middle]
+	A01 = (y.max()-y.min())
+	# k1 = 0
+	# A01 = 0
+	k2 = 0
+	A02 = 0
+
+	f = lambda x, k1, k2, A01, A02: A01 * np.exp(-k1*x) + A02 * np.exp(-k2*x)
+	error = lambda x, k1, k2, A01, A02: np.sum((y-f(x, k1, k2, A01, A02))**2)
+
+	res = curve_fit(f, x, y, [k1, k2, A01, A02], maxfev=10000)[0]
+	
+	k1 = res[0]
+	k2 = res[1]
+	A01 = res[2]
+	A02 = res[3]
+
+	Stot = np.sum((y-np.mean(y))**2)
+	r2_value = 1 - (error(x, *res)/Stot)
+	results = {'k1':k1, 'k2':k2, 'A01':A01, 'A02':A02, 'error':error(x, *res), 'r2_value':r2_value}
+
+
+	if show_fit: 
+		plt.figure()
+		plt.plot(x, f(x, k1, k2, A01, A02), label=f'Predicted decay, R2={r2_value}')
+		plt.plot(x, y, label='Reference data')
+		plt.title(f'{title} {index}\nk1={k1:.3f}, k2={k2:.3f}, A01={A01:.3f}, A02={A02:.3f}')
+		plt.xlabel('Time (s)')
+		plt.ylabel('Transmittance')
+		plt.legend()
+		plt.tight_layout()
+		if plots_dir is not None: plt.savefig(f'{plots_dir}/biexp_decay_fit_{index}.jpg')
+
+	return results
+
 
 
 if __name__ == '__main__':

@@ -32,7 +32,7 @@ def get_FSR(peakx, lowx=4000):
 	return {'FSR':FSR, 'offset':offset}
 
 
-def get_peaks(spectrax, spectray, prominence=0, debug=True):
+def get_peaks(spectrax, spectray, prominence=0, debug=False):
 	peak, props = scipy.signal.find_peaks(spectray, prominence=prominence, height=0, width=0)
 	peaky_rough = spectray[peak]
 	peakx_rough = spectrax[peak]
@@ -41,7 +41,7 @@ def get_peaks(spectrax, spectray, prominence=0, debug=True):
 	left_points = props['left_ips']*delta  + spectrax.min()
 	right_points = props['right_ips']*delta  + spectrax.min()
 
-	FSR = get_FSR(peakx_rough, 4000)
+	FSR = get_FSR(peakx_rough, 4000)['FSR']
 
 	peaks = []
 	FWHM = []
