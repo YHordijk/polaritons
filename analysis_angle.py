@@ -33,7 +33,7 @@ def main(file):
 		plt.plot(spectrax, s, color=cmap(i/angles.size))
 
 	# plt.plot(spectrax, spectray)
-	plt.show()
+
 
 
 	#cut out desired wns
@@ -50,6 +50,7 @@ def main(file):
 	copy = norm_spec[::-1].copy()
 	norm_spec = np.vstack((copy[:-1], norm_spec))
 
+	plt.figure()
 	plt.ylabel('Wavenumber (cm^-1)')
 	plt.xlabel('Angle (deg)')
 
@@ -66,12 +67,19 @@ def main(file):
 			c = plt.get_cmap('rainbow')((x-low_wn)/(high_wn-low_wn))
 			plt.scatter(y, x, color=c)
 
+
+	plt.figure()
+	kparallel = 2*np.pi*np.sin(angles*np.pi/180) * 1720/10000 # in um^-1
+	copy = kparallel[::-1].copy()
+	kparallel = np.hstack((copy[:-1], kparallel))
+
+	lowE = low_wn/10000 * 1.2398 #in eV
+	highE = high_wn/10000* 1.2398 #in eV
+	x, y = np.meshgrid(kparallel, np.linspace(lowE, highE, norm_spec.shape[1]))
+	plt.pcolormesh(x, y, norm_spec.T, cmap='jet', shading='gouraud')
+	plt.ylabel('E (eV)')
+	plt.xlabel('$k_\parallel$ (um^-1)')
 	plt.show()
-
-
-	a = np.arange(60)
-	print(a)
-	print(2*np.pi*np.sin(a*np.pi/180) * 152e2)
 
 
 

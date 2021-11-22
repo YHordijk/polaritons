@@ -3,8 +3,75 @@ from scipy.optimize import curve_fit
 import matplotlib.pyplot as plt
 
 
+
+
+def fitter(f, x, y, vars=[], name='fit', p0=None, show_fit=False, plots_dir=None):
+	error = lambda x, *args: np.sum((y-f(x, *args))**2)
+	res = curve_fit(f, x, y, maxfev=100_000)[0]
+	Stot = np.sum((y-np.mean(y))**2)
+	r2_value = 1 - (error(x, *res)/Stot)
+
+	results = {v:r for v, r in zip(vars, res.values())}
+	
+
+	if show_fit:
+
+
+
+
+
+
+def fit_exp_lin(x, y, show_fit=False, plots_dir=None, title='Predicted and reference rate', index=0, show_residuals=False):
+	f = lambda x, k, A0, b: A0 * np.exp(-k*x) + b * x
+	error = lambda x, *args: np.sum((y-f(x, *args))**2)
+
+	halfheight = (y.max()-y.min())/2 + y.min()
+	closest_to_middle = np.argmin(np.abs(y-halfheight))
+	k = np.log(2)/x[closest_to_middle]
+	A0 = (y.max()-y.min())
+
+	res = curve_fit(f, x, y, [k, A0, 0], maxfev=10000)[0]
+
+	Stot = np.sum((y-np.mean(y))**2)
+	r2_value = 1 - (error(x, *res)/Stot)
+
+	k = res[0]
+	A0 = res[1]
+	b = res[2]
+	results = {'k':k, 'A0':A0, 'b':b, 'error':error(x, *res), 'r2_value':r2_value}
+
+	if show_fit: 
+		plt.figure()
+		plt.plot(x, f(x, *res), label=f'Predicted decay, R2={r2_value}')
+		plt.plot(x, y, label='Reference data')
+		plt.title(f'{title} {index}\nk={k:.3f}, A0={A0:.3f}, b={b:.3f}')
+		plt.xlabel('Time (s)')
+		plt.ylabel('Transmittance')
+		plt.legend()
+		plt.tight_layout()
+		if plots_dir is not None: plt.savefig(f'{plots_dir}/exp_decay_lin_fit_{index}.jpg')
+
+	if show_residuals: 
+		plt.figure()
+		plt.plot(x, y-f(x, *res))
+		plt.plot(x, np.zeros_like(x), linestyle='dashed', color='black')
+		plt.title(f'{title} residuals {index}\nk={k:.3f}, A0={A0:.3f}, b={b:.3f}')
+		plt.xlabel('Time (s)')
+		plt.ylabel('y - f(x|k,A0,b)')
+		plt.tight_layout()
+		if plots_dir is not None: plt.savefig(f'{plots_dir}/exp_decay_lin_residuals_{index}.jpg')
+
+	plt.figure()
+	plt.plot(x, y)
+	plt.plot(x, y - f(x, *res))
+	plt.show()
+
+
+	return results
+
+
 def fit_exp_decay(x, y, use_scipy=True, maxiter=100_000, eps=1e-12, plot_errors=False, show_fit=True, 
-				  plots_dir=None, title='Predicted and reference rate', outfile=None, index=0):
+				  plots_dir=None, title='Predicted and reference rate', outfile=None, index=0, show_residuals=True):
 	#x is usually time, y is usually tracked wavelength
 	#fitting to [A]_0 exp(-kt) + B
 	#initial values
@@ -12,42 +79,54 @@ def fit_exp_decay(x, y, use_scipy=True, maxiter=100_000, eps=1e-12, plot_errors=
 	halfheight = (y.max()-y.min())/2 + y.min()
 	closest_to_middle = np.argmin(np.abs(y-halfheight))
 	k = np.log(2)/x[closest_to_middle]
-	A0 = (y.max()-y.min()) 	
-	B = y.min() 			
+	A0 = (y.max()-y.min())			
 
-	f = lambda x, k, A0, B: A0 * np.exp(-k*x) + B
-	error = lambda x, k, A0, B: np.sum((y-f(x, A0, k, B))**2)
+	f = lambda x, k, A0: A0 * np.exp(-k*x) 
+	error = lambda x, k, A0: np.sum((y-f(x, A0, k))**2)
 
-	res = curve_fit(f, x, y, [k, A0, B], maxfev=10000)[0]
+	res = curve_fit(f, x, y, [k, A0], maxfev=10000)[0]
 	k = res[0]
 	A0 = res[1]
-	B = res[2]
 
 	Stot = np.sum((y-np.mean(y))**2)
 	r2_value = 1 - (error(x, *res)/Stot)
-	results = {'k':k, 'A0':A0, 'B':B, 'error':error(x, *res), 'r2_value':r2_value}
+	results = {'k':k, 'A0':A0, 'error':error(x, *res), 'r2_value':r2_value}
 
 
 	if show_fit: 
 		plt.figure()
 		plt.plot(x, f(x, k, A0, B), label=f'Predicted decay, R2={r2_value}')
 		plt.plot(x, y, label='Reference data')
-		plt.title(f'{title} {index}\nk={k:.3f}, A0={A0:.3f}, B={B:.3f}')
+		plt.title(f'{title} {index}\nt={1/k:.2f}, A0={A0:.3f}')
 		plt.xlabel('Time (s)')
 		plt.ylabel('Transmittance')
-		plt.hlines(B + A0/2, x.min(), np.log(2)/k, colors=['black'], linewidths=[.75])
-		plt.vlines(np.log(2)/k, y.min(), B + A0/2, colors=['black'], linewidths=[.75])
-		plt.scatter(np.log(2)/k, B + A0/2, c='black')
-		plt.text(np.log(2.2)/k, B + A0/1.85, r'$t_{1/2} = $' + f'{np.log(2)/k:.2f} s')
+		plt.hlines(A0/2, x.min(), np.log(2)/k, colors=['black'], linewidths=[.75])
+		plt.vlines(np.log(2)/k, y.min(), A0/2, colors=['black'], linewidths=[.75])
+		plt.scatter(np.log(2)/k, A0/2, c='black')
+		plt.text(np.log(2.2)/k, A0/1.85, r'$t_{1/2} = $' + f'{np.log(2)/k:.2f} s')
 		plt.legend()
 		plt.tight_layout()
 		if plots_dir is not None: plt.savefig(f'{plots_dir}/exp_decay_fit_{index}.jpg')
 
+	if show_residuals: 
+		plt.figure()
+		plt.plot(x, y-f(x, *res))
+		plt.plot(x, np.zeros_like(x), linestyle='dashed', color='black')
+		plt.title(f'{title} residuals {index}\nt={1/k:.2f}s, A0={A0:.3f}')
+		plt.xlabel('Time (s)')
+		plt.ylabel('y - f(x|k,A0)')
+		plt.tight_layout()
+		if plots_dir is not None: plt.savefig(f'{plots_dir}/exp_decay_residuals_{index}.jpg')
+
+	plt.figure()
+	plt.plot(x, y)
+	plt.plot(x, y - f(x, k, A0))
+	plt.show()
 	return results
 
 
 def fit_biexp_decay(x, y, use_scipy=True, maxiter=100_000, eps=1e-12, plot_errors=False, show_fit=True, 
-				  plots_dir=None, title='Predicted and reference rate', outfile=None, index=0):
+				  plots_dir=None, title='Predicted and reference rate', outfile=None, index=0, show_residuals=True):
 	#x is usually time, y is usually tracked wavelength
 	#fitting to [A]_0 exp(-kt) + B
 	#initial values
@@ -64,7 +143,7 @@ def fit_biexp_decay(x, y, use_scipy=True, maxiter=100_000, eps=1e-12, plot_error
 	f = lambda x, k1, k2, A01, A02: A01 * np.exp(-k1*x) + A02 * np.exp(-k2*x)
 	error = lambda x, k1, k2, A01, A02: np.sum((y-f(x, k1, k2, A01, A02))**2)
 
-	res = curve_fit(f, x, y, [k1, k2, A01, A02], maxfev=10000)[0]
+	res = curve_fit(f, x, y, [k1, k2, A01, A02], bounds=[[0,0,0,0], [np.inf,np.inf,np.inf,np.inf]], maxfev=10000)[0]
 	
 	k1 = res[0]
 	k2 = res[1]
@@ -78,15 +157,31 @@ def fit_biexp_decay(x, y, use_scipy=True, maxiter=100_000, eps=1e-12, plot_error
 
 	if show_fit: 
 		plt.figure()
-		plt.plot(x, f(x, k1, k2, A01, A02), label=f'Predicted decay, R2={r2_value}')
-		plt.plot(x, y, label='Reference data')
-		plt.title(f'{title} {index}\nk1={k1:.3f}, k2={k2:.3f}, A01={A01:.3f}, A02={A02:.3f}')
+		plt.plot(x, f(x, k1, k2, A01, A02), label=f'Predicted decay tot, R2={r2_value}', linewidth=2)
+		plt.plot(x, A01*np.exp(-k1*x), label=f'Predicted decay 1')
+		plt.plot(x, A02*np.exp(-k2*x), label=f'Predicted decay 2')
+		plt.scatter(x, y, label='Reference data')
+		plt.title(f'{title} {index}\nt1={1/k1:.1f}, t2={1/k2:.1f}, A01={A01:.3f}, A02={A02:.3f}')
 		plt.xlabel('Time (s)')
 		plt.ylabel('Transmittance')
 		plt.legend()
 		plt.tight_layout()
 		if plots_dir is not None: plt.savefig(f'{plots_dir}/biexp_decay_fit_{index}.jpg')
 
+	if show_residuals: 
+		plt.figure()
+		plt.plot(x, y-f(x, *res))
+		plt.plot(x, np.zeros_like(x), linestyle='dashed', color='black')
+		plt.title(f'{title} residuals {index}\nt1={1/k1:.1f}, t2={1/k2:.1f}, A01={A01:.3f}, A02={A02:.3f}')
+		plt.xlabel('Time (s)')
+		plt.ylabel('y - f(x|k1,k2,A01,A02)')
+		plt.tight_layout()
+		if plots_dir is not None: plt.savefig(f'{plots_dir}/biexp_decay_residuals_{index}.jpg')
+
+	plt.figure()
+	plt.plot(x, y)
+	plt.plot(x, y - f(x, *res))
+	plt.show()
 	return results
 
 

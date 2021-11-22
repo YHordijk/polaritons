@@ -1,7 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.cm
+import matplotlib.colors
 import scipy.signal
-from pkg.exp_decay_fitter import fit_exp_decay, fit_biexp_decay
+from pkg.exp_decay_fitter import fit_exp_decay, fit_biexp_decay, fit_exp_lin
 import os
 
 
@@ -56,6 +58,8 @@ def main(*args, **kwargs):
 		for twl, c in zip(tracking_spectrax, tracking_spectrax_colors):
 			plt.fill_betweenx(np.array([min_abs, max_abs]), twl[0], twl[1], color=c, alpha=0.25)
 
+	cbar = plt.colorbar(matplotlib.cm.ScalarMappable(norm=matplotlib.colors.Normalize(0, N_spectra*time_delay), cmap=cmap))
+	cbar.set_label(r'$\Delta t$')
 	plt.savefig(f'{plots_dir}/spectra_main.jpg')
 
 	
@@ -94,7 +98,7 @@ def main(*args, **kwargs):
 		low = twl[0]
 		high = twl[1]
 		
-		plt.plot(np.arange(len(tabs))*time_delay, tabs, label=r'$\lambda_{avg}$' + f' = [{low}, {high}] nm')
+		plt.plot(np.arange(len(tabs))*time_delay, tabs, label=r'$\lambda_{avg}$' + f' over [{low}, {high}] nm')
 
 	plt.legend()
 	plt.savefig(f'{plots_dir}/tracked_spectra.jpg')
@@ -103,11 +107,11 @@ def main(*args, **kwargs):
 		low = twl[0]
 		high = twl[1]
 
-		fit_exp_decay(np.arange(len(tabs))*time_delay, np.asarray(tabs), title=f'Predicted and reference rate (around $\lambda ∈ [{low}, {high}]$ nm)', plots_dir=plots_dir, use_scipy=True)
+		# fit_exp_decay(np.arange(len(tabs))*time_delay, np.asarray(tabs), title=f'Predicted and reference rate (around $\lambda ∈ [{low}, {high}]$ nm)', plots_dir=plots_dir, use_scipy=True)
 
 
 	# plt.show()	
-
+	np.save(f'./{name}_array.npy', tracking_spectra)
 	return tracking_spectra
 
 
@@ -179,14 +183,14 @@ if __name__ == '__main__':
 		plt.plot(x, (y-y.min())/(y.max()-y.min()), label=f'Uncoupled, experiment {i}')
 		
 	if use_coupled_biexp_decay:
-		coupled_fit   = [fit_biexp_decay(x, y - np.mean(y[-200:-1]), show_fit=True) for x, y in zip(cx, cy)]
+		coupled_fit   = [fit_biexp_decay(x, y - np.mean(y[-20:-1]), show_fit=True) for x, y in zip(cx, cy)]
 	else:
-		coupled_fit   = [fit_exp_decay(x, y - np.mean(y[-200:-1]), show_fit=True) for x, y in zip(cx, cy)]
+		coupled_fit   = [fit_exp_decay(x, y - np.mean(y[-20:-1]), show_fit=True) for x, y in zip(cx, cy)]
 
 	if use_uncoupled_biexp_decay:
-		uncoupled_fit = [fit_biexp_decay(x, y - np.mean(y[-200:-1]),   show_fit=True) for x, y in zip(uncx, uncy)]
+		uncoupled_fit = [fit_biexp_decay(x, y - np.mean(y[-20:-1]),   show_fit=True) for x, y in zip(uncx, uncy)]
 	else:
-		uncoupled_fit = [fit_exp_decay(x, y - np.mean(y[-200:-1]),   show_fit=True) for x, y in zip(uncx, uncy)]
+		uncoupled_fit = [fit_exp_decay(x, y - np.mean(y[-20:-1]),   show_fit=True) for x, y in zip(uncx, uncy)]
 
 	coupled_halftimes = []
 	print('\n======Coupled experiments=========')
@@ -199,8 +203,8 @@ if __name__ == '__main__':
 			print(f'\tA01               = {c["A01"]:.3f}')
 			print(f'\tA02               = {c["A02"]:.3f}')
 			# print(f'\tB                 = {c["B"]:.3f}')
-			print(f'\tMean life-time 1  = {1/c["k1"]:.2f} s')
-			print(f'\tMean life-time 2  = {1/c["k2"]:.2f} s')
+			print(f'\tLife-time 1       = {1/c["k1"]:.2f} s')
+			print(f'\tLife-time 2       = {1/c["k2"]:.2f} s')
 			print(f'\tHalf-life 1       = {np.log(2)/c["k1"]:.2f} s')
 			print(f'\tHalf-life 2       = {np.log(2)/c["k2"]:.2f} s')
 
@@ -212,7 +216,7 @@ if __name__ == '__main__':
 			print(f'\tk                 = {c["k"]:.8f} s^-1')
 			print(f'\tA0                = {c["A0"]:.3f}')
 			# print(f'\tB                 = {c["B"]:.3f}')
-			print(f'\tMeant life-time   = {1/c["k"]:.2f} s')
+			print(f'\tLife-time         = {1/c["k"]:.2f} s')
 			print(f'\tHalf-life         = {np.log(2)/c["k"]:.2f} s')
 			
 			coupled_halftimes.append(np.log(2)/c["k"])
@@ -229,8 +233,8 @@ if __name__ == '__main__':
 			print(f'\tA01               = {c["A01"]:.3f}')
 			print(f'\tA02               = {c["A02"]:.3f}')
 			# print(f'\tB                 = {c["B"]:.3f}')
-			print(f'\tMean life-time 1  = {1/c["k1"]:.2f} s')
-			print(f'\tMean life-time 2  = {1/c["k2"]:.2f} s')
+			print(f'\tLife-time 1       = {1/c["k1"]:.2f} s')
+			print(f'\tLife-time 2       = {1/c["k2"]:.2f} s')
 			print(f'\tHalf-life 1       = {np.log(2)/c["k1"]:.2f} s')
 			print(f'\tHalf-life 2       = {np.log(2)/c["k2"]:.2f} s')
 
@@ -241,7 +245,7 @@ if __name__ == '__main__':
 			print(f'\tk                 = {c["k"]:.8f} s^-1')
 			print(f'\tA0                = {c["A0"]:.3f}')
 			# print(f'\tB                 = {c["B"]:.3f}')
-			print(f'\tMeant life-time   = {1/c["k"]:.2f} s')
+			print(f'\tLife-time         = {1/c["k"]:.2f} s')
 			print(f'\tHalf-life         = {np.log(2)/c["k"]:.2f} s')
 			
 			uncoupled_halftimes.append(np.log(2)/c["k"])
