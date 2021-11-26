@@ -25,10 +25,12 @@ def read_UV(file):
 
 def get_FSR(peakx, lowx=4000):
 	peakx = peakx[peakx > lowx]
-	diff = -np.diff(peakx)
+	diff = np.abs(np.diff(peakx))
 	diff = diff[np.abs(diff-diff.mean()) < 20] #removelarge errors
 	FSR = np.mean(diff) 
 	offset = peakx[-1]%FSR
+	if abs(offset-FSR) < offset:
+		offset = offset-FSR
 	return {'FSR':FSR, 'offset':offset}
 
 
@@ -36,19 +38,16 @@ def get_peaks(spectrax, spectray, prominence=0, debug=False):
 	peak, props = scipy.signal.find_peaks(spectray, prominence=prominence, height=0, width=0)
 	peaky_rough = spectray[peak]
 	peakx_rough = spectrax[peak]
-
 	delta = abs(np.mean(np.diff(spectrax)))
 	left_points = props['left_ips']*delta  + spectrax.min()
 	right_points = props['right_ips']*delta  + spectrax.min()
-
-	FSR = get_FSR(peakx_rough, 4000)['FSR']
 
 	peaks = []
 	FWHM = []
 	for px, py, l, r in zip(peakx_rough, peaky_rough, left_points, right_points):
 		#get peaks between peakx - FSR/2 and peakx + FSR/2
-		peakxfitidxs = [get_closest_index(spectrax, px-FSR/5), get_closest_index(spectrax, px+FSR/5)]
-		# peakxfitidxs.sort()
+		peakxfitidxs = [get_closest_index(spectrax, px-30), get_closest_index(spectrax, px+30)]
+		peakxfitidxs.sort()
 		fitx = spectrax[peakxfitidxs[0]:peakxfitidxs[1]]
 		fity = spectray[peakxfitidxs[0]:peakxfitidxs[1]]
 		#get better fit

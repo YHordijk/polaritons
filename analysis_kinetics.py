@@ -112,6 +112,7 @@ def main(*args, **kwargs):
 
 	# plt.show()	
 	np.save(f'./{name}_array.npy', tracking_spectra)
+	print('done')
 	return tracking_spectra
 
 
@@ -148,16 +149,31 @@ if __name__ == '__main__':
 			'time_delay': 10,
 			'tracking_spectrax': [(520, 580)],
 		},
+		'SP_cyclohexane_10s_360x_5um_coupled': {
+			'name': 'kinetics_cycolhexanone_10s_360x_5um_coupled_1',
+			'file': "data/20211126_UVVIS_SP_cyclohexanone_5um_coupled/data.csv",
+			'time_delay': 10,
+			'tracking_spectrax': [(520, 580)],
+		},
+		'SP_cyclohexane_10s_360x_5um_decoupled': {
+			'name': 'kinetics_cycolhexanone_10s_360x_5um_decoupled_1',
+			'file': "data/20211126_UVVIS_SP_cyclohexanone_5um_decoupled/data.csv",
+			'time_delay': 10,
+			'tracking_spectrax': [(520, 580)],
+		}
 	}
 
 	use_coupled_biexp_decay = True
 	use_uncoupled_biexp_decay = True
 
 
-	cy = [main(**settings['SP_cyclohexanone_UVVIS_10s_360x_20um'])[0],
-		  main(**settings['SP_cyclohexanone_UVVIS_10s_360x_20um_coupled_2'])[0],]
-	uncy = [main(**settings['SP_cyclohexanone_UVVIS_10s_360x_20um_decoupled'])[0],
-			main(**settings['SP_cyclohexanone_UVVIS_10s_360x_20um_decoupled_2'])[0]]
+	# cy = [main(**settings['SP_cyclohexanone_UVVIS_10s_360x_20um'])[0],
+	# 	  main(**settings['SP_cyclohexanone_UVVIS_10s_360x_20um_coupled_2'])[0],]
+	# uncy = [main(**settings['SP_cyclohexanone_UVVIS_10s_360x_20um_decoupled'])[0],
+	# 		main(**settings['SP_cyclohexanone_UVVIS_10s_360x_20um_decoupled_2'])[0]]
+
+	cy   = [main(**settings['SP_cyclohexane_10s_360x_5um_coupled'])[0],]
+	uncy = [main(**settings['SP_cyclohexane_10s_360x_5um_decoupled'])[0],]
 
 	cx = [np.arange(yy.size)*10 for yy in cy]
 	uncx = [np.arange(yy.size)*10 for yy in uncy]
@@ -202,7 +218,7 @@ if __name__ == '__main__':
 			print(f'\tk2                = {c["k2"]:.8f} s^-1')
 			print(f'\tA01               = {c["A01"]:.3f}')
 			print(f'\tA02               = {c["A02"]:.3f}')
-			# print(f'\tB                 = {c["B"]:.3f}')
+			print(f'\tB                 = {c["B"]:.3f}')
 			print(f'\tLife-time 1       = {1/c["k1"]:.2f} s')
 			print(f'\tLife-time 2       = {1/c["k2"]:.2f} s')
 			print(f'\tHalf-life 1       = {np.log(2)/c["k1"]:.2f} s')
@@ -232,7 +248,7 @@ if __name__ == '__main__':
 			print(f'\tk2                = {c["k2"]:.8f} s^-1')
 			print(f'\tA01               = {c["A01"]:.3f}')
 			print(f'\tA02               = {c["A02"]:.3f}')
-			# print(f'\tB                 = {c["B"]:.3f}')
+			print(f'\tB                 = {c["B"]:.3f}')
 			print(f'\tLife-time 1       = {1/c["k1"]:.2f} s')
 			print(f'\tLife-time 2       = {1/c["k2"]:.2f} s')
 			print(f'\tHalf-life 1       = {np.log(2)/c["k1"]:.2f} s')

@@ -1,6 +1,7 @@
 import numpy as np 
 import matplotlib.pyplot as plt
 import scipy.signal
+from pkg.peak_finding import get_peaks
 
 
 def read_spectra(file):
@@ -29,12 +30,14 @@ def main(file):
 	spectray = spectray[angleidx]
 	angles = angles[angleidx]
 	cmap = plt.get_cmap('jet')
+	# peaksx = []
 	for i, s in enumerate(spectray):
+		# peakres = get_peaks(spectrax, s, prominence=0.005)
+		# peaksx.append(peakres['peakx'])
 		plt.plot(spectrax, s, color=cmap(i/angles.size))
+	# peaksx = np.asarray(peaksx)
 
 	# plt.plot(spectrax, spectray)
-
-
 
 	#cut out desired wns
 	lowidx = np.argmin(abs(spectrax - low_wn))
@@ -51,11 +54,12 @@ def main(file):
 	norm_spec = np.vstack((copy[:-1], norm_spec))
 
 	plt.figure()
-	plt.ylabel('Wavenumber (cm^-1)')
+	plt.ylabel('Wavenumber ($cm^{-1}$)')
 	plt.xlabel('Angle (deg)')
 
-	plt.imshow(norm_spec.T, extent=(max(angles), -max(angles), high_wn, low_wn), aspect='auto', cmap='jet')
+	plt.imshow(norm_spec.T, extent=(max(angles), -max(angles), low_wn, high_wn), aspect='auto', cmap='jet')
 	for s, a in zip(norm_spec, angles):
+		print('hellow')
 		peaks, _ = scipy.signal.find_peaks(s, prominence=0.0005)
 		# print(peaks*dx+low_wn)
 		peak_pos = []
@@ -63,24 +67,28 @@ def main(file):
 			peak_pos.append((high_wn-peak*dx, max(angles)-a))
 			peak_pos.append((high_wn-peak*dx, -max(angles)+a))
 
-		for x, y in peak_pos:
-			c = plt.get_cmap('rainbow')((x-low_wn)/(high_wn-low_wn))
-			plt.scatter(y, x, color=c)
+		# for x, y in peak_pos:
+		# 	c = plt.get_cmap('rainbow')((x-low_wn)/(high_wn-low_wn))
+		# 	plt.scatter(y, x, color=c)
 
 
 	plt.figure()
 	kparallel = 2*np.pi*np.sin(angles*np.pi/180) * 1720/10000 # in um^-1
 	copy = kparallel[::-1].copy()
-	kparallel = np.hstack((copy[:-1], kparallel))
+	kparallel = np.hstack((-copy[:-1], kparallel))
+
+	# copy = peaksx[::-1].copy()
+	# peaksx = np.hstack((-copy[:-1], peaksx))
 
 	lowE = low_wn/10000 * 1.2398 #in eV
 	highE = high_wn/10000* 1.2398 #in eV
-	x, y = np.meshgrid(kparallel, np.linspace(lowE, highE, norm_spec.shape[1]))
+	x, y = np.meshgrid(kparallel, np.linspace(highE, lowE, norm_spec.shape[1]))
 	plt.pcolormesh(x, y, norm_spec.T, cmap='jet', shading='gouraud')
+	plt.title('Spectral evolution with changing beam angle')
+	plt.plot((kparallel.min(), kparallel.max()), (1720/10000* 1.2398,1720/10000* 1.2398), linestyle='dashed', color='black')
 	plt.ylabel('E (eV)')
-	plt.xlabel('$k_\parallel$ (um^-1)')
+	plt.xlabel(r'$k_\parallel$ ($\mu m^{-1}$)')
 	plt.show()
-
 
 
 if __name__ == '__main__':

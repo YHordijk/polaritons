@@ -14,7 +14,7 @@ def fitter(f, x, y, vars=[], name='fit', p0=None, show_fit=False, plots_dir=None
 	results = {v:r for v, r in zip(vars, res.values())}
 	
 
-	if show_fit:
+	# if show_fit:
 
 
 
@@ -95,7 +95,7 @@ def fit_exp_decay(x, y, use_scipy=True, maxiter=100_000, eps=1e-12, plot_errors=
 
 	if show_fit: 
 		plt.figure()
-		plt.plot(x, f(x, k, A0, B), label=f'Predicted decay, R2={r2_value}')
+		plt.plot(x, f(x,*res), label=f'Predicted decay, R2={r2_value}')
 		plt.plot(x, y, label='Reference data')
 		plt.title(f'{title} {index}\nt={1/k:.2f}, A0={A0:.3f}')
 		plt.xlabel('Time (s)')
@@ -125,41 +125,50 @@ def fit_exp_decay(x, y, use_scipy=True, maxiter=100_000, eps=1e-12, plot_errors=
 	return results
 
 
-def fit_biexp_decay(x, y, use_scipy=True, maxiter=100_000, eps=1e-12, plot_errors=False, show_fit=True, 
+def fit_biexp_decay(x, y, p0=None, show_fit=True, 
 				  plots_dir=None, title='Predicted and reference rate', outfile=None, index=0, show_residuals=True):
 	#x is usually time, y is usually tracked wavelength
 	#fitting to [A]_0 exp(-kt) + B
 	#initial values
 	# k = 2/x.max()			#height of 0.1 + B at time x.max()/2
-	halfheight = (y.max()-y.min())/2 + y.min()
-	closest_to_middle = np.argmin(np.abs(y-halfheight))
-	k1 = np.log(2)/x[closest_to_middle]
-	A01 = (y.max()-y.min())
-	# k1 = 0
-	# A01 = 0
-	k2 = 0
-	A02 = 0
+	if p0 is None:
+		halfheight = (y.max()-y.min())/2 + y.min()
+		closest_to_middle = np.argmin(np.abs(y-halfheight))
+		k1 = np.log(2)/x[closest_to_middle]
+		A01 = (y.max()-y.min())
+		k1 = 1/200
+		A01 = .8
+		k2 = 1/10000
+		A02 = .2
 
-	f = lambda x, k1, k2, A01, A02: A01 * np.exp(-k1*x) + A02 * np.exp(-k2*x)
-	error = lambda x, k1, k2, A01, A02: np.sum((y-f(x, k1, k2, A01, A02))**2)
 
-	res = curve_fit(f, x, y, [k1, k2, A01, A02], bounds=[[0,0,0,0], [np.inf,np.inf,np.inf,np.inf]], maxfev=10000)[0]
+		# k1 = 1/100
+		# k2 = 1/1000
+		# A01 = 1
+		# A02 = 0
+		p0 = [k1, k2, A01, A02, 0]
+
+	f = lambda x, k1, k2, A01, A02, B: A01 * np.exp(-k1*x) + A02 * np.exp(-k2*x) + B
+	error = lambda x, *args: np.sum((y-f(x, *args))**2)
+
+	res = curve_fit(f, x, y, p0, bounds=[[0,0,0,0,-np.inf], [np.inf,np.inf,np.inf,np.inf,np.inf]], maxfev=10000)[0]
 	
 	k1 = res[0]
 	k2 = res[1]
 	A01 = res[2]
 	A02 = res[3]
+	B = res[4]
 
 	Stot = np.sum((y-np.mean(y))**2)
 	r2_value = 1 - (error(x, *res)/Stot)
-	results = {'k1':k1, 'k2':k2, 'A01':A01, 'A02':A02, 'error':error(x, *res), 'r2_value':r2_value}
+	results = {'k1':k1, 'k2':k2, 'A01':A01, 'A02':A02, 'B':B, 'error':error(x, *res), 'r2_value':r2_value}
 
 
 	if show_fit: 
 		plt.figure()
-		plt.plot(x, f(x, k1, k2, A01, A02), label=f'Predicted decay tot, R2={r2_value}', linewidth=2)
-		plt.plot(x, A01*np.exp(-k1*x), label=f'Predicted decay 1')
-		plt.plot(x, A02*np.exp(-k2*x), label=f'Predicted decay 2')
+		plt.plot(x, f(x, *res), label=f'Predicted decay tot, R2={r2_value}', linewidth=2)
+		plt.plot(x, A01*np.exp(-k1*x) + B, label=f'Predicted decay 1')
+		plt.plot(x, A02*np.exp(-k2*x) + B, label=f'Predicted decay 2')
 		plt.scatter(x, y, label='Reference data')
 		plt.title(f'{title} {index}\nt1={1/k1:.1f}, t2={1/k2:.1f}, A01={A01:.3f}, A02={A02:.3f}')
 		plt.xlabel('Time (s)')
