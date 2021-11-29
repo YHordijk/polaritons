@@ -132,17 +132,22 @@ def main(*args, **kwargs):
 	plt.xlabel('t (s)')
 	plt.ylabel('Absorbance (a.u.)')
 	for twl, tabs in zip(tracking_spectrax, tracking_spectra):
-		low = twl[0]
-		high = twl[1]
-		
-		plt.plot(np.arange(len(tabs))*time_delay, tabs, label=r'$\lambda_{avg}$' + f' over [{low}, {high}] nm')
-
+		plt.plot(np.arange(len(tabs))*time_delay, tabs, label=r'$\lambda_{avg}$' + f' over [{twl[0]}, {twl[1]}] nm')
 	plt.legend()
 	plt.savefig(f'{plots_dir}/tracked_spectra.jpg')
 
+	plt.figure()
+	plt.title('Tracked spectrax (log-scale)')
+	plt.xlabel('t (s)')
+	plt.ylabel('ln(Absorbance)')
 	for twl, tabs in zip(tracking_spectrax, tracking_spectra):
-		low = twl[0]
-		high = twl[1]
+		plt.plot(np.arange(len(tabs))*time_delay, np.log(tabs), label=r'$\lambda_{avg}$' + f' over [{twl[0]}, {twl[1]}] nm')
+	plt.legend()
+	plt.savefig(f'{plots_dir}/tracked_spectra_log.jpg')
+
+	# for twl, tabs in zip(tracking_spectrax, tracking_spectra):
+	# 	low = twl[0]
+	# 	high = twl[1]
 
 		# fit_exp_decay(np.arange(len(tabs))*time_delay, np.asarray(tabs), title=f'Predicted and reference rate (around $\lambda ∈ [{low}, {high}]$ nm)', plots_dir=plots_dir, use_scipy=True)
 

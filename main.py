@@ -75,25 +75,24 @@ if __name__ == '__main__':
 		'logfile': python_log,
 		'result_dir': res_dir,
 		'time_delay': 10,
-		'tracking_spectrax': [(520, 580)],
-		'spectra_blacklist': [0], 
-
+		'tracking_spectrax': [(520, 580), (360, 390)],
 		'heatmap_maxt': 60,
 	}
 
 	
 	cy = aKIN.main(**kinetics_settings, show_plots=False)
 	logfile = open(python_log, 'a')
-	cx = np.array([np.arange(yy.size)*10 for yy in cy]).flatten()
+	cx = [np.arange(yy.size)*10 for yy in cy]
 
 	fits = []
-	for i, y in enumerate(cy):
-		fits.append(exp_decay_fitter.fit_biexp_decay(cx, y - np.mean(y[-20:-1]), plots_dir=res_dir+'/plots', index=i))
+	for i, y, x in zip(range(len(cy)), cy, cx):
+		fits.append(exp_decay_fitter.fit_biexp_decay(x, y - np.mean(y[-20:-1]), plots_dir=res_dir+'/plots', index=i))
 
 	print('=== KINETICS', file=logfile)
-	print(f'Model: A01*exp(-k1*t) + A02*exp(-k2*t) + B,   t in [{cx.min()}, {cx.max()}] s', file=logfile)
-	for w, c in zip(kinetics_settings['tracking_spectrax'], fits):
-		print(f'Biexponential fitting for wavelength around {w[0]/2 + w[1]/2:.1f} nm:', file=logfile)
+	print(f'Model: A01*exp(-k1*t) + A02*exp(-k2*t) + B', file=logfile)
+	for w, c, x in zip(kinetics_settings['tracking_spectrax'], fits, cx):
+		print(f'Biexponential fitting for average between wavelenghts [{w[0]:.1f}, {w[1]:.1f}] nm:', file=logfile)
+		print(f'\tt in [{x.min()}, {x.max()}] s', file=logfile)
 		print(f'\tCorrelation (R2)  = {c["r2_value"]:.10f}', file=logfile)
 		print(f'\tk1                = {c["k1"]:.8f} s^-1', file=logfile)
 		print(f'\tk2                = {c["k2"]:.8f} s^-1', file=logfile)

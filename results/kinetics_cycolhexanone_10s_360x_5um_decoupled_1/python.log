@@ -1,4 +1,4 @@
 === GENERAL
 Loaded 360 spectra!
-labda_range  =  [190.0, 1100.0] nm
-deltav   =  1.0000 nm
+lambda_range  =  [190.0, 1100.0] nm
+stepsize      =  1.0000 nm

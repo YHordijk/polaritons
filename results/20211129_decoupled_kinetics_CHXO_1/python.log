@@ -1,0 +1,69 @@
+====== STARTING ANALYSIS
+Data directory:    data/20211129_decoupled_kinetics_CHXO_1
+Results directory: results/20211129_decoupled_kinetics_CHXO_1
+
+Meta comments:
+1. Cavity detuned
+2. Uses 12um spacer provided by Wim, so no chance of folding
+3. Kinetics measured with 3.6215 mg/ml SP in cyclohexanone
+4. Spectra were recorded every 10 seconds 360 times after 356nm pump
+
+====== BEGINNING CAVITY ANALYSIS
+=== GENERAL
+Filename: data/20211129_decoupled_kinetics_CHXO_1/cavity.csv
+Loaded 1 spectra!
+v_range    =  [7496.969, 374.173] cm^-1
+stepsize   =  1.9287 cm^-1
+
+=== SPECTRA
+Spectrum 0:
+	FSR calculation failed ...
+	Recalculating with lowered prominence, no guarantee for good results
+	FSR            = 215.10 cm^-1
+	FSR_offset     = 33.48 cm^-1
+	Cavity spacing = 16.0235 um
+	FWHM           = nan cm^-1
+	Quality        = nan
+	Polariton 0 @ 1713 cm^-1
+		P+ @ 1835 cm^-1, dv = 122.6 cm^-1
+		P- @ 1569 cm^-1, dv = 143.8 cm^-1
+		Rabi splitting = 266.4 cm^-1 = 0.03303 eV
+
+=== END
+Plots saved to results/20211129_decoupled_kinetics_CHXO_1/plots
+Spectrum data written to results/20211129_decoupled_kinetics_CHXO_1/spectrum_data.csv
+
+====== BEGINNING KINETICS ANALYSIS
+=== GENERAL
+Loaded 358 spectra!
+lambda_range  =  [190.0, 1100.0] nm
+stepsize      =  1.0000 nm
+=== KINETICS
+Model: A01*exp(-k1*t) + A02*exp(-k2*t) + B
+Biexponential fitting for average between wavelenghts [520.0, 580.0] nm:
+	t in [0, 3570] s
+	Correlation (R2)  = 0.9997665668
+	k1                = 0.00411981 s^-1
+	k2                = 0.00058018 s^-1
+	A01               = 0.507
+	A02               = 0.028
+	B                 = -0.003
+	Life-time 1       = 242.73 s
+	Life-time 2       = 1723.59 s
+	Half-life 1       = 168.25 s
+	Half-life 2       = 1194.70 s
+Biexponential fitting for average between wavelenghts [360.0, 390.0] nm:
+	t in [0, 3570] s
+	Correlation (R2)  = 0.9972097444
+	k1                = 0.00394273 s^-1
+	k2                = 0.00000000 s^-1
+	A01               = 0.241
+	A02               = 0.000
+	B                 = -0.002
+	Life-time 1       = 253.63 s
+	Life-time 2       = 20362017893356.21 s
+	Half-life 1       = 175.80 s
+	Half-life 2       = 14113875293291.01 s
+=== END
+
+====== END

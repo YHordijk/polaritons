@@ -141,11 +141,6 @@ def fit_biexp_decay(x, y, p0=None, show_fit=True,
 		k2 = 1/10000
 		A02 = .2
 
-
-		# k1 = 1/100
-		# k2 = 1/1000
-		# A01 = 1
-		# A02 = 0
 		p0 = [k1, k2, A01, A02, 0]
 
 	f = lambda x, k1, k2, A01, A02, B: A01 * np.exp(-k1*x) + A02 * np.exp(-k2*x) + B
