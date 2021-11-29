@@ -27,7 +27,9 @@ def get_FSR(peakx, lowx=4000):
 	peakx = peakx[peakx > lowx]
 	diff = np.abs(np.diff(peakx))
 	diff = diff[np.abs(diff-diff.mean()) < 20] #removelarge errors
-	FSR = np.mean(diff) 
+	FSR = np.mean(diff)
+	if np.isnan(FSR):
+		return
 	offset = peakx[-1]%FSR
 	if abs(offset-FSR) < offset:
 		offset = offset-FSR

@@ -190,7 +190,7 @@ def fit_biexp_decay(x, y, p0=None, show_fit=True,
 	plt.figure()
 	plt.plot(x, y)
 	plt.plot(x, y - f(x, *res))
-	plt.show()
+	# plt.show()
 	return results
 
 

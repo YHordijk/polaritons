@@ -64,6 +64,7 @@ def main(**settings):
 	selected_spectra = settings.get('selected_spectra', [])
 	polariton_wns = settings.get('polariton_wns', [])
 	refractive_index = settings.get('refractive_index', 1.3592) #default to acetone
+	logfile = settings.get('logfile', None)
 
 	#kinetics settings
 	tracking_spectrax = settings.get('tracking_spectrax', [])
@@ -73,6 +74,7 @@ def main(**settings):
 
 	#less important settings
 	cmap = settings.get('cmap', plt.get_cmap('jet'))
+	user_comment = settings.get('user_comment', None)
 
 	#plotting settings
 	show_tracking_spectrax = settings.get('show_tracking_spectrax', True)
@@ -85,15 +87,21 @@ def main(**settings):
 	overlay_spectrum_path = settings.get('overlay_spectrum_path', 'data/aceton_IR_spectrum_2.csv')
 	overlay_spectrum_inverted = settings.get('overlay_spectrum_inverted', True)
 	show_plots = settings.get('show_plots', False)
+	result_dir = settings.get('result_dir', f'results/{name}')
 
 
 
 	## rest of program
-	if not os.path.exists(f'results/{name}'):
-		os.mkdir(f'results/{name}')
-	logfile = open(f'results/{name}/python.log', 'w')
-	spectrum_data_path = f'results/{name}/spectrum_data.csv'
-	plots_dir = f'results/{name}/plots'
+	if not os.path.exists(f'{result_dir}'):
+		os.mkdir(f'{result_dir}')
+
+	if logfile is None:
+		logfile = open(f'{result_dir}/python.log', 'w')
+	else:
+		logfile = open(logfile, 'a')
+
+	spectrum_data_path = f'{result_dir}/spectrum_data.csv'
+	plots_dir = f'{result_dir}/plots'
 	if not os.path.exists(plots_dir):
 		os.mkdir(plots_dir)
 
@@ -142,8 +150,12 @@ def main(**settings):
 
 	print(f'Filename: {file}', file=logfile)
 	print(f'Loaded {N_spectra} spectra!', file=logfile)
-	print(f'v_range  =  [{spectrax[0]}, {spectrax[-1]}] cm^-1', file=logfile)
-	print(f'deltav   =  {wavelenght_stepsize:.4f} cm^-1', file=logfile)
+	print(f'v_range    =  [{spectrax[0]}, {spectrax[-1]}] cm^-1', file=logfile)
+	print(f'stepsize   =  {wavelenght_stepsize:.4f} cm^-1', file=logfile)
+
+	if user_comment is not None:
+		print(f'\nUser comment:', file=logfile)
+		print(user_comment, file=logfile)
 
 	plt.figure(figsize=(16,9))
 	plt.title('Spectra')
@@ -155,7 +167,7 @@ def main(**settings):
 	if overlay_spectrum:
 		#normalize aceton_y
 		overlay_y = (overlay_y - overlay_y.min())/(overlay_y.max() - overlay_y.min()) * max_abs
-		plt.plot(overlay_x, overlay_y, label=f'aceton IR {overlay_spectrum_type} spectrum' + ', inverted'*overlay_spectrum_inverted, linewidth=0.5, color='black')
+		plt.plot(overlay_x, overlay_y, label=f'aceton IR {overlay_spectrum_type} spectrum' + ', inverted'*overlay_spectrum_inverted, linewidth=0.5, color='darkgreen')
 
 	tracking_spectrax_colors = cmap(np.linspace(0, 1, len(tracking_spectrax)))
 	if show_tracking_spectrax:
@@ -163,31 +175,6 @@ def main(**settings):
 			plt.fill_betweenx(np.array([min_abs, max_abs]), twl[0], twl[1], color=c, alpha=0.25)
 
 	# #calculations
-	# #Rabi splitting
-	# peaks = []
-	# peaks_for_fsr = []
-	# peak_heights = []
-	# peak_heights_for_fsr = []
-
-	# FWHMs_fit = []
-	# for i, a in enumerate(spectra):
-	# 	peak_res = get_peaks(spectrax, a, prominence=0.002)
-	# 	peak_heights.append(peak_res['peaky'])
-	# 	FWHMs_fit.append(peak_res['FWHM'])
-	# 	if plot_peaks: plt.scatter(spectrax[peak], a[peak], color=cmap(i/N_spectra))
-	# 	peaks.append(peak)
-	# 	peak_heights.append(ph)
-
-	# 	peak, ph = get_peaks(spectrax, a, prominence=0.05, debug=False)
-	# 	# plt.scatter(spectrax[peak], a[peak])
-	# 	peak_heights_for_fsr.append(ph)
-	# 	peaks_for_fsr.append(peak)
-
-	# #get differences in spectra for calculation of FSR
-	# FSRs = []
-	# FWHMs = []
-
-	# i = 0
 	print('\n=== SPECTRA', file=logfile)
 	for i, spectrum in enumerate(spectra):
 		color = cmap(i/N_spectra)
@@ -203,26 +190,33 @@ def main(**settings):
 			plt.scatter(peak_res['peakx'], peak_res['peaky'], color=color)
 
 		FSR_res = get_FSR(peak_res_fsr['peakx'], 4000)
-		FSR = FSR_res['FSR']
-		FSR_offset = FSR_res['offset']
+		if FSR_res is None:
+			print('\tFSR calculation failed ...', file=logfile)
+			print('\tRecalculating with lowered prominence, no guarantee for good results', file=logfile)
+			FSR_res = get_FSR(peak_res['peakx'], 4000)
+		if FSR_res is None:
+			print('\tFSR calculation failed again please provide better spectra', file=logfile)
+		else:
+			FSR = FSR_res['FSR']
+			FSR_offset = FSR_res['offset']
 
-		print(f'\tFSR            = {FSR:.2f} cm^-1', file=logfile)
-		print(f'\tFSR_offset     = {FSR_offset:.2f} cm^-1', file=logfile)
+			print(f'\tFSR            = {FSR:.2f} cm^-1', file=logfile)
+			print(f'\tFSR_offset     = {FSR_offset:.2f} cm^-1', file=logfile)
 
-		#cavity_spacing:
-		spacing = 10**4/(2*refractive_index*FSR)
-		print(f'\tCavity spacing = {spacing:.4f} um', file=logfile)
+			#cavity_spacing:
+			spacing = 10**4/(2*refractive_index*FSR)
+			print(f'\tCavity spacing = {spacing:.4f} um', file=logfile)
 
-		#get Q-factor: Q = FSR/FWHM
-		FWHM = peak_res_fsr['FWHM'].mean()
+			#get Q-factor: Q = FSR/FWHM
+			FWHM = peak_res_fsr['FWHM'].mean()
 
-		Q = FSR/FWHM
-		print(f'\tFWHM           = {FWHM:.3f} cm^-1', file=logfile)
-		print(f'\tQuality        = {Q:.3f}', file=logfile)
+			Q = FSR/FWHM
+			print(f'\tFWHM           = {FWHM:.3f} cm^-1', file=logfile)
+			print(f'\tQuality        = {Q:.3f}', file=logfile)
 
 
-		if plot_fringes or (plot_fringes_for_one and i==0):
-			plt.vlines([n*FSR + FSR_offset for n in range(-100, 100) if spectrax.min() < (n*FSR + FSR_offset) < spectrax.max()], min_abs, max_abs, linestyle='dashed', linewidths=0.75)
+			if plot_fringes or (plot_fringes_for_one and i==0):
+				plt.vlines([n*FSR + FSR_offset for n in range(-100, 100) if spectrax.min() < (n*FSR + FSR_offset) < spectrax.max()], min_abs, max_abs, linestyle='dashed', linewidths=0.75)
 
 
 		#calculate Rabi splitting
@@ -237,19 +231,16 @@ def main(**settings):
 			if plot_polaritons:
 				plt.vlines((l,h), min_abs, max_abs, colors='red', linewidths=1)
 			splitting = (h-l)*planck*lightspeed
-			# idx = np.where(np.logical_or(spectrax == l, spectrax == h))[0]
-			# peak_props = scipy.signal.peak_widths(a, idx)
-			# peak_widths = [pw*wavelenght_stepsize for pw in peak_props][0]
 
 			print(f'\t\tP+ @ {int(h)} cm^-1, dv = {h-polariton_wn:.1f} cm^-1', file=logfile)
 			print(f'\t\tP- @ {int(l)} cm^-1, dv = {polariton_wn-l:.1f} cm^-1', file=logfile)
-			print(f'\t\tRabi splitting = {splitting:.5f} eV', file=logfile)
+			print(f'\t\tRabi splitting = {abs(h-l):.1f} cm^-1 = {splitting:.5f} eV', file=logfile)
 
 		# print('\n', file=logfile)
 		i += 1
 	plt.tight_layout()
 	plt.legend()
-	plt.savefig(f'{plots_dir}/spectra_main.jpg')
+	plt.savefig(f'{plots_dir}/spectra_main_IR.jpg')
 
 	##kinetics:
 	if len(tracking_spectrax) > 0:
@@ -329,7 +320,7 @@ def main(**settings):
 
 	logfile.close()
 
-	with open(f'results/{name}/python.log', 'r') as logfile:
+	with open(f'{result_dir}/python.log', 'r') as logfile:
 		loglines = logfile.readlines()
 		print(''.join(loglines))
 
@@ -339,59 +330,76 @@ def main(**settings):
 
 
 if __name__ == '__main__':
-	settings = {
-		'kinetics_1': {
-			'file': 'data/20111111_IR_SP_kinetics_1/data.csv',
-			'name': 'kinetics_1',
-			'polariton_wns': [1716, 1220], #wavenumbers where you expect polaritons cm^-1
-			'refractive_index': 1.3592, #aceton
+	do_single = True
+	if not do_single:
+		settings = {
+			'kinetics_1': {
+				'file': 'data/20111111_IR_SP_kinetics_1/data.csv',
+				'name': 'kinetics_1',
+				'polariton_wns': [1716, 1220], #wavenumbers where you expect polaritons cm^-1
+				'refractive_index': 1.3592, #aceton
 
-			# kinetics settings
-			'tracking_spectrax': [(6750, 6882), (2850, 2925)], #list of tuples where each tuple t has low and high wl
-			'time_delay': 30, #in seconds, time between measurements
+				# kinetics settings
+				'tracking_spectrax': [(6750, 6882), (2850, 2925)], #list of tuples where each tuple t has low and high wl
+				'time_delay': 30, #in seconds, time between measurements
 
-			## less important settings
+				## less important settings
+				'plot_fringes_for_one': True,
+				'show_tracking_spectrax': True,
+				'plot_polaritons': True,
+				'plot_peaks': True,
+				},
+
+			'kinetics_2': {
+				'file': 'data/20111111_IR_SP_kinetics_2/data.csv',
+				'name': 'kinetics_2',
+				'polariton_wns': [1716, 1220], #wavenumbers where you expect polaritons cm^-1
+				'refractive_index': 1.3592, #aceton,
+
+				# kinetics settings
+				'tracking_spectrax': [(6750, 6882), (2850, 2925)], #list of tuples where each tuple t has low and high wl
+				'time_delay': 30, #in seconds, time between measurements
+
+				## less important settings
+				'plot_fringes_for_one': True,
+				'show_tracking_spectrax': True,
+				'plot_polaritons': True,
+				'plot_peaks': True,
+				},
+
+			'cavity_tuning': {
+				'file': 'data/20211112_cavity_tuning_for_acetone/data.csv',
+				'name': 'cavity_tuning',
+				'polariton_wns': [1716], #wavenumbers where you expect polaritons cm^-1
+				# 'polariton_wns': [],
+				'refractive_index': 1.3592, #aceton,
+
+				## less important settings
+				'plot_fringes_for_one': True,
+				'plot_polaritons': True,
+				'plot_peaks': True,
+				},
+		}
+
+		# for n, s in settings.items():
+		# 	print(n)
+		# 	main(**s, show_plots=False)
+
+		main(**settings['cavity_tuning'], show_plots=True)
+
+	else:
+		settings = {
+			'file': "data/20211129_coupled_kinetics_CHXO_1/cavity.csv",
+			'name': '20211129_coupled_kinetics_CHXO_1_IR',
+			'polariton_wns': [1713],
+			'refractive_index': 1.4507,
 			'plot_fringes_for_one': True,
-			'show_tracking_spectrax': True,
 			'plot_polaritons': True,
 			'plot_peaks': True,
-			},
+			'overlay_spectrum_path': "data/cyclohexanone_3um.csv",
+			'user_comment': 'Cavity tuned to cyclohexanone 1713 cm^-1 peak measured in neat cyclohexanone.\nUses 12um spacer provided by Wim so very small chance of folding and thus erronous spacing.'
+		}
 
-		'kinetics_2': {
-			'file': 'data/20111111_IR_SP_kinetics_2/data.csv',
-			'name': 'kinetics_2',
-			'polariton_wns': [1716, 1220], #wavenumbers where you expect polaritons cm^-1
-			'refractive_index': 1.3592, #aceton,
-
-			# kinetics settings
-			'tracking_spectrax': [(6750, 6882), (2850, 2925)], #list of tuples where each tuple t has low and high wl
-			'time_delay': 30, #in seconds, time between measurements
-
-			## less important settings
-			'plot_fringes_for_one': True,
-			'show_tracking_spectrax': True,
-			'plot_polaritons': True,
-			'plot_peaks': True,
-			},
-
-		'cavity_tuning': {
-			'file': 'data/20211112_cavity_tuning_for_acetone/data.csv',
-			'name': 'cavity_tuning',
-			'polariton_wns': [1716], #wavenumbers where you expect polaritons cm^-1
-			# 'polariton_wns': [],
-			'refractive_index': 1.3592, #aceton,
-
-			## less important settings
-			'plot_fringes_for_one': True,
-			'plot_polaritons': True,
-			'plot_peaks': True,
-			},
-	}
-
-	# for n, s in settings.items():
-	# 	print(n)
-	# 	main(**s, show_plots=False)
-
-	main(**settings['cavity_tuning'], show_plots=True)
+		main(**settings, show_plots=True)
 
 

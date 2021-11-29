@@ -23,12 +23,20 @@ def main(*args, **kwargs):
 	cmap = kwargs.get('cmap', plt.get_cmap('jet'))
 	show_tracking_spectrax = kwargs.get('show_tracking_spectrax', True)
 	spectra_blacklist = kwargs.get('spectra_blacklist', [])
+	logfile = kwargs.get('logfile', None)
+	result_dir = kwargs.get('result_dir', f'results/{name}')
+	heatmap_maxt = kwargs.get('heatmap_maxt', None)
 
 
-	if not os.path.exists(f'results/{name}'):
-		os.mkdir(f'results/{name}')
-	logfile = open(f'results/{name}/python.log', 'w')
-	plots_dir = f'results/{name}/plots'
+	if not os.path.exists(f'{result_dir}'):
+		os.mkdir(f'{result_dir}')
+	
+	if logfile is None:
+		logfile = open(f'{result_dir}/python.log', 'w')
+	else:
+		logfile = open(logfile, 'a')
+
+	plots_dir = f'{result_dir}/plots'
 	if not os.path.exists(plots_dir):
 		os.mkdir(plots_dir)
 
@@ -40,10 +48,10 @@ def main(*args, **kwargs):
 	max_abs = max([a.max() for a in spectra])
 	
 	N_spectra = spectra.shape[1]
-	
+	print('=== GENERAL', file=logfile)
 	print(f'Loaded {N_spectra} spectra!', file=logfile)
-	print(f'labda_range  =  [{spectrax[0]}, {spectrax[-1]}] nm', file=logfile)
-	print(f'deltav   =  {wavelenght_stepsize:.4f} nm', file=logfile)
+	print(f'lambda_range  =  [{spectrax[0]}, {spectrax[-1]}] nm', file=logfile)
+	print(f'stepsize      =  {wavelenght_stepsize:.4f} nm', file=logfile)
 
 	plt.figure()
 	plt.title('Spectra')
@@ -60,7 +68,36 @@ def main(*args, **kwargs):
 
 	cbar = plt.colorbar(matplotlib.cm.ScalarMappable(norm=matplotlib.colors.Normalize(0, N_spectra*time_delay), cmap=cmap))
 	cbar.set_label(r'$\Delta t$')
-	plt.savefig(f'{plots_dir}/spectra_main.jpg')
+	plt.savefig(f'{plots_dir}/spectra_main_kinetics.jpg')
+
+	plt.figure()
+	plt.title('Time resolved spectral heatmap')
+	extent =  spectrax.min(), spectrax.max(), 0, N_spectra*time_delay
+
+	plt.ylabel('Time (s)')
+	plt.xlabel('$\lambda$ (nm)')
+	plt.imshow(spectra.T, extent=extent, aspect='auto', origin='lower')
+	cbar = plt.colorbar(matplotlib.cm.ScalarMappable(norm=matplotlib.colors.Normalize(spectra.min(), spectra.max()), cmap=cmap))
+	cbar.set_label('Absorbance (a.u.)')
+	plt.savefig(f'{plots_dir}/spectra_heatmap_kinetics_all.jpg')
+
+	for i, tx in enumerate(tracking_spectrax):
+		plt.figure()
+		plt.title(rf'Time resolved spectral heatmap between $\lambda \in$ [{tx[0]}, {tx[1]}] nm')
+
+		maxt = heatmap_maxt if not heatmap_maxt is None else N_spectra*time_delay
+		extent = tx[0], tx[1], 0, maxt
+
+		tempy = spectra[np.logical_and(tx[0] < spectrax, spectrax < tx[1])]
+		if heatmap_maxt is not None:
+			tempy = tempy[:,:heatmap_maxt]
+
+		plt.ylabel('Time (s)')
+		plt.xlabel('$\lambda$ (nm)')
+		plt.imshow(tempy.T, extent=extent, aspect='auto', origin='lower')
+		cbar = plt.colorbar(matplotlib.cm.ScalarMappable(norm=matplotlib.colors.Normalize(spectra.min(), spectra.max()), cmap=cmap))
+		cbar.set_label('Absorbance (a.u.)')
+		plt.savefig(f'{plots_dir}/spectra_heatmap_kinetics_{i}.jpg')
 
 	
 	def get_tracking_absorbance(wavelenght):
@@ -112,7 +149,8 @@ def main(*args, **kwargs):
 
 	# plt.show()	
 	np.save(f'./{name}_array.npy', tracking_spectra)
-	print('done')
+	logfile.close()
+	# print('done')
 	return tracking_spectra
 
 
@@ -160,6 +198,18 @@ if __name__ == '__main__':
 			'file': "data/20211126_UVVIS_SP_cyclohexanone_5um_decoupled/data.csv",
 			'time_delay': 10,
 			'tracking_spectrax': [(520, 580)],
+		},
+		'20211129_coupled_1': {
+			'name': '20211129_coupled_1',
+			'file':"data/20211129_coupled_kinetics_CHXO_1/kinetics.csv",
+			'time_delay': 10,
+			'tracking_spectrax': [(520, 580)],
+		},
+		'20211129_decoupled_1': {
+			'name': '20211129_decoupled_1',
+			'file':"data/20211129_decoupled_kinetics_CHXO_1/kinetics.csv",
+			'time_delay': 10,
+			'tracking_spectrax': [(520, 580)],
 		}
 	}
 
@@ -172,8 +222,11 @@ if __name__ == '__main__':
 	# uncy = [main(**settings['SP_cyclohexanone_UVVIS_10s_360x_20um_decoupled'])[0],
 	# 		main(**settings['SP_cyclohexanone_UVVIS_10s_360x_20um_decoupled_2'])[0]]
 
-	cy   = [main(**settings['SP_cyclohexane_10s_360x_5um_coupled'])[0],]
-	uncy = [main(**settings['SP_cyclohexane_10s_360x_5um_decoupled'])[0],]
+	# cy   = [main(**settings['SP_cyclohexane_10s_360x_5um_coupled'])[0],]
+	# uncy = [main(**settings['SP_cyclohexane_10s_360x_5um_decoupled'])[0],]
+
+	cy   = [main(**settings['20211129_coupled_1'])[0],]
+	uncy = [main(**settings['20211129_decoupled_1'])[0],]
 
 	cx = [np.arange(yy.size)*10 for yy in cy]
 	uncx = [np.arange(yy.size)*10 for yy in uncy]

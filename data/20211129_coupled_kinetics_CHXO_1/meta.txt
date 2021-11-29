@@ -1,0 +1,4 @@
+1. Cavity tuned to 1713cm^-1 in neat cyclohexanone
+2. Uses 12um spacer provided by Wim, so no chance of folding
+3. Kinetics measured with 3.6215 mg/ml SP in cyclohexanone
+4. Spectra were recorded every 10 seconds 360 times after 356nm pump

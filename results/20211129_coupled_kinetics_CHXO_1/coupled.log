@@ -1,0 +1,53 @@
+====== STARTING ANALYSIS
+Data directory:    data/20211129_coupled_kinetics_CHXO_1
+Results directory: results/20211129_coupled_kinetics_CHXO_1
+
+Meta comments:
+1. Cavity tuned to 1713cm^-1 in neat cyclohexanone
+2. Uses 12um spacer provided by Wim, so no chance of folding
+3. Kinetics measured with 3.6215 mg/ml SP in cyclohexanone
+4. Spectra were recorded every 10 seconds 360 times after 356nm pump
+
+====== BEGINNING CAVITY ANALYSIS
+=== GENERAL
+Filename: data/20211129_coupled_kinetics_CHXO_1/cavity.csv
+Loaded 1 spectra!
+v_range    =  [7496.969, 374.173] cm^-1
+stepsize   =  1.9287 cm^-1
+
+=== SPECTRA
+Spectrum 0:
+	FSR            = 212.57 cm^-1
+	FSR_offset     = -1.61 cm^-1
+	Cavity spacing = 16.2138 um
+	FWHM           = 129.923 cm^-1
+	Quality        = 1.636
+	Polariton 0 @ 1713 cm^-1
+		P+ @ 1774 cm^-1, dv = 61.6 cm^-1
+		P- @ 1646 cm^-1, dv = 66.3 cm^-1
+		Rabi splitting = 127.9 cm^-1 = 0.01586 eV
+
+=== END
+Plots saved to results/20211129_coupled_kinetics_CHXO_1/plots
+Spectrum data written to results/20211129_coupled_kinetics_CHXO_1/spectrum_data.csv
+
+====== BEGINNING KINETICS ANALYSIS
+=== GENERAL
+Loaded 360 spectra!
+lambda_range  =  [190.0, 1100.0] nm
+stepsize      =  1.0000 nm
+=== KINETICS
+Model: A01*exp(-k1*t) + A02*exp(-k2*t) + B,   t in [0, 3590] s
+Biexponential fitting for wavelength around 550.0 nm:
+	Correlation (R2)  = 0.9996433336
+	k1                = 0.00480453 s^-1
+	k2                = 0.00080262 s^-1
+	A01               = 0.462
+	A02               = 0.067
+	B                 = -0.003
+	Life-time 1       = 208.14 s
+	Life-time 2       = 1245.92 s
+	Half-life 1       = 144.27 s
+	Half-life 2       = 863.61 s
+=== END
+====== END
