@@ -90,7 +90,7 @@ def fit_exp_decay(x, y, use_scipy=True, maxiter=100_000, eps=1e-12, plot_errors=
 
 	Stot = np.sum((y-np.mean(y))**2)
 	r2_value = 1 - (error(x, *res)/Stot)
-	results = {'k':k, 'A0':A0, 'error':error(x, *res), 'r2_value':r2_value}
+	results = {'model': 'exp_decay', 'k':k, 'A0':A0, 'error':error(x, *res), 'r2_value':r2_value}
 
 
 	if show_fit: 
@@ -156,7 +156,7 @@ def fit_biexp_decay(x, y, p0=None, show_fit=True,
 
 	Stot = np.sum((y-np.mean(y))**2)
 	r2_value = 1 - (error(x, *res)/Stot)
-	results = {'k1':k1, 'k2':k2, 'A01':A01, 'A02':A02, 'B':B, 'error':error(x, *res), 'r2_value':r2_value}
+	results = {'model': 'biexp_decay', 'k1':k1, 'k2':k2, 'A01':A01, 'A02':A02, 'B':B, 'error':error(x, *res), 'r2_value':r2_value}
 
 
 	if show_fit: 

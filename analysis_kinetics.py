@@ -99,6 +99,8 @@ def main(*args, **kwargs):
 		cbar.set_label('Absorbance (a.u.)')
 		plt.savefig(f'{plots_dir}/spectra_heatmap_kinetics_{i}.jpg')
 
+	plt.close('all')
+
 	
 	def get_tracking_absorbance(wavelenght):
 		low = wavelenght[0]

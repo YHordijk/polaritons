@@ -105,10 +105,13 @@ def main(**settings):
 	if not os.path.exists(plots_dir):
 		os.mkdir(plots_dir)
 
+	results = {}
 
 	print('=== GENERAL', file=logfile)
 
 	data, spectrum_types = read_csv(file)
+
+
 
 	if overlay_spectrum:
 		extra_spectrum, extra_spectrum_type = read_csv(overlay_spectrum_path)
@@ -148,6 +151,10 @@ def main(**settings):
 
 	N_spectra = len(spectra)
 
+	results['Nspectra'] = N_spectra
+	results['spectra'] = spectra
+	results['spectrax'] = spectrax
+
 	print(f'Filename: {file}', file=logfile)
 	print(f'Loaded {N_spectra} spectra!', file=logfile)
 	print(f'v_range    =  [{spectrax[0]}, {spectrax[-1]}] cm^-1', file=logfile)
@@ -176,6 +183,8 @@ def main(**settings):
 
 	# #calculations
 	print('\n=== SPECTRA', file=logfile)
+	FSRs = []
+	FSR_offsets = []
 	for i, spectrum in enumerate(spectra):
 		color = cmap(i/N_spectra)
 		print(f'Spectrum {i}:', file=logfile)
@@ -196,6 +205,7 @@ def main(**settings):
 			FSR_res = get_FSR(peak_res['peakx'], 4000)
 		if FSR_res is None:
 			print('\tFSR calculation failed again please provide better spectra', file=logfile)
+			FSRs.append(None)
 		else:
 			FSR = FSR_res['FSR']
 			FSR_offset = FSR_res['offset']
@@ -218,6 +228,8 @@ def main(**settings):
 			if plot_fringes or (plot_fringes_for_one and i==0):
 				plt.vlines([n*FSR + FSR_offset for n in range(-100, 100) if spectrax.min() < (n*FSR + FSR_offset) < spectrax.max()], min_abs, max_abs, linestyle='dashed', linewidths=0.75)
 
+			FSRs.append(FSR)
+			FSR_offsets.append(FSR_offset)
 
 		#calculate Rabi splitting
 		for j, polariton_wn in enumerate(polariton_wns):
@@ -238,6 +250,9 @@ def main(**settings):
 
 		# print('\n', file=logfile)
 		i += 1
+
+	results['FSRs'] = FSRs
+	results['FSR_offsets'] = FSR_offsets
 	plt.tight_layout()
 	plt.legend()
 	plt.savefig(f'{plots_dir}/spectra_main_IR.jpg')
@@ -326,6 +341,9 @@ def main(**settings):
 
 
 	if show_plots: plt.show()
+
+	plt.close('all')
+	return results
 
 
 

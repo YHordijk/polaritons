@@ -1,0 +1,49 @@
+====== STARTING ANALYSIS ======
+Data directory:    data/20211130_scanning/1
+Results directory: results/20211130_scanning_after/1
+
+====== BEGINNING CAVITY ANALYSIS
+=== GENERAL
+Filename: data/20211130_scanning/1/cavity_after.csv
+Loaded 1 spectra!
+v_range    =  [7000.0, 400.0] cm^-1
+stepsize   =  1.0000 cm^-1
+
+=== SPECTRA
+Spectrum 0:
+	FSR            = 231.17 cm^-1
+	FSR_offset     = 0.54 cm^-1
+	Cavity spacing = 14.9093 um
+	FWHM           = 312.857 cm^-1
+	Quality        = 0.739
+	Polariton 0 @ 1713 cm^-1
+		P+ @ 1748 cm^-1, dv = 35.0 cm^-1
+		P- @ 1687 cm^-1, dv = 25.1 cm^-1
+		Rabi splitting = 60.1 cm^-1 = 0.00745 eV
+
+=== END
+Plots saved to results/20211130_scanning_after/1/plots
+Spectrum data written to results/20211130_scanning_after/1/spectrum_data.csv
+
+====== BEGINNING KINETICS ANALYSIS
+=== GENERAL
+Loaded 360 spectra!
+lambda_range  =  [190.0, 1100.0] nm
+stepsize      =  1.0000 nm
+=== KINETICS
+Model: A01*exp(-k1*t) + A02*exp(-k2*t) + B
+Biexponential fitting for average between wavelenghts [520.0, 580.0] nm:
+	t in [0, 3580] s
+	Correlation (R2)  = 0.9995646629
+	k1                = 0.00411509 s^-1
+	k2                = 0.00076824 s^-1
+	A01               = 0.417
+	A02               = 0.052
+	B                 = -0.002
+	Life-time 1       = 243.01 s
+	Life-time 2       = 1301.67 s
+	Half-life 1       = 168.44 s
+	Half-life 2       = 902.25 s
+=== END
+
+====== END
