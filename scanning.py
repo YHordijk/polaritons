@@ -122,7 +122,7 @@ if __name__ == '__main__':
 
 			fits = []
 			for i, y, x in zip(range(len(cy)), cy, cx):
-				if experiment == '2':
+				if experiment in ['2']: #specify here if kinetics should be fitted using biexp or exp
 					fits.append(exp_decay_fitter.fit_exp_decay(x, y - np.mean(y[-20:-1]), plots_dir=res_dir+'/plots', index=i))
 				else:	
 					fits.append(exp_decay_fitter.fit_biexp_decay(x, y - np.mean(y[-20:-1]), plots_dir=res_dir+'/plots', index=i))
@@ -157,7 +157,7 @@ if __name__ == '__main__':
 					print(f'\tLife-time         = {1/c["k"]:.2f} s', file=logfile)
 					print(f'\tHalf-life         = {np.log(2)/c["k"]:.2f} s', file=logfile)
 
-					main_results[experiment]['k1'] = c['k1']
+					main_results[experiment]['k1'] = c['k']
 
 			print('=== END', file=logfile)
 		else:
@@ -223,7 +223,7 @@ if __name__ == '__main__':
 		ax2.set_ylim(0, max(r[k]*1.2*1000 for r in main_results.values()))
 		ax.set_xlabel(r'$\nu (cm^{-1})$')
 		ax.set_ylabel('Transmission')
-		ax2.set_ylabel(rf'Reaction rate ({k}) $(1000s^{-1})$')
+		ax2.set_ylabel(rf'Reaction rate ({k}) $(10^{-3}s^{-1})$')
 		plt.legend()
 		plt.tight_layout()
 		plt.savefig(f'{main_plots_dir}/{k}_scanning.png')

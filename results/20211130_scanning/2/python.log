@@ -32,18 +32,14 @@ lambda_range  =  [190.0, 1100.0] nm
 stepsize      =  1.0000 nm
 === KINETICS
 Model: A01*exp(-k1*t) + A02*exp(-k2*t) + B
-Biexponential fitting for average between wavelenghts [520.0, 580.0] nm:
+Exponential fitting for average between wavelenghts [520.0, 580.0] nm:
 	t in [0, 3570] s
-	Correlation (R2)  = 0.9997279785
-	k1                = 0.00644915 s^-1
-	k2                = 0.00326225 s^-1
-	A01               = 0.295
-	A02               = 0.200
-	B                 = 0.000
-	Life-time 1       = 155.06 s
-	Life-time 2       = 306.54 s
-	Half-life 1       = 107.48 s
-	Half-life 2       = 212.47 s
+	Correlation (R2)  = 0.9989672701
+	k                 = 0.00468350 s^-1
+	A0                = 0.482
+	B                 = 0.001
+	Life-time         = 213.52 s
+	Half-life         = 148.00 s
 === END
 
 ====== END

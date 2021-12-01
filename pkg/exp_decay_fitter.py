@@ -80,17 +80,19 @@ def fit_exp_decay(x, y, use_scipy=True, maxiter=100_000, eps=1e-12, plot_errors=
 	closest_to_middle = np.argmin(np.abs(y-halfheight))
 	k = np.log(2)/x[closest_to_middle]
 	A0 = (y.max()-y.min())			
+	B = 0
 
-	f = lambda x, k, A0: A0 * np.exp(-k*x) 
-	error = lambda x, k, A0: np.sum((y-f(x, A0, k))**2)
+	f = lambda x, k, A0, B: A0 * np.exp(-k*x) + B
+	error = lambda x, *args: np.sum((y-f(x, *args))**2)
 
-	res = curve_fit(f, x, y, [k, A0], maxfev=10000)[0]
+	res = curve_fit(f, x, y, [k, A0, B], maxfev=10000)[0]
 	k = res[0]
 	A0 = res[1]
+	B = res[2]
 
 	Stot = np.sum((y-np.mean(y))**2)
 	r2_value = 1 - (error(x, *res)/Stot)
-	results = {'model': 'exp_decay', 'k':k, 'A0':A0, 'error':error(x, *res), 'r2_value':r2_value}
+	results = {'model': 'exp_decay', 'k':k, 'A0':A0, 'B':B, 'error':error(x, *res), 'r2_value':r2_value}
 
 
 	if show_fit: 
@@ -114,14 +116,14 @@ def fit_exp_decay(x, y, use_scipy=True, maxiter=100_000, eps=1e-12, plot_errors=
 		plt.plot(x, np.zeros_like(x), linestyle='dashed', color='black')
 		plt.title(f'{title} residuals {index}\nt={1/k:.2f}s, A0={A0:.3f}')
 		plt.xlabel('Time (s)')
-		plt.ylabel('y - f(x|k,A0)')
+		plt.ylabel('y - f(x|k,A0,B)')
 		plt.tight_layout()
 		if plots_dir is not None: plt.savefig(f'{plots_dir}/exp_decay_residuals_{index}.jpg')
 
 	plt.figure()
 	plt.plot(x, y)
-	plt.plot(x, y - f(x, k, A0))
-	plt.show()
+	plt.plot(x, y - f(x, *res))
+	# plt.show()
 	return results
 
 

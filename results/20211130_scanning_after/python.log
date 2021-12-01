@@ -1,17 +1,16 @@
 ====== BEGINNING SCANNING ANALYSIS ======
 Main data directory: data/20211130_scanning
 Found 4 experiments!
-	!20211129: data/20211130_scanning/!20211129
 	0     : data/20211130_scanning/0
 	1     : data/20211130_scanning/1
 	2     : data/20211130_scanning/2
+	20211129: data/20211130_scanning/20211129
 FSR succesfully calculated for all experiments!
 k1 succesfully calculated for all experiments!
-k2 succesfully calculated for all experiments!
 
 Results:
-	Experiment        | FSR (cm^-1) | v (cm^-1) | Spacing (um) | k1 (s^-1)  | k2 (s^-1)
-	!20211129         |      212.57 |   1700.59 |        16.21 |  4.805E-03 |  8.026E-04
-	0                 |      223.65 |   1789.22 |        15.41 |  4.758E-03 |  3.796E-04
-	1                 |      231.17 |   1618.21 |        14.91 |  4.115E-03 |  7.682E-04
-	2                 |      212.20 |   1697.64 |        16.24 |  6.449E-03 |  3.262E-03
+	Experiment        | FSR (cm^-1) | v (cm^-1) | Spacing (um) | k1 (s^-1)
+	0                 |      223.65 |   1789.22 |        15.41 |  4.758E-03
+	1                 |      231.17 |   1618.21 |        14.91 |  4.115E-03
+	2                 |      212.20 |   1697.64 |        16.24 |  4.684E-03
+	20211129          |      212.57 |   1700.59 |        16.21 |  4.805E-03
