@@ -261,10 +261,10 @@ if __name__ == '__main__':
 	if use_coupled_biexp_decay:
 		coupled_fit   = [fit_biexp_decay(x, y - np.mean(y[-20:-1]), show_fit=True) for x, y in zip(cx, cy)]
 	else:
-		coupled_fit   = [fit_exp_decay(x, y - np.mean(y[-20:-1]), show_fit=True) for x, y in zip(cx, cy)]
+		coupled_fit   = [fit_exp_decay(x, y - np.mean(y[-20:-1]),   show_fit=True) for x, y in zip(cx, cy)]
 
 	if use_uncoupled_biexp_decay:
-		uncoupled_fit = [fit_biexp_decay(x, y - np.mean(y[-20:-1]),   show_fit=True) for x, y in zip(uncx, uncy)]
+		uncoupled_fit = [fit_biexp_decay(x, y - np.mean(y[-20:-1]), show_fit=True) for x, y in zip(uncx, uncy)]
 	else:
 		uncoupled_fit = [fit_exp_decay(x, y - np.mean(y[-20:-1]),   show_fit=True) for x, y in zip(uncx, uncy)]
 
