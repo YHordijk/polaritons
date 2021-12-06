@@ -198,9 +198,9 @@ if __name__ == '__main__':
 
 
 	print(f'\nResults:', file=main_logfile)
-	print(f'\tExperiment        | FSR (cm^-1) | v (cm^-1) | Spacing (um) | k1 (s^-1)', file=main_logfile)
+	print(f'\tExperiment        | FSR (cm^-1) | v (cm^-1) | Spacing (um) | t (s)', file=main_logfile)
 	for e, r in main_results.items():
-		print(f'\t{e: <17} | {r["FSR"]: >11.2f} | {r["tuned v"]: >9.2f} | {r["spacing"]: 12.2f} | {r["k1"]: 8.3E}', file=main_logfile)
+		print(f'\t{e: <17} | {r["FSR"]: >11.2f} | {r["tuned v"]: >9.2f} | {r["spacing"]: 12.2f} | {1/r["k1"]: 8.3f}', file=main_logfile)
 
 
 	cyclohexanone, _ = aIR.read_csv("data/cyclohexanone_3um.csv")

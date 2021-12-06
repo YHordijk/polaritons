@@ -14,8 +14,8 @@ Spectrum 0:
 	FSR            = 228.58 cm^-1
 	FSR_offset     = -8.41 cm^-1
 	Cavity spacing = 15.0786 um
-	FWHM           = 126.265 cm^-1
-	Quality        = 1.810
+	FWHM           = 120.392 cm^-1
+	Quality        = 1.899
 	Polariton 0 @ 1713 cm^-1
 		P+ @ 1854 cm^-1, dv = 141.5 cm^-1
 		P- @ 1577 cm^-1, dv = 135.8 cm^-1

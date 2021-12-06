@@ -9,8 +9,8 @@ FSR succesfully calculated for all experiments!
 k1 succesfully calculated for all experiments!
 
 Results:
-	Experiment        | FSR (cm^-1) | v (cm^-1) | Spacing (um) | k1 (s^-1)
-	0                 |      221.64 |   1773.16 |        15.55 |  4.758E-03
-	1                 |      228.58 |   1600.04 |        15.08 |  4.115E-03
-	2                 |      216.79 |   1734.31 |        15.90 |  4.684E-03
-	20211129          |      212.57 |   1700.59 |        16.21 |  4.805E-03
+	Experiment        | FSR (cm^-1) | v (cm^-1) | Spacing (um) | t (s)
+	0                 |      221.64 |   1773.16 |        15.55 |  210.155
+	1                 |      228.58 |   1600.04 |        15.08 |  243.008
+	2                 |      216.79 |   1734.31 |        15.90 |  213.515
+	20211129          |      212.57 |   1700.59 |        16.21 |  208.137

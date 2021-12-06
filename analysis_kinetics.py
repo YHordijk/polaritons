@@ -217,7 +217,13 @@ if __name__ == '__main__':
 			'file':"data/20211129_decoupled_kinetics_CHXO_1/kinetics.csv",
 			'time_delay': 10,
 			'tracking_spectrax': [(520, 580)],
-		}
+		},
+		'20211203_1350': {
+			'name': '20211203_1350',
+			'file':"data/20211203_1350_cyclohexanone/kinetics.csv",
+			'time_delay': 10,
+			'tracking_spectrax': [(520, 580)],
+		},
 	}
 
 	use_coupled_biexp_decay = True
@@ -232,8 +238,12 @@ if __name__ == '__main__':
 	# cy   = [main(**settings['SP_cyclohexane_10s_360x_5um_coupled'])[0],]
 	# uncy = [main(**settings['SP_cyclohexane_10s_360x_5um_decoupled'])[0],]
 
-	cy   = [main(**settings['20211129_coupled_1'])[0],]
-	uncy = [main(**settings['20211129_decoupled_1'])[0],]
+	# cy   = [main(**settings['20211129_coupled_1'])[0],]
+	# uncy = [main(**settings['20211129_decoupled_1'])[0],]
+
+
+	cy   = []
+	uncy = [main(**settings['20211203_1350'])[0],]
 
 	cx = [np.arange(yy.size)*10 for yy in cy]
 	uncx = [np.arange(yy.size)*10 for yy in uncy]
@@ -331,41 +341,43 @@ if __name__ == '__main__':
 	print(f'\tCoupled:   {len(cx)}')
 	print(f'\tUncoupled: {len(uncx)}')
 
-	print(f'\nCoupled half-times:')
-	if use_coupled_biexp_decay:
-		for i, h in enumerate(coupled_halftimes):
-			print(f'\tExperiment {i}: {h[0]:.2f} s and {h[1]:.2f} s')
+	if len(coupled_halftimes) > 0:
+		print(f'\nCoupled half-times:')
+		if use_coupled_biexp_decay:
+			for i, h in enumerate(coupled_halftimes):
+				print(f'\tExperiment {i}: {h[0]:.2f} s and {h[1]:.2f} s')
 
-		average_h1 = sum([h[0] for h in coupled_halftimes])/len(coupled_halftimes)
-		average_h2 = sum([h[1] for h in coupled_halftimes])/len(coupled_halftimes)
-		stddev_h1 = np.std(coupled_halftimes, axis=0)[0]
-		stddev_h2 = np.std(coupled_halftimes, axis=0)[1]
-		print(f'\tAverage     : {average_h1:.2f} s and {average_h2:.2f} s')
-		print(f'\tStddev      : {stddev_h1:.2f} s and {stddev_h2:.2f} s')
-	else:
-		for i, h in enumerate(coupled_halftimes):
-			print(f'\tExperiment {i}: {h:.2f} s')
-		average_h = sum(coupled_halftimes)/len(coupled_halftimes)
-		stddev_h = np.std(coupled_halftimes)
-		print(f'\tAverage     : {average_h:.2f} s')
-		print(f'\tStddev      : {stddev_h:.2f} s')
+			average_h1 = sum([h[0] for h in coupled_halftimes])/len(coupled_halftimes)
+			average_h2 = sum([h[1] for h in coupled_halftimes])/len(coupled_halftimes)
+			stddev_h1 = np.std(coupled_halftimes, axis=0)[0]
+			stddev_h2 = np.std(coupled_halftimes, axis=0)[1]
+			print(f'\tAverage     : {average_h1:.2f} s and {average_h2:.2f} s')
+			print(f'\tStddev      : {stddev_h1:.2f} s and {stddev_h2:.2f} s')
+		else:
+			for i, h in enumerate(coupled_halftimes):
+				print(f'\tExperiment {i}: {h:.2f} s')
+			average_h = sum(coupled_halftimes)/len(coupled_halftimes)
+			stddev_h = np.std(coupled_halftimes)
+			print(f'\tAverage     : {average_h:.2f} s')
+			print(f'\tStddev      : {stddev_h:.2f} s')
 
-	print(f'\nUncoupled half-times:')
-	if use_coupled_biexp_decay:
-		for i, h in enumerate(uncoupled_halftimes):
-			print(f'\tExperiment {i}: {h[0]:.2f} s and {h[1]:.2f} s')
-		average_h1 = sum([h[0] for h in uncoupled_halftimes])/len(uncoupled_halftimes)
-		average_h2 = sum([h[1] for h in uncoupled_halftimes])/len(uncoupled_halftimes)
-		stddev_h1 = np.std(uncoupled_halftimes, axis=0)[0]
-		stddev_h2 = np.std(uncoupled_halftimes, axis=0)[1]
-		print(f'\tAverage     : {average_h1:.2f} s and {average_h2:.2f} s')
-		print(f'\tStddev      : {stddev_h1:.2f} s and {stddev_h2:.2f} s')
-	else:
-		for i, h in enumerate(uncoupled_halftimes):
-			print(f'\tExperiment {i}: {h:.2f} s')
-		average_h = sum(uncoupled_halftimes)/len(uncoupled_halftimes)
-		stddev_h = np.std(uncoupled_halftimes)
-		print(f'\tAverage     : {average_h:.2f} s')
-		print(f'\tStddev      : {stddev_h:.2f} s')
+	if len(uncoupled_halftimes) > 0:
+		print(f'\nUncoupled half-times:')
+		if use_coupled_biexp_decay:
+			for i, h in enumerate(uncoupled_halftimes):
+				print(f'\tExperiment {i}: {h[0]:.2f} s and {h[1]:.2f} s')
+			average_h1 = sum([h[0] for h in uncoupled_halftimes])/len(uncoupled_halftimes)
+			average_h2 = sum([h[1] for h in uncoupled_halftimes])/len(uncoupled_halftimes)
+			stddev_h1 = np.std(uncoupled_halftimes, axis=0)[0]
+			stddev_h2 = np.std(uncoupled_halftimes, axis=0)[1]
+			print(f'\tAverage     : {average_h1:.2f} s and {average_h2:.2f} s')
+			print(f'\tStddev      : {stddev_h1:.2f} s and {stddev_h2:.2f} s')
+		else:
+			for i, h in enumerate(uncoupled_halftimes):
+				print(f'\tExperiment {i}: {h:.2f} s')
+			average_h = sum(uncoupled_halftimes)/len(uncoupled_halftimes)
+			stddev_h = np.std(uncoupled_halftimes)
+			print(f'\tAverage     : {average_h:.2f} s')
+			print(f'\tStddev      : {stddev_h:.2f} s')
 
 	plt.show()
