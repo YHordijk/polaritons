@@ -26,8 +26,9 @@ import pkg.exp_decay_fitter as exp_decay_fitter
 
 
 if __name__ == '__main__':
-	main_data_dir = "data/20211130_scanning"
+	main_data_dir = "data/20211207_2um_sp"
 	n = 1.4507 #refracative index of cyclohexanone
+	target_wn = 1350
 
 	
 	#### setup
@@ -192,9 +193,9 @@ if __name__ == '__main__':
 
 	for e, r in main_results.items():
 		r['spacing'] = 10_000/(2*n*r['FSR'])
-		r['tuned v'] = sorted((r['FSR']*i for i in range(20)), key=lambda f: abs(f-1713))[0]
+		r['tuned v'] = sorted((r['FSR']*i for i in range(20)), key=lambda f: abs(f-target_wn))[0]
 	spacings = {e: 10_000/(2*n*r['FSR']) for e, r in main_results.items() if 'FSR' in r}
-	tuned_wn = {e: sorted((r['FSR']*i for i in range(20)), key=lambda f: abs(f-1713))[0] for e, r in main_results.items()}
+	tuned_wn = {e: sorted((r['FSR']*i for i in range(20)), key=lambda f: abs(f-target_wn))[0] for e, r in main_results.items()}
 
 
 	print(f'\nResults:', file=main_logfile)
