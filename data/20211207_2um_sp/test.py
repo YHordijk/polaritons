@@ -48,25 +48,35 @@ def analyse_cavity(file):
 
 if __name__ == '__main__':
 
-	dts = [20, 20, 10]
+	cmap = plt.get_cmap('tab10')
+
+	dts = [20, 20, 10, 20]
 	kinetic_files = ['20211207_shim_1/all.txt', '20211208_shim_2/all.txt', '20211208_HP_2/kinetics.csv', '20211208_shim_3/all.txt']
 	kinetics_results = [analyse_kinetics(f, dt) for f, dt in zip(kinetic_files, dts)]
-
 	cavity_files = ['20211207_shim_1/cavity.csv', '20211208_shim_2/cavity.csv', '20211208_HP_2/cavity.csv', '20211208_shim_3/cavity.csv']
 	cavity_results = [analyse_cavity(f) for f in cavity_files]
 	tuned_wns = [c['v'] for c in cavity_results]
 	k1s = [1000/k['t1'] for k in kinetics_results]
 
+	print('Summary')
+	print('Exp. | v (cm^-1) | k1 (s^-1) | t1 (s)')
+	for i, t, k in zip(range(len(tuned_wns)), tuned_wns, k1s):
+		print(f'{i: <4} | {t:9.2f} | {k/1000:9.3E} | {1000/k:.2f}')
+
 	plt.subplot(1,2,1)
+	plt.gca().set_title('Kinetic profile of experiments')
 	for i, k in enumerate(kinetics_results):
-		plt.scatter(k['x'], k['y'], label=f'Average signal exp. {i}')
-		plt.plot(k['x'], k['fit'])
+		plt.scatter(k['x'], k['y'], label=f'Exp. {i}', color=cmap(i))
+		plt.plot(k['x'], k['fit'], color=cmap(i))
 	plt.legend()
+	plt.xlabel('t (s)')
+	plt.ylabel('Absorption (a.u.)')
 
 
-	
 
 	ax = plt.subplot(1,2,2)
+
+	plt.gca().set_title('Rate constants and cyclohexanone FTIR spectrum')
 
 	chxo_data = np.genfromtxt('cyclohexanone_3um.csv', skip_header=2, delimiter=',')
 	chxo_x = chxo_data[:,0]
@@ -79,8 +89,9 @@ if __name__ == '__main__':
 	ax.set_ylim(0, 1.25)
 	ax.set_xlabel(r'$\nu (cm^{-1})$')
 	ax.set_ylabel('Transmission')
-
-	ax2.scatter(tuned_wns, k1s, color='red')
+	# print(tuned_wns, k1s)
+	for i, t, k in zip(range(len(tuned_wns)), tuned_wns, k1s):
+		ax2.scatter(t, k, color=cmap(i))
 	ax2.spines['right'].set_color('red')
 	ax2.yaxis.label.set_color('red')
 	ax2.tick_params(axis='y', colors='red')
