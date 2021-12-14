@@ -3,25 +3,25 @@ import matplotlib.pyplot as plt
 from scipy.signal import find_peaks 
 
 
-def file_reader(file):
+def file_reader(file, skip_header=1):
 	with open(file, 'r') as f:
 		content = f.readlines()
 
 		if any(';' in line for line in content):
 			content = [line.replace(',', '.').replace(';', ',') for line in content]
 
-	return np.genfromtxt(content, skip_header=1, delimiter=',')[:,:-1]
+	return np.genfromtxt(content, skip_header=skip_header, delimiter=',')[:,:-1]
 
 
 def get_average_signal_between(x, y, low, high):
-	lowi = get_wavelenght_index(x, y, low)
-	highi = get_wavelenght_index(x, y, high)
+	lowi = get_wavelenght_index(x, low)
+	highi = get_wavelenght_index(x, high)
 
 	avg = np.mean(y[lowi:highi+1,:], axis=0)
 	return avg
 
 
-def get_wavelenght_index(x, y, l):
+def get_wavelenght_index(x, l):
 	index = np.argsort(np.abs(x-l))[0]
 	return index
 
@@ -40,6 +40,7 @@ def get_maxima(x, y):
 	peaky = y[peakidx]
 
 	return peakx, peaky
+
 
 
 file = "20211209_cuvette_DASA_3inone/data.csv"
@@ -82,7 +83,7 @@ plt.legend()
 
 plt.subplot(1,2,2)
 imshow_l_range = [290, 750]
-idx = [get_wavelenght_index(spectrax, l545, l) for l in imshow_l_range]
+idx = [get_wavelenght_index(spectrax, l) for l in imshow_l_range]
 plt.imshow(spectray[idx[0]:idx[1]], 
 			aspect='auto', origin='lower', 
 			extent=[t.min(), t.max(), imshow_l_range[0], imshow_l_range[1]],
@@ -94,6 +95,6 @@ for point, label in zip([600, 545, 567], ["A'", 'A', 'Isosbestic']):
 	plt.hlines(point, 0, t.max(),  
 				linestyles='dashed', 
 				label=label,)
-	
+
 plt.legend()
 plt.show()

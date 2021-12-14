@@ -26,9 +26,9 @@ import pkg.exp_decay_fitter as exp_decay_fitter
 
 
 if __name__ == '__main__':
-	main_data_dir = "data/20211207_2um_sp"
-	n = 1.4507 #refracative index of cyclohexanone
-	target_wn = 1350
+	main_data_dir = "data/SP_scan_new_cavity"
+	n = 1.3008 #refracative index of cyclohexanone
+	target_wn = 1200
 
 	
 	#### setup
@@ -60,7 +60,7 @@ if __name__ == '__main__':
 		if not os.path.exists(res_dir):
 			os.mkdir(res_dir)
 
-		cavity_path = f'{data_dir}/cavity_before.csv'
+		cavity_path = f'{data_dir}/cavity.csv'
 		kinetic_path = f'{data_dir}/kinetics.csv'
 		meta_path = f'{data_dir}/meta.txt'
 		python_log = f'{res_dir}/python.log'
@@ -84,9 +84,8 @@ if __name__ == '__main__':
 				'file': cavity_path,
 				'name': name,
 				'logfile': python_log,
-
-				'polariton_wns': [1713],
-				'refractive_index': 1.4507,
+				'polariton_wns': [],
+				'refractive_index': n,
 				'plot_fringes_for_one': True,
 				'plot_polaritons': True,
 				'plot_peaks': True,
@@ -124,12 +123,11 @@ if __name__ == '__main__':
 			fits = []
 			for i, y, x in zip(range(len(cy)), cy, cx):
 				if experiment in ['2']: #specify here if kinetics should be fitted using biexp or exp
-					fits.append(exp_decay_fitter.fit_exp_decay(x, y - np.mean(y[-20:-1]), plots_dir=res_dir+'/plots', index=i))
+					fits.append(exp_decay_fitter.fit_exp_lin(x, y - np.mean(y[-20:-1]), plots_dir=res_dir+'/plots', index=i))
 				else:	
-					fits.append(exp_decay_fitter.fit_biexp_decay(x, y - np.mean(y[-20:-1]), plots_dir=res_dir+'/plots', index=i))
+					fits.append(exp_decay_fitter.fit_exp_lin(x, y - np.mean(y[-20:-1]), plots_dir=res_dir+'/plots', index=i))
 
 			print('=== KINETICS', file=logfile)
-			print(f'Model: A01*exp(-k1*t) + A02*exp(-k2*t) + B', file=logfile)
 			for w, c, x in zip(kinetics_settings['tracking_spectrax'], fits, cx):
 				if c['model'] == 'biexp_decay':
 					print(f'Biexponential fitting for average between wavelenghts [{w[0]:.1f}, {w[1]:.1f}] nm:', file=logfile)
@@ -154,6 +152,19 @@ if __name__ == '__main__':
 					print(f'\tCorrelation (R2)  = {c["r2_value"]:.10f}', file=logfile)
 					print(f'\tk                 = {c["k"]:.8f} s^-1', file=logfile)
 					print(f'\tA0                = {c["A0"]:.3f}', file=logfile)
+					print(f'\tB                 = {c["B"]:.3f}', file=logfile)
+					print(f'\tLife-time         = {1/c["k"]:.2f} s', file=logfile)
+					print(f'\tHalf-life         = {np.log(2)/c["k"]:.2f} s', file=logfile)
+
+					main_results[experiment]['k1'] = c['k']
+
+				if c['model'] == 'exp_lin':
+					print(f'Exponential fitting for average between wavelenghts [{w[0]:.1f}, {w[1]:.1f}] nm:', file=logfile)
+					print(f'\tt in [{x.min()}, {x.max()}] s', file=logfile)
+					print(f'\tCorrelation (R2)  = {c["r2_value"]:.10f}', file=logfile)
+					print(f'\tk                 = {c["k"]:.8f} s^-1', file=logfile)
+					print(f'\tA0                = {c["A0"]:.3f}', file=logfile)
+					print(f'\tslope             = {c["B"]:.3f}', file=logfile)
 					print(f'\tB                 = {c["B"]:.3f}', file=logfile)
 					print(f'\tLife-time         = {1/c["k"]:.2f} s', file=logfile)
 					print(f'\tHalf-life         = {np.log(2)/c["k"]:.2f} s', file=logfile)
@@ -214,7 +225,7 @@ if __name__ == '__main__':
 		ax2 = plt.twinx(ax)
 
 		ax.plot(cx, cy, label='IR spectrum cyclohexanone',color='black')
-		ax2.scatter(tuned_wn.values(), [r[k]*1000 if k in r else 0 for e, r in main_results.items()], color='red')
+		ax2.scatter(tuned_wn.values(), [r[k]*1000 if k in r else 0 for e, r in main_results.items()], color='bloodorange')
 		ax.set_xlim(min(tuned_wn.values())-30, max(tuned_wn.values())+30)
 		ax2.spines['right'].set_color('red')
 		ax2.yaxis.label.set_color('red')

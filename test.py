@@ -1,35 +1,42 @@
 import numpy as np 
 import matplotlib.pyplot as plt
-from pkg.exp_decay_fitter import fit_exp_decay, fit_biexp_decay, fit_exp_lin
+from scipy.optimize import curve_fit
 
 
-data = np.load("kinetics_cyclohexanone_20s_180x_5um_1_array.npy").flatten()
-data = data - data.min()
-x = np.arange(0, data.size) * 10
 
-exp_lin 	= lambda x, *p: p[1]*np.exp(-p[0]*x) + p[2]*x
-exp 		= lambda x, *p: p[1]*np.exp(-p[0]*x)
-biexp 		= lambda x, *p: p[2]*np.exp(-p[0]*x) + p[3]*np.exp(-p[1]*x)
+# x = np.linspace(0, 3600, 360)
 
 
-res_exp_lin = fit_exp_lin(x, data, show_fit=False, show_residuals=False)
-res_exp 	= fit_exp_decay(x, data, show_fit=False, show_residuals=False)
-res_biexp 	= fit_biexp_decay(x, data, show_fit=False, show_residuals=False)
+# slopes = []
+# t_error = []
+# for slope in np.linspace(0,.0004, 10):
+# 	p = [5, 300, slope]
+# 	y = p[0] * np.exp(-x/p[1]) - p[2]*x
 
-# plt.plot(x, f(x, k, A0, b), label='input data')
-normalize = lambda y: (y-y.min())/(y.max()-y.min())
-normalize = lambda y: y
+# 	popt, pconv = curve_fit(lambda x, *p:p[0]*np.exp(-x/p[1]), x, y, [p[0], p[1]])
+# 	# plt.scatter(x, y)
+# 	# plt.plot(x, popt[0]*np.exp(-x/popt[1]))
+# 	# plt.plot(x, y-popt[0]*np.exp(-x/popt[1]))
+# 	t_error.append(p[1]-popt[1])
+# 	slopes.append(slope)
 
-plt.figure()
-plt.plot(x, data, label='Raw data')
-plt.plot(x, exp(x, *res_exp.values()), label='Exponential model')
-plt.plot(x, exp_lin(x, *res_exp_lin.values()), label='Exponential + linear model')
-plt.plot(x, biexp(x, *res_biexp.values()), label='Biexponential model')
-plt.legend()
+# plt.plot(slopes, t_error)
+# plt.show()
 
-plt.figure()
-plt.plot(x, normalize(data - exp(x, *res_exp.values())), label='residuals of exp fit')
-plt.plot(x, normalize(data - exp_lin(x, *res_exp_lin.values())), label='residuals of exp_lin fit')
-plt.plot(x, normalize(data - biexp(x, *res_biexp.values())), label='residuals of biexp fit')
-plt.legend()
+
+
+
+ftrue = lambda x, *p: p[0]*np.exp(-x/p[2]) + p[1]*np.exp(-x/p[3])
+fmodel = lambda x, *p: p[0]*np.exp(-x/p[1]) + p[2]*x + p[3]
+
+
+x = np.linspace(0, 2000, 360)
+y = ftrue(x, *[1, 0.2, 300, 2000])
+popt, pconv = curve_fit(fmodel, x, y, [1, 300, 0, 0])
+plt.scatter(x, y)
+plt.plot(x, fmodel(x, *popt), color='red')
+plt.show()
+
+plt.plot(x, y-fmodel(x, *popt))
+print(popt)
 plt.show()

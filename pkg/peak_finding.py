@@ -26,7 +26,8 @@ def read_UV(file):
 def get_FSR(peakx, lowx=4000):
 	peakx = peakx[peakx > lowx]
 	diff = np.abs(np.diff(peakx))
-	diff = diff[np.abs(diff-diff.mean()) < 20] #removelarge errors
+	diff = diff[diff > 100]
+	# diff = diff[np.abs(diff-diff.mean()) < 20] #removelarge errors
 	FSR = np.mean(diff)
 	if np.isnan(FSR):
 		return

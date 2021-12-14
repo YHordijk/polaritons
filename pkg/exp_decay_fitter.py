@@ -21,8 +21,8 @@ def fitter(f, x, y, vars=[], name='fit', p0=None, show_fit=False, plots_dir=None
 
 
 
-def fit_exp_lin(x, y, show_fit=False, plots_dir=None, title='Predicted and reference rate', index=0, show_residuals=False):
-	f = lambda x, k, A0, b: A0 * np.exp(-k*x) + b * x
+def fit_exp_lin(x, y, show_fit=True, plots_dir=None, title='Predicted and reference rate', index=0, show_residuals=True):
+	f = lambda x, k, A0, b, B: A0 * np.exp(-k*x) + b * x + B
 	error = lambda x, *args: np.sum((y-f(x, *args))**2)
 
 	halfheight = (y.max()-y.min())/2 + y.min()
@@ -30,7 +30,7 @@ def fit_exp_lin(x, y, show_fit=False, plots_dir=None, title='Predicted and refer
 	k = np.log(2)/x[closest_to_middle]
 	A0 = (y.max()-y.min())
 
-	res = curve_fit(f, x, y, [k, A0, 0], maxfev=10000)[0]
+	res = curve_fit(f, x, y, [k, A0, 0, 0], maxfev=10000)[0]
 
 	Stot = np.sum((y-np.mean(y))**2)
 	r2_value = 1 - (error(x, *res)/Stot)
@@ -38,11 +38,14 @@ def fit_exp_lin(x, y, show_fit=False, plots_dir=None, title='Predicted and refer
 	k = res[0]
 	A0 = res[1]
 	b = res[2]
-	results = {'k':k, 'A0':A0, 'b':b, 'error':error(x, *res), 'r2_value':r2_value}
+	B = res[3]
+	results = {'k':k, 'A0':A0, 'b':b, 'B':B, 'error':error(x, *res), 'r2_value':r2_value, 'model': 'exp_lin'}
 
 	if show_fit: 
 		plt.figure()
 		plt.plot(x, f(x, *res), label=f'Predicted decay, R2={r2_value}')
+		plt.plot(x, A0*np.exp(-x*k)+B, label=f'Exponential part')
+		plt.plot(x, b*x+B, label=f'linear part')
 		plt.plot(x, y, label='Reference data')
 		plt.title(f'{title} {index}\nk={k:.3f}, A0={A0:.3f}, b={b:.3f}')
 		plt.xlabel('Time (s)')
@@ -64,7 +67,7 @@ def fit_exp_lin(x, y, show_fit=False, plots_dir=None, title='Predicted and refer
 	plt.figure()
 	plt.plot(x, y)
 	plt.plot(x, y - f(x, *res))
-	plt.show()
+	# plt.show()
 
 
 	return results
@@ -120,9 +123,9 @@ def fit_exp_decay(x, y, use_scipy=True, maxiter=100_000, eps=1e-12, plot_errors=
 		plt.tight_layout()
 		if plots_dir is not None: plt.savefig(f'{plots_dir}/exp_decay_residuals_{index}.jpg')
 
-	plt.figure()
-	plt.plot(x, y)
-	plt.plot(x, y - f(x, *res))
+	# plt.figure()
+	# plt.plot(x, y)
+	# plt.plot(x, y - f(x, *res))
 	# plt.show()
 	return results
 

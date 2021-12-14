@@ -1,0 +1,24 @@
+====== BEGINNING SCANNING ANALYSIS ======
+Main data directory: data/SP_scan_new_cavity
+Found 8 experiments!
+	20211213_sp_cyclohexanone_5um_newcavity: data/SP_scan_new_cavity/20211213_sp_cyclohexanone_5um_newcavity
+	20211213_sp_cyclohexanone_5um_oldcavity: data/SP_scan_new_cavity/20211213_sp_cyclohexanone_5um_oldcavity
+	20211214_sp_cyclohexanone_5um_new_cavity_1: data/SP_scan_new_cavity/20211214_sp_cyclohexanone_5um_new_cavity_1
+	20211214_sp_cyclohexanone_5um_new_cavity_2: data/SP_scan_new_cavity/20211214_sp_cyclohexanone_5um_new_cavity_2
+	20211214_sp_cyclohexanone_5um_new_cavity_3: data/SP_scan_new_cavity/20211214_sp_cyclohexanone_5um_new_cavity_3
+	20211214_sp_cyclohexanone_5um_new_cavity_4: data/SP_scan_new_cavity/20211214_sp_cyclohexanone_5um_new_cavity_4
+	20211214_sp_cyclohexanone_5um_new_cavity_5: data/SP_scan_new_cavity/20211214_sp_cyclohexanone_5um_new_cavity_5
+	20211214_sp_cyclohexanone_5um_new_cavity_6: data/SP_scan_new_cavity/20211214_sp_cyclohexanone_5um_new_cavity_6
+FSR succesfully calculated for all experiments!
+k1 succesfully calculated for all experiments!
+
+Results:
+	Experiment        | FSR (cm^-1) | v (cm^-1) | Spacing (um) | t (s)
+	20211213_sp_cyclohexanone_5um_newcavity |      633.50 |   1266.99 |         6.07 |  260.587
+	20211213_sp_cyclohexanone_5um_oldcavity |      424.89 |   1274.67 |         9.05 |  191.028
+	20211214_sp_cyclohexanone_5um_new_cavity_1 |      605.33 |   1210.65 |         6.35 |  273.680
+	20211214_sp_cyclohexanone_5um_new_cavity_2 |      595.71 |   1191.43 |         6.45 |  280.441
+	20211214_sp_cyclohexanone_5um_new_cavity_3 |      576.37 |   1152.75 |         6.67 |  291.968
+	20211214_sp_cyclohexanone_5um_new_cavity_4 |      564.34 |   1128.67 |         6.81 |  313.243
+	20211214_sp_cyclohexanone_5um_new_cavity_5 |      544.83 |   1089.66 |         7.06 |  268.245
+	20211214_sp_cyclohexanone_5um_new_cavity_6 |      557.60 |   1115.19 |         6.89 |  231.070

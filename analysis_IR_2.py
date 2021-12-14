@@ -192,7 +192,7 @@ def main(**settings):
 		plt.plot(spectrax, spectrum, color=color)
 
 		#all peaks
-		peak_res = get_peaks(spectrax, spectrum, prominence=0.003 )
+		peak_res = get_peaks(spectrax, spectrum, prominence=0.05 )
 		peak_res_fsr = get_peaks(spectrax, spectrum, prominence=0.05)
 
 		if plot_peaks:
