@@ -225,7 +225,7 @@ if __name__ == '__main__':
 		ax2 = plt.twinx(ax)
 
 		ax.plot(cx, cy, label='IR spectrum cyclohexanone',color='black')
-		ax2.scatter(tuned_wn.values(), [r[k]*1000 if k in r else 0 for e, r in main_results.items()], color='bloodorange')
+		ax2.scatter(tuned_wn.values(), [r[k]*1000 if k in r else 0 for e, r in main_results.items()], color='red')
 		ax.set_xlim(min(tuned_wn.values())-30, max(tuned_wn.values())+30)
 		ax2.spines['right'].set_color('red')
 		ax2.yaxis.label.set_color('red')
