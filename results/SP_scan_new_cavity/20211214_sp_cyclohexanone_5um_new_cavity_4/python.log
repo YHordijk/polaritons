@@ -29,7 +29,7 @@ stepsize      =  1.0000 nm
 === KINETICS
 Exponential fitting for average between wavelenghts [520.0, 580.0] nm:
 	t in [0, 2480] s
-	Correlation (R2)  = 0.9988802086
+	Correlation (R2)  = 0.9990000000
 	k                 = 0.00319241 s^-1
 	A0                = 0.238
 	slope             = 0.025

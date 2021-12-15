@@ -5,17 +5,21 @@ import matplotlib.pyplot as plt
 
 
 
-def fitter(f, x, y, vars=[], name='fit', p0=None, show_fit=False, plots_dir=None):
+def fitter(f, x, y, name='fit', p0=None, show_fit=False, plots_dir=None):
 	error = lambda x, *args: np.sum((y-f(x, *args))**2)
-	res = curve_fit(f, x, y, maxfev=100_000)[0]
+	popt, pconv = curve_fit(f, x, y, p0, maxfev=100_000)
 	Stot = np.sum((y-np.mean(y))**2)
-	r2_value = 1 - (error(x, *res)/Stot)
+	r2_value = 1 - (error(x, *popt)/Stot)
 
-	results = {v:r for v, r in zip(vars, res.values())}
-	
+	results = {}
+	results['error'] = error(x, *popt)
+	results['r2_value'] = r2_value
+	results['func'] = f
+	results['popt'] = popt
+	results['ypred'] = f(x, *popt)
+	results['name'] = name
 
-	# if show_fit:
-
+	return results
 
 
 
@@ -34,12 +38,18 @@ def fit_exp_lin(x, y, show_fit=True, plots_dir=None, title='Predicted and refere
 
 	Stot = np.sum((y-np.mean(y))**2)
 	r2_value = 1 - (error(x, *res)/Stot)
-
+	round_to = 1
+	for i in str(r2_value).split('.')[1]:
+		if i == '9':
+			round_to += 1
+		else: 
+			break
+	r2_value = round(r2_value, round_to)
 	k = res[0]
 	A0 = res[1]
 	b = res[2]
 	B = res[3]
-	results = {'k':k, 'A0':A0, 'b':b, 'B':B, 'error':error(x, *res), 'r2_value':r2_value, 'model': 'exp_lin'}
+	results = {'k':k, 'A0':A0, 'b':b, 'B':B, 'popt':res, 'error':error(x, *res), 'ypred':f(x,*res), 'r2_value':r2_value, 'model': 'exp_lin', 'func': f}
 
 	if show_fit: 
 		plt.figure()
@@ -95,7 +105,7 @@ def fit_exp_decay(x, y, use_scipy=True, maxiter=100_000, eps=1e-12, plot_errors=
 
 	Stot = np.sum((y-np.mean(y))**2)
 	r2_value = 1 - (error(x, *res)/Stot)
-	results = {'model': 'exp_decay', 'k':k, 'A0':A0, 'B':B, 'error':error(x, *res), 'r2_value':r2_value}
+	results = {'model': 'exp_decay', 'k':k, 'A0':A0, 'B':B, 'popt':res, 'error':error(x, *res), 'ypred':f(x,*res), 'r2_value':r2_value, 'func': f}
 
 
 	if show_fit: 
@@ -161,7 +171,7 @@ def fit_biexp_decay(x, y, p0=None, show_fit=True,
 
 	Stot = np.sum((y-np.mean(y))**2)
 	r2_value = 1 - (error(x, *res)/Stot)
-	results = {'model': 'biexp_decay', 'k1':k1, 'k2':k2, 'A01':A01, 'A02':A02, 'B':B, 'error':error(x, *res), 'r2_value':r2_value}
+	results = {'model': 'biexp_decay', 'k1':k1, 'k2':k2, 'A01':A01, 'A02':A02, 'B':B, 'popt':res, 'error':error(x, *res), 'ypred':f(x,*res), 'r2_value':r2_value, 'func': f}
 
 
 	if show_fit: 

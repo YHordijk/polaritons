@@ -48,9 +48,15 @@ if __name__ == '__main__':
 	main_results = {}
 	print(f'====== BEGINNING SCANNING ANALYSIS ======', file=main_logfile)
 	print(f'Main data directory: {main_data_dir}', file=main_logfile)
-	print(f'Found {len(data_dirs.keys())} experiments!', file=main_logfile)
+	Nexp = len(data_dirs.keys())
+	print(f'Found {Nexp} experiments!', file=main_logfile)
+	i = 0
 	for experiment, data_dir in data_dirs.items():
-		print(f'\t{experiment:<6}: {data_dir}', file=main_logfile)
+		print(f'\t{i: <3} {experiment:<6}: {data_dir}', file=main_logfile)
+		i += 1
+
+	cmap = plt.get_cmap('tab10')
+	exp_colors = {e: cmap(i/Nexp) for i,e in enumerate(data_dirs.keys())}
 
 	for experiment, data_dir in data_dirs.items():
 		main_results[experiment] = {}
@@ -120,12 +126,17 @@ if __name__ == '__main__':
 			cy = aKIN.main(**kinetics_settings, show_plots=False)
 			cx = [np.arange(yy.size)*10 for yy in cy]
 
+			main_results[experiment]['ys'] = cy
+			main_results[experiment]['x'] = cx
+
 			fits = []
 			for i, y, x in zip(range(len(cy)), cy, cx):
 				if experiment in ['2']: #specify here if kinetics should be fitted using biexp or exp
 					fits.append(exp_decay_fitter.fit_exp_lin(x, y - np.mean(y[-20:-1]), plots_dir=res_dir+'/plots', index=i))
 				else:	
 					fits.append(exp_decay_fitter.fit_exp_lin(x, y - np.mean(y[-20:-1]), plots_dir=res_dir+'/plots', index=i))
+
+			main_results[experiment]['fits'] = fits
 
 			print('=== KINETICS', file=logfile)
 			for w, c, x in zip(kinetics_settings['tracking_spectrax'], fits, cx):
@@ -210,9 +221,11 @@ if __name__ == '__main__':
 
 
 	print(f'\nResults:', file=main_logfile)
-	print(f'\tExperiment        | FSR (cm^-1) | v (cm^-1) | Spacing (um) | t (s)', file=main_logfile)
+	print(f'\tExperiment | FSR (cm^-1) | v (cm^-1) | Spacing (um) | t (s)', file=main_logfile)
+	i = 0
 	for e, r in main_results.items():
-		print(f'\t{e: <17} | {r["FSR"]: >11.2f} | {r["tuned v"]: >9.2f} | {r["spacing"]: 12.2f} | {1/r["k1"]: 8.3f}', file=main_logfile)
+		print(f'\t{i: <10} | {r["FSR"]: >11.2f} | {r["tuned v"]: >9.2f} | {r["spacing"]: 12.2f} | {1/r["k1"]: 8.3f}', file=main_logfile)
+		i+=1
 
 
 	cyclohexanone, _ = aIR.read_csv("data/cyclohexanone_3um.csv")
@@ -225,7 +238,7 @@ if __name__ == '__main__':
 		ax2 = plt.twinx(ax)
 
 		ax.plot(cx, cy, label='IR spectrum cyclohexanone',color='black')
-		ax2.scatter(tuned_wn.values(), [r[k]*1000 if k in r else 0 for e, r in main_results.items()], color='red')
+		ax2.scatter(tuned_wn.values(), [r[k]*1000 if k in r else 0 for e, r in main_results.items()], c=list(exp_colors.values()))
 		ax.set_xlim(min(tuned_wn.values())-30, max(tuned_wn.values())+30)
 		ax2.spines['right'].set_color('red')
 		ax2.yaxis.label.set_color('red')
@@ -239,3 +252,17 @@ if __name__ == '__main__':
 		plt.legend()
 		plt.tight_layout()
 		plt.savefig(f'{main_plots_dir}/{k}_scanning.png')
+
+	plt.figure()
+	plt.ylabel('Absorbance (a.u.)')
+	plt.xlabel('t (s)')
+	i = 0
+	for e, r in main_results.items():
+		plt.scatter(r['x'][0], r['ys'][0] - np.mean(r['ys'][0][-20:-1]), color=exp_colors[e], alpha=.5, s=2)
+		plt.plot(r['x'][0], r['fits'][0]['ypred'], color=exp_colors[e], label=f'Experiment {i}, $r^2$={r["fits"][0]["r2_value"]}')
+		i += 1
+
+	plt.tight_layout()
+	plt.legend()
+	plt.savefig(f'{main_plots_dir}/all_kinetics.png')
+	plt.show()
