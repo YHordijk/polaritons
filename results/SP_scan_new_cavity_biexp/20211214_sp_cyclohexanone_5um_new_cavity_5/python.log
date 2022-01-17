@@ -1,0 +1,44 @@
+====== STARTING ANALYSIS ======
+Data directory:    data/SP_scan_new_cavity/20211214_sp_cyclohexanone_5um_new_cavity_5
+Results directory: results/SP_scan_new_cavity/20211214_sp_cyclohexanone_5um_new_cavity_5
+
+====== BEGINNING CAVITY ANALYSIS
+=== GENERAL
+Filename: data/SP_scan_new_cavity/20211214_sp_cyclohexanone_5um_new_cavity_5/cavity.csv
+Loaded 1 spectra!
+v_range    =  [nan, 400.0] cm^-1
+stepsize   =  nan cm^-1
+
+=== SPECTRA
+Spectrum 0:
+	FSR            = 544.83 cm^-1
+	FSR_offset     = 38.03 cm^-1
+	Cavity spacing = 7.0551 um
+	FWHM           = 106.431 cm^-1
+	Quality        = 5.119
+
+=== END
+Plots saved to results/SP_scan_new_cavity/20211214_sp_cyclohexanone_5um_new_cavity_5/plots
+Spectrum data written to results/SP_scan_new_cavity/20211214_sp_cyclohexanone_5um_new_cavity_5/spectrum_data.csv
+
+====== BEGINNING KINETICS ANALYSIS
+=== GENERAL
+Loaded 324 spectra!
+lambda_range  =  [190.0, 1100.0] nm
+stepsize      =  1.0000 nm
+=== KINETICS
+Biexponential fitting for average between wavelenghts [520.0, 580.0] nm:
+	t in [0, 3230] s
+	Correlation (R2)  = 0.9996190068
+	k1                = 0.00553071 s^-1
+	k2                = 0.00194320 s^-1
+	A01               = 0.339
+	A02               = 0.234
+	B                 = 0.001
+	Life-time 1       = 180.81 s
+	Life-time 2       = 514.61 s
+	Half-life 1       = 125.33 s
+	Half-life 2       = 356.70 s
+=== END
+
+====== END

@@ -1,0 +1,59 @@
+====== BEGINNING SCANNING ANALYSIS ======
+Main data directory: data/SP_scan_new_cavity
+Found 20 experiments!
+	0   20211213_sp_cyclohexanone_5um_newcavity: data/SP_scan_new_cavity/20211213_sp_cyclohexanone_5um_newcavity
+	1   20211214_sp_cyclohexanone_5um_new_cavity_1: data/SP_scan_new_cavity/20211214_sp_cyclohexanone_5um_new_cavity_1
+	2   20211214_sp_cyclohexanone_5um_new_cavity_2: data/SP_scan_new_cavity/20211214_sp_cyclohexanone_5um_new_cavity_2
+	3   20211214_sp_cyclohexanone_5um_new_cavity_3: data/SP_scan_new_cavity/20211214_sp_cyclohexanone_5um_new_cavity_3
+	4   20211214_sp_cyclohexanone_5um_new_cavity_4: data/SP_scan_new_cavity/20211214_sp_cyclohexanone_5um_new_cavity_4
+	5   20211214_sp_cyclohexanone_5um_new_cavity_5: data/SP_scan_new_cavity/20211214_sp_cyclohexanone_5um_new_cavity_5
+	6   20211214_sp_cyclohexanone_5um_new_cavity_6: data/SP_scan_new_cavity/20211214_sp_cyclohexanone_5um_new_cavity_6
+	7   20211215_sp_cyclohexanone_5um_new_cavity_10: data/SP_scan_new_cavity/20211215_sp_cyclohexanone_5um_new_cavity_10
+	8   20211215_sp_cyclohexanone_5um_new_cavity_11: data/SP_scan_new_cavity/20211215_sp_cyclohexanone_5um_new_cavity_11
+	9   20211215_sp_cyclohexanone_5um_new_cavity_12: data/SP_scan_new_cavity/20211215_sp_cyclohexanone_5um_new_cavity_12
+	10  20211215_sp_cyclohexanone_5um_new_cavity_13: data/SP_scan_new_cavity/20211215_sp_cyclohexanone_5um_new_cavity_13
+	11  20211215_sp_cyclohexanone_5um_new_cavity_13_reversed: data/SP_scan_new_cavity/20211215_sp_cyclohexanone_5um_new_cavity_13_reversed
+	12  20211215_sp_cyclohexanone_5um_new_cavity_14: data/SP_scan_new_cavity/20211215_sp_cyclohexanone_5um_new_cavity_14
+	13  20211215_sp_cyclohexanone_5um_new_cavity_15: data/SP_scan_new_cavity/20211215_sp_cyclohexanone_5um_new_cavity_15
+	14  20211215_sp_cyclohexanone_5um_new_cavity_16: data/SP_scan_new_cavity/20211215_sp_cyclohexanone_5um_new_cavity_16
+	15  20211215_sp_cyclohexanone_5um_new_cavity_16b: data/SP_scan_new_cavity/20211215_sp_cyclohexanone_5um_new_cavity_16b
+	16  20211215_sp_cyclohexanone_5um_new_cavity_16c: data/SP_scan_new_cavity/20211215_sp_cyclohexanone_5um_new_cavity_16c
+	17  20211215_sp_cyclohexanone_5um_new_cavity_7: data/SP_scan_new_cavity/20211215_sp_cyclohexanone_5um_new_cavity_7
+	18  20211215_sp_cyclohexanone_5um_new_cavity_8: data/SP_scan_new_cavity/20211215_sp_cyclohexanone_5um_new_cavity_8
+	19  20211215_sp_cyclohexanone_5um_new_cavity_9: data/SP_scan_new_cavity/20211215_sp_cyclohexanone_5um_new_cavity_9
+Found 3 experiments!
+	0   20211221_sp_cyclohexanone_5um_no_au: data/no_au/20211221_sp_cyclohexanone_5um_no_au
+	1   20211221_sp_cyclohexanone_5um_no_au_2: data/no_au/20211221_sp_cyclohexanone_5um_no_au_2
+	2   20211221_sp_cyclohexanone_5um_no_au_3: data/no_au/20211221_sp_cyclohexanone_5um_no_au_3
+FSR succesfully calculated for all experiments!
+k1 succesfully calculated for all experiments!
+k1 succesfully calculated for all experiments!
+
+Results:
+	Experiment | FSR (cm^-1) | v (cm^-1) | Spacing (um) | t (s)
+	0          |      633.50 |   1266.99 |         6.07 |  310.001
+	1          |      605.33 |   1210.65 |         6.35 |  388.190
+	2          |      595.71 |   1191.43 |         6.45 |  357.142
+	3          |      576.37 |   1152.75 |         6.67 |  324.119
+	4          |      564.34 |   1128.67 |         6.81 |  372.477
+	5          |      544.83 |   1089.66 |         7.06 |  302.160
+	6          |      557.60 |   1115.19 |         6.89 |  260.471
+	7          |      600.40 |   1200.80 |         6.40 |  453.858
+	8          |      616.88 |   1233.75 |         6.23 |  374.608
+	9          |      624.62 |   1249.23 |         6.15 |  285.958
+	10         |      649.33 |   1298.65 |         5.92 |  688.047
+	11         |      650.92 |   1301.84 |         5.91 |  350.935
+	12         |      643.02 |   1286.04 |         5.98 |  418.708
+	13         |      548.87 |   1097.73 |         7.00 |  311.755
+	14         |      539.60 |   1079.20 |         7.12 |  368.557
+	15         |      540.24 |   1080.48 |         7.11 |  404.285
+	16         |      540.24 |   1080.48 |         7.11 |  361.442
+	17         |      561.98 |   1123.95 |         6.84 |  309.940
+	18         |      575.54 |   1151.07 |         6.68 |  353.105
+	19         |      591.82 |   1183.65 |         6.49 |  357.881
+
+Results (mirrorless):
+	Experiment | t (s)
+	0          |  370.201
+	1          |  290.673
+	2          |  233.944

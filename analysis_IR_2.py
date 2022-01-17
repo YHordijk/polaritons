@@ -185,6 +185,7 @@ def main(**settings):
 	print('\n=== SPECTRA', file=logfile)
 	FSRs = []
 	FSR_offsets = []
+	FSR_stds = []
 	for i, spectrum in enumerate(spectra):
 		color = cmap(i/N_spectra)
 		print(f'Spectrum {i}:', file=logfile)
@@ -193,7 +194,7 @@ def main(**settings):
 
 		#all peaks
 		peak_res = get_peaks(spectrax, spectrum, prominence=0.05 )
-		peak_res_fsr = get_peaks(spectrax, spectrum, prominence=0.05)
+		peak_res_fsr = get_peaks(spectrax, spectrum, prominence=0.07)
 
 		if plot_peaks:
 			plt.scatter(peak_res['peakx'], peak_res['peaky'], color=color)
@@ -209,6 +210,7 @@ def main(**settings):
 		else:
 			FSR = FSR_res['FSR']
 			FSR_offset = FSR_res['offset']
+			FSR_std = FSR_res['std']
 
 			print(f'\tFSR            = {FSR:.2f} cm^-1', file=logfile)
 			print(f'\tFSR_offset     = {FSR_offset:.2f} cm^-1', file=logfile)
@@ -230,6 +232,7 @@ def main(**settings):
 
 			FSRs.append(FSR)
 			FSR_offsets.append(FSR_offset)
+			FSR_stds.append(FSR_std)
 
 		#calculate Rabi splitting
 		for j, polariton_wn in enumerate(polariton_wns):
@@ -253,6 +256,7 @@ def main(**settings):
 
 	results['FSRs'] = FSRs
 	results['FSR_offsets'] = FSR_offsets
+	results['FSR_stds'] = FSR_stds
 	plt.tight_layout()
 	plt.legend()
 	plt.savefig(f'{plots_dir}/spectra_main_IR.jpg')

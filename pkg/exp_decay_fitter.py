@@ -5,11 +5,23 @@ import matplotlib.pyplot as plt
 
 
 
-def fitter(f, x, y, name='fit', p0=None, show_fit=False, plots_dir=None):
+def fitter(f, x, y, name='fit', p0=None, show_fit=False, show_residuals=False, plots_dir=None, variables=None):
 	error = lambda x, *args: np.sum((y-f(x, *args))**2)
 	popt, pconv = curve_fit(f, x, y, p0, maxfev=100_000)
 	Stot = np.sum((y-np.mean(y))**2)
 	r2_value = 1 - (error(x, *popt)/Stot)
+
+	round_to = 1
+	for i in str(r2_value).split('.')[1]:
+		if i == '9':
+			round_to += 1
+		else: 
+			break
+	# r2_value = round(r2_value, round_to)
+	if str(round(r2_value, round_to))[-1] == '9':
+		r2_value = round(r2_value, round_to+1)
+	else:
+		r2_value = round(r2_value, round_to)
 
 	results = {}
 	results['error'] = error(x, *popt)
@@ -18,69 +30,112 @@ def fitter(f, x, y, name='fit', p0=None, show_fit=False, plots_dir=None):
 	results['popt'] = popt
 	results['ypred'] = f(x, *popt)
 	results['name'] = name
+	if variables is not None:
+		for v, p in zip(variables, popt):
+			results[v] = p
 
 	return results
 
 
-
-
-
 def fit_exp_lin(x, y, show_fit=True, plots_dir=None, title='Predicted and reference rate', index=0, show_residuals=True):
 	f = lambda x, k, A0, b, B: A0 * np.exp(-k*x) + b * x + B
-	error = lambda x, *args: np.sum((y-f(x, *args))**2)
-
+	variables = ['k', 'A0','b', 'B']
 	halfheight = (y.max()-y.min())/2 + y.min()
 	closest_to_middle = np.argmin(np.abs(y-halfheight))
 	k = np.log(2)/x[closest_to_middle]
 	A0 = (y.max()-y.min())
 
-	res = curve_fit(f, x, y, [k, A0, 0, 0], maxfev=10000)[0]
+	results = fitter(f, x, y, variables=variables, name='exp_lin', p0=[k, A0, 0, 0], show_fit=False, show_residuals=False, plots_dir=plots_dir)
 
-	Stot = np.sum((y-np.mean(y))**2)
-	r2_value = 1 - (error(x, *res)/Stot)
-	round_to = 1
-	for i in str(r2_value).split('.')[1]:
-		if i == '9':
-			round_to += 1
-		else: 
-			break
-	r2_value = round(r2_value, round_to)
-	k = res[0]
-	A0 = res[1]
-	b = res[2]
-	B = res[3]
-	results = {'k':k, 'A0':A0, 'b':b, 'B':B, 'popt':res, 'error':error(x, *res), 'ypred':f(x,*res), 'r2_value':r2_value, 'model': 'exp_lin', 'func': f}
-
+	A0 = results['A0']
+	k = results['k']
+	B = results['B']
+	b = results['b']
 	if show_fit: 
 		plt.figure()
-		plt.plot(x, f(x, *res), label=f'Predicted decay, R2={r2_value}')
+		plt.plot(x, f(x, *results['popt']), label=f'Predicted decay, R2={results["r2_value"]}')
 		plt.plot(x, A0*np.exp(-x*k)+B, label=f'Exponential part')
 		plt.plot(x, b*x+B, label=f'linear part')
 		plt.plot(x, y, label='Reference data')
-		plt.title(f'{title} {index}\nk={k:.3f}, A0={A0:.3f}, b={b:.3f}')
+		plt.title(f'{title} {index}\nt={1/k:.2f}s, A0={A0:.3f}, b={b:.3f}')
 		plt.xlabel('Time (s)')
 		plt.ylabel('Transmittance')
 		plt.legend()
 		plt.tight_layout()
-		if plots_dir is not None: plt.savefig(f'{plots_dir}/exp_decay_lin_fit_{index}.jpg')
+		if plots_dir is not None: plt.savefig(f'{plots_dir}/exp_lin_fit_{index}.jpg')
 
 	if show_residuals: 
 		plt.figure()
-		plt.plot(x, y-f(x, *res))
+		plt.plot(x, y-f(x, *results['popt']))
 		plt.plot(x, np.zeros_like(x), linestyle='dashed', color='black')
-		plt.title(f'{title} residuals {index}\nk={k:.3f}, A0={A0:.3f}, b={b:.3f}')
+		plt.title(f'{title} residuals {index}\nt={1/k:.2f}s, A0={A0:.3f}, b={b:.3f}')
 		plt.xlabel('Time (s)')
-		plt.ylabel('y - f(x|k,A0,b)')
+		plt.ylabel('y - f(x | k, A0, b)')
 		plt.tight_layout()
-		if plots_dir is not None: plt.savefig(f'{plots_dir}/exp_decay_lin_residuals_{index}.jpg')
-
-	plt.figure()
-	plt.plot(x, y)
-	plt.plot(x, y - f(x, *res))
-	# plt.show()
+		if plots_dir is not None: plt.savefig(f'{plots_dir}/exp_lin_residuals_{index}.jpg')
 
 
 	return results
+
+
+
+
+# def fit_exp_lin(x, y, show_fit=True, plots_dir=None, title='Predicted and reference rate', index=0, show_residuals=True):
+# 	f = lambda x, k, A0, b, B: A0 * np.exp(-k*x) + b * x + B
+# 	error = lambda x, *args: np.sum((y-f(x, *args))**2)
+
+# 	halfheight = (y.max()-y.min())/2 + y.min()
+# 	closest_to_middle = np.argmin(np.abs(y-halfheight))
+# 	k = np.log(2)/x[closest_to_middle]
+# 	A0 = (y.max()-y.min())
+
+# 	res = curve_fit(f, x, y, [k, A0, 0, 0], maxfev=10000)[0]
+
+# 	Stot = np.sum((y-np.mean(y))**2)
+# 	r2_value = 1 - (error(x, *res)/Stot)
+# 	round_to = 1
+# 	for i in str(r2_value).split('.')[1]:
+# 		if i == '9':
+# 			round_to += 1
+# 		else: 
+# 			break
+# 	r2_value = round(r2_value, round_to)
+# 	k = res[0]
+# 	A0 = res[1]
+# 	b = res[2]
+# 	B = res[3]
+# 	results = {'k':k, 'A0':A0, 'b':b, 'B':B, 'popt':res, 'error':error(x, *res), 'ypred':f(x,*res), 'r2_value':r2_value, 'model': 'exp_lin', 'func': f}
+
+# 	if show_fit: 
+# 		plt.figure()
+# 		plt.plot(x, f(x, *res), label=f'Predicted decay, R2={r2_value}')
+# 		plt.plot(x, A0*np.exp(-x*k)+B, label=f'Exponential part')
+# 		plt.plot(x, b*x+B, label=f'linear part')
+# 		plt.plot(x, y, label='Reference data')
+# 		plt.title(f'{title} {index}\nk={k:.3f}, A0={A0:.3f}, b={b:.3f}')
+# 		plt.xlabel('Time (s)')
+# 		plt.ylabel('Transmittance')
+# 		plt.legend()
+# 		plt.tight_layout()
+# 		if plots_dir is not None: plt.savefig(f'{plots_dir}/exp_decay_lin_fit_{index}.jpg')
+
+# 	if show_residuals: 
+# 		plt.figure()
+# 		plt.plot(x, y-f(x, *res))
+# 		plt.plot(x, np.zeros_like(x), linestyle='dashed', color='black')
+# 		plt.title(f'{title} residuals {index}\nk={k:.3f}, A0={A0:.3f}, b={b:.3f}')
+# 		plt.xlabel('Time (s)')
+# 		plt.ylabel('y - f(x|k,A0,b)')
+# 		plt.tight_layout()
+# 		if plots_dir is not None: plt.savefig(f'{plots_dir}/exp_decay_lin_residuals_{index}.jpg')
+
+# 	plt.figure()
+# 	plt.plot(x, y)
+# 	plt.plot(x, y - f(x, *res))
+# 	# plt.show()
+
+
+# 	return results
 
 
 def fit_exp_decay(x, y, use_scipy=True, maxiter=100_000, eps=1e-12, plot_errors=False, show_fit=True, 
@@ -105,7 +160,7 @@ def fit_exp_decay(x, y, use_scipy=True, maxiter=100_000, eps=1e-12, plot_errors=
 
 	Stot = np.sum((y-np.mean(y))**2)
 	r2_value = 1 - (error(x, *res)/Stot)
-	results = {'model': 'exp_decay', 'k':k, 'A0':A0, 'B':B, 'popt':res, 'error':error(x, *res), 'ypred':f(x,*res), 'r2_value':r2_value, 'func': f}
+	results = {'name': 'exp_decay', 'k':k, 'A0':A0, 'B':B, 'popt':res, 'error':error(x, *res), 'ypred':f(x,*res), 'r2_value':r2_value, 'func': f}
 
 
 	if show_fit: 
@@ -171,7 +226,7 @@ def fit_biexp_decay(x, y, p0=None, show_fit=True,
 
 	Stot = np.sum((y-np.mean(y))**2)
 	r2_value = 1 - (error(x, *res)/Stot)
-	results = {'model': 'biexp_decay', 'k1':k1, 'k2':k2, 'A01':A01, 'A02':A02, 'B':B, 'popt':res, 'error':error(x, *res), 'ypred':f(x,*res), 'r2_value':r2_value, 'func': f}
+	results = {'name': 'biexp_decay', 'k1':k1, 'k2':k2, 'A01':A01, 'A02':A02, 'B':B, 'popt':res, 'error':error(x, *res), 'ypred':f(x,*res), 'r2_value':r2_value, 'func': f}
 
 
 	if show_fit: 

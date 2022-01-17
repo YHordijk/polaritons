@@ -42,6 +42,7 @@ def main(*args, **kwargs):
 
 	spectrax = data[:,0]
 	spectra = data[:,1:]
+	
 	wavelenght_stepsize = abs(np.diff(spectrax).mean())
 
 	min_abs = min([a.min() for a in spectra])
@@ -100,7 +101,6 @@ def main(*args, **kwargs):
 		plt.savefig(f'{plots_dir}/spectra_heatmap_kinetics_{i}.jpg')
 
 	plt.close('all')
-
 	
 	def get_tracking_absorbance(wavelenght):
 		low = wavelenght[0]
@@ -120,14 +120,17 @@ def main(*args, **kwargs):
 	tracking_spectra = []
 	for twl in tracking_spectrax:
 		absorbs = get_tracking_absorbance(twl)
+		# print(absorbs)
 		# print(np.where(absorbs < 0.001))
-		absorbs = np.delete(absorbs, np.where(absorbs < 0.001))
+		# absorbs = np.delete(absorbs, np.where(absorbs < 0.001))
 		tracking_spectra.append(absorbs)
 
 		if type(twl) is tuple: twlb = (twl[0]+twl[1])/2
 		else: twlb = twl
 
 		plt.scatter(np.ones_like(absorbs) * twlb, absorbs)
+
+	# print(tracking_spectra)
 
 	plt.figure()
 	plt.title('Tracked spectrax')
@@ -155,7 +158,7 @@ def main(*args, **kwargs):
 
 
 	# plt.show()	
-	np.save(f'./{name}_array.npy', tracking_spectra)
+	# np.save(f'./{name}_array.npy', tracking_spectra)
 	logfile.close()
 	# print('done')
 	return tracking_spectra
@@ -224,6 +227,43 @@ if __name__ == '__main__':
 			'time_delay': 10,
 			'tracking_spectrax': [(520, 580)],
 		},
+		'20211221_no_au': {
+			'name': '20211203_1350',
+			'file':"data/no_au/20211221_sp_cyclohexanone_5um_no_au/kinetics.csv",
+			'time_delay': 10,
+			'tracking_spectrax': [(520, 580)],
+		},
+		'20211222_no_cavity': {
+			'name': 'no_cavity',
+			'file':"data/20211222_no_cavity_just_lamp/kinetics.csv",
+			'time_delay': 10,
+			'tracking_spectrax': [(520, 580)],
+		},
+		'20211222_no_cavity_2': {
+			'name': 'no_cavity_2',
+			'file':"data/20211222_no_cavity_just_lamp_2/kinetics.csv",
+			'time_delay': 10,
+			'tracking_spectrax': [(520, 580)],
+		},
+		'20211223_no_pump_1': {
+			'name': 'no_pump_lamp_effect_1',
+			'file':"data/20211223_sp_cyclohexanone_5um_no_pump_1/kinetics.csv",
+			'time_delay': 10,
+			'tracking_spectrax': [(520, 580)],
+		},
+		'20211223_no_pump_2': {
+			'name': 'no_pump_lamp_effect_2',
+			'file':"data/20211223_sp_cyclohexanone_5um_no_pump_2/kinetics.csv",
+			'time_delay': 10,
+			'tracking_spectrax': [(520, 580)],
+		},
+		'20211223_no_pump_detuned_1': {
+			'name': 'no_pump_lamp_effect_detuned_2',
+			'file':"data/20211223_sp_cyclohexanone_5um_no_pump_detuned_1/kinetics.csv",
+			'time_delay': 10,
+			'tracking_spectrax': [(520, 580)],
+		},
+
 	}
 
 	use_coupled_biexp_decay = True
@@ -243,7 +283,8 @@ if __name__ == '__main__':
 
 
 	cy   = []
-	uncy = [main(**settings['20211203_1350'])[0],]
+	uncy = [main(**settings['20211223_no_pump_1'])[0],main(**settings['20211222_no_cavity'])[0],main(**settings['20211223_no_pump_detuned_1'])[0],]
+	print(uncy)
 
 	cx = [np.arange(yy.size)*10 for yy in cy]
 	uncx = [np.arange(yy.size)*10 for yy in uncy]
@@ -254,9 +295,9 @@ if __name__ == '__main__':
 	plt.xlabel('t (s)')
 	plt.ylabel('Absorbance (a.u.)')
 	for i, x, y in zip(range(len(cx)), cx, cy):
-		plt.plot(x, y, label=f'Coupled cyclohexanone {i}')
+		plt.plot(x, y, label=f'Coupled, experiment {i}')
 	for i, x, y in zip(range(len(uncx)), uncx, uncy):
-		plt.plot(x, y, label=f'Uncoupled cyclohexanone {i}')
+		plt.plot(x, y, label=f'Uncoupled, experiment {i}')
 	plt.legend()
 
 	plt.figure()
@@ -277,7 +318,7 @@ if __name__ == '__main__':
 		uncoupled_fit = [fit_biexp_decay(x, y - np.mean(y[-20:-1]), show_fit=True) for x, y in zip(uncx, uncy)]
 	else:
 		uncoupled_fit = [fit_exp_decay(x, y - np.mean(y[-20:-1]),   show_fit=True) for x, y in zip(uncx, uncy)]
-
+	plt.legend()
 	coupled_halftimes = []
 	print('\n======Coupled experiments=========')
 	for i, c in zip(range(len(coupled_fit)), coupled_fit):

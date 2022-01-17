@@ -1,0 +1,21 @@
+====== STARTING ANALYSIS ======
+Data directory:    data/no_au/20211221_sp_cyclohexanone_5um_no_au_3
+Results directory: results/SP_scan_new_cavity/20211221_sp_cyclohexanone_5um_no_au_3
+
+====== BEGINNING KINETICS ANALYSIS
+=== GENERAL
+Loaded 334 spectra!
+lambda_range  =  [190.0, 1100.0] nm
+stepsize      =  1.0000 nm
+=== KINETICS
+Exponential fitting for average between wavelenghts [520.0, 580.0] nm:
+	t in [0, 3330] s
+	Correlation (R2)  = 0.9994335478
+	k                 = 0.00427452 s^-1
+	A0                = 0.426
+	B                 = 0.003
+	Life-time         = 233.94 s
+	Half-life         = 162.16 s
+=== END
+
+====== END

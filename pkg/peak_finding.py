@@ -23,8 +23,9 @@ def read_UV(file):
 
 
 
-def get_FSR(peakx, lowx=4000):
+def get_FSR(peakx, lowx=4000, highx=7000):
 	peakx = peakx[peakx > lowx]
+	peakx = peakx[peakx < highx]
 	diff = np.abs(np.diff(peakx))
 	diff = diff[diff > 100]
 	# diff = diff[np.abs(diff-diff.mean()) < 20] #removelarge errors
@@ -34,7 +35,12 @@ def get_FSR(peakx, lowx=4000):
 	offset = peakx[-1]%FSR
 	if abs(offset-FSR) < offset:
 		offset = offset-FSR
-	return {'FSR':FSR, 'offset':offset}
+
+	residuals = np.asarray([p%FSR-offset for p in peakx])
+	std = np.std(residuals)
+	print(std)
+
+	return {'FSR':FSR, 'offset':offset, 'std':std}
 
 
 def get_peaks(spectrax, spectray, prominence=0, debug=False):

@@ -1,0 +1,21 @@
+====== BEGINNING SCANNING ANALYSIS ======
+Main data directory: data/SP_scan_new_cavity2
+Found 1 experiments!
+	0   20211215_sp_cyclohexanone_5um_new_cavity_16: data/SP_scan_new_cavity2/20211215_sp_cyclohexanone_5um_new_cavity_16
+Found 3 experiments!
+	0   20211221_sp_cyclohexanone_5um_no_au: data/no_au/20211221_sp_cyclohexanone_5um_no_au
+	1   20211221_sp_cyclohexanone_5um_no_au_2: data/no_au/20211221_sp_cyclohexanone_5um_no_au_2
+	2   20211221_sp_cyclohexanone_5um_no_au_3: data/no_au/20211221_sp_cyclohexanone_5um_no_au_3
+FSR succesfully calculated for all experiments!
+k1 succesfully calculated for all experiments!
+k1 succesfully calculated for all experiments!
+
+Results:
+	Experiment | FSR (cm^-1) | v (cm^-1) | Spacing (um) | t (s)
+	0          |      539.60 |   1079.20 |         7.12 |  304.594
+
+Results (mirrorless):
+	Experiment | t (s)
+	0          |  250.398
+	1          |  270.757
+	2          |  226.688

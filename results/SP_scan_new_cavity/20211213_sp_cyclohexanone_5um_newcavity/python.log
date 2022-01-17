@@ -14,28 +14,11 @@ Spectrum 0:
 	FSR            = 633.50 cm^-1
 	FSR_offset     = 23.71 cm^-1
 	Cavity spacing = 6.0676 um
-	FWHM           = 484.650 cm^-1
-	Quality        = 1.307
+	FWHM           = 414.227 cm^-1
+	Quality        = 1.529
 
 === END
 Plots saved to results/SP_scan_new_cavity/20211213_sp_cyclohexanone_5um_newcavity/plots
 Spectrum data written to results/SP_scan_new_cavity/20211213_sp_cyclohexanone_5um_newcavity/spectrum_data.csv
 
 ====== BEGINNING KINETICS ANALYSIS
-=== GENERAL
-Loaded 194 spectra!
-lambda_range  =  [190.0, 1100.0] nm
-stepsize      =  1.0000 nm
-=== KINETICS
-Exponential fitting for average between wavelenghts [520.0, 580.0] nm:
-	t in [0, 1930] s
-	Correlation (R2)  = 0.9994000000
-	k                 = 0.00383749 s^-1
-	A0                = 0.451
-	slope             = 0.049
-	B                 = 0.049
-	Life-time         = 260.59 s
-	Half-life         = 180.63 s
-=== END
-
-====== END
